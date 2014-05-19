@@ -1,0 +1,197 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{palatino}
+\usepackage{listingsutf8} 
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{placeins}
+
+\usepackage[bottom]{footmisc}
+\usepackage{desclist}
+\usepackage{tocloft}
+\setlength\cftparskip{4pt}
+
+\setlist[itemize]{topsep=3pt,after=\vspace{.5\baselineskip}}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\setlength{\parskip}{2mm}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+% Modification de 'listing'
+\lstset{
+  language=Java,						% choose the language of the code
+  numbers=left,						% where to put the line-numbers
+  stepnumber=1,						% the step between two line-numbers.        
+  numbersep=5pt,						% how far the line-numbers are from the code
+  backgroundcolor=\color{white},		% choose the background color. You must add \usepackage{color}
+  showspaces=false,					% show spaces adding particular underscores
+  showstringspaces=false,			% underline spaces within strings
+  showtabs=false,					% show tabs within strings adding particular underscores
+  tabsize=2,							% sets default tabsize to 2 spaces
+  captionpos=b,						% sets the caption-position to bottom
+  breaklines=true,					% sets automatic line breaking
+  breakatwhitespace=true,			% sets if automatic breaks should only happen at whitespace
+  title=\lstname,					% show the filename of files included with \lstinputlisting;
+  keywordstyle=\color{blue},			% keyword style
+  numberstyle=\tiny\color{mygray},	% the style that is used for the line-numbers
+  rulecolor=\color{black},			% the frame-color may be changed on line-breaks within not-black text
+  basicstyle=\small\ttfamily,		% text style
+  basewidth=0.51em,					% text height
+  showstringspaces=false,			% show space
+  frame=single,						% type of border
+  commentstyle=\color{mygreen},		% comment style
+  stringstyle=\color{mymauve},		% string literal style
+  tabsize=2,							% sets default tabsize to 2 spaces
+  belowskip=-2mm,
+}
+
+
+\def\blurb{\textsc{Université catholique de Louvain\\
+  École polytechnique de Louvain}}
+\def\clap#1{\hbox to 0pt{\hss #1\hss}}%
+\def\ligne#1{%
+  \hbox to \hsize{%
+    \vbox{\centering #1}}}%
+\def\haut#1#2#3{%
+  \hbox to \hsize{%
+    \rlap{\vtop{\raggedright #1}}%
+    \hss
+    \clap{\vbox{\vfill\centering #2\vfill}}%
+    \hss
+    \llap{\vtop{\raggedleft #3}}}}%
+\begin{document}
+
+\begin{titlepage}
+\thispagestyle{empty}\vbox to 1\vsize{%
+  \vss
+  \vbox to 1\vsize{%
+    \haut{\raisebox{-8mm}{\includegraphics[width=2cm]{logo_ucl.pdf}}}{\blurb}{\raisebox{-3mm}{\includegraphics[scale=0.35]{logo_epl.jpg}}}
+    \vfill
+    \ligne{\Huge \textbf{\textsc{Synthèse calculabilité}}}
+    \vspace{5mm}
+    \ligne{\large{-- juin 2014 --}}
+    \vfill
+    \ligne{%
+      \begin{tabular}{c}
+        \textsc{Travail du groupe :}
+      \end{tabular}}
+    \vspace{5mm}
+    \ligne{%
+         \textsc{Hachez} Floran   7372-11-00 
+      }
+    }%
+  \vss
+  }
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+\label{sec:introduction}
+
+\paragraph{}
+\label{par:}
+La calculabilité c'est l'étude des limites de l'informatique. Il faut bien 
+faire attention à faire la différence entre les limites théoriques et les limites
+pratiques. Pour calculabilité, on s'occupe des limites théoriques.
+Alors que pour la complexité on s'occupe des limites pratiques, détermine la frontière
+entre faisable en pratique et infaisable en pratique.
+La question principale de la calculabilité est quels sont les problèmes qui peuvent
+être résolus par un programme et lesquels ne peuvent pas.
+
+\paragraph{} Le but est de tracer des frontières entres les programmes calculables,
+non calculables et non calculables en pratique.
+
+\paragraph{}
+\label{par:}
+L'intérêt pratique est qu'on peut donc savoir quand est-ce que ça ne sert à rien 
+de résoudre un problème. De plus, on est conscient de a complexité intrinsèque d'un
+problème.
+% paragraph  (end)
+
+\subsection{Notion de problème}
+\label{subsec:notion_de_probl_me}
+
+\paragraph{}
+\label{par:}
+Premièrement, on doit parler la notion de problème.
+Attention, il ne faut pas confondre un problème avec un programme.
+Les caractéristiques sont:
+
+\begin{itemize}
+	\item un problème est générique : il s'applique à un ensemble de données.
+	\item pour chaque donnée particulière, il existe une réponse.
+\end{itemize}
+On représente un problème dans le cours par une fonction. Donc dans le cours,
+la description d'un problème est équivalent à la description delà fonction.
+% paragraph  (end)
+% subsection notion_de_probl_me (end)
+
+\subsection{Notion de programme}
+\label{ssub:notion_de_programme}
+
+Un programme est une "procédure effective" c'est à dire exécutable par une machine.
+Il existe plein de formalisme permettant la description de "procédure effective".
+
+% subsection notion_de_programme (end)
+
+\subsection{Résultat principaux}
+\label{sub:r_sultat_principaux}
+
+\begin{itemize}
+	\item Équivalence des langages de programmation (Complet).
+	\item Problème non calculable : Il existe des problèmes qui ne peuvent 
+		être résolus par un programme. Ex: détection de virus, équivalence
+		de programme,..
+	\item Problème intrinsèquement complexe. (Voir complexité) Les problème
+		qui ont une complexité supérieur ou égal à l'exponentielle. Dans
+		ce cas même l'amélioration des ordinateurs n'influence presque pas
+		la taille de l'entrée possible.
+\end{itemize}
+
+% subsection r_sultat_principaux (end)
+
+\subsection{Détection de Virus}
+\label{sub:d_tection_de_virus}
+On veut déterminer si un programme P avec une entrée D est nuisible.
+
+Spécification du programme détecteur(P,D):\\
+Préconditions : un programme P et une donnée D\\
+Postconditions : "Mauvais" si P(D) est nuisible,
+		"Bon" sinon
+
+\paragraph{}On va créer un programme drôle(P) et essayer de détecter si il est nuisible.
+
+drôle(P) \\
+if( détecteur(P,P)="Mauvais" then stop \\
+else infecter un autre programme en y insérant P
+
+\paragraph{}
+Testons drôle(drôle). \\
+drôle(drôle) \\
+if( détecteur(drôle, drôle)="Mauvais" then stop \\
+else infecter un autre programme en y insérant drôle \\
+
+Si drôle(drôle) est nuisible alors le programme s'arrête or il n'est pas nuisible
+puisqu'il n'a infecté aucun programme.\\
+Si par contre il n'est pas nuisible alors il va un infecter un autre programme.\\
+On a donc une contradiction ce qui implique que le programme drôle ne peut exister,
+le programme détecteur non plus.
+% paragraph  (end)
+% subsection d_tection_de_virus (end)
+
+% section introduction (end)Introduction
+
+\end{document}
