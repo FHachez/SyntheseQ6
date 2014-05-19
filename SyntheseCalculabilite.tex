@@ -405,6 +405,7 @@ x appartient à A.\\
 A est un ensemble récursivement énumérable ssi A est vide ou A = image(f) et f
 est une fonction totale calculable. Car f est une fonction d'énumération (elle
 peut répéter plusieurs fois un élément, mais ce n'est pas gênant).\\
+% paragraph d_finition_importante (end)
 
 \paragraph{Propriétés importantes}
 \label{par:propri_t_s_importantes}
@@ -423,17 +424,140 @@ peut répéter plusieurs fois un élément, mais ce n'est pas gênant).\\
 \end{itemize}
 
 % paragraph propri_t_s_importantes (end)
-% paragraph d_finition_importante (end)
-
-
-
 % subsubsection ensemble_r_cursif_et_r_cursivement_num_rable (end)
-
-
-
-
 % subsection fonctions_calculables_ensembles_r_crusids_et_r_cursivement_num_rables (end)
 
+\subsection{Thèse de Church-Turing}
+\label{sub:th_se_de_church_turing}
+Grâce à la définition, on sait montrer qu'une fonction est calculable. Mais comment
+montrer qu'une fonction n'est pas calculable? Pour ça on a besoin de définition
+couvrant la totalité des fonctions calculables. \\
+Une autre question est est-ce que prendre un modèle particulier est restrictif?\\
+La thèse de Turing répond à ces questions.
+\begin{enumerate}
+	\item Aucun modèle de la notion de fonction calculable n'est plus puissant
+		que les Machines de Turing \\
+		Version moderne : Une fonction est calculable s'il existe un 
+		programme d'ordinateur qui calcul cette fonction
+	\item Toute fonction calculable est calculable par une machine de Turin.
+	\item Toutes les définitions formelles de la calculabilité connues à ce 
+		jour sont équivalentes (Théorème, ça a été démontré) (justifie 
+		l'utilisation de Java comme modèle)
+	\item Toutes les formalisations de la calculabilité établies par la 
+		suite seront équivalentes aux définitions connues
+\end{enumerate}
+1, 2 et 4 sont des thèses universellement reconnues comme vraies.
+
+% subsection th_se_de_church_turing (end)
+
+\subsection{Programmes et fonctions}
+\label{sub:programmes_et_fonctions}
+Dans le cours on utilise un langage de programmation, Java, comme modèle.
+Soit P l'ensemble des programmes Java qui reçoit un ou plusieurs entiers comme 
+donnée et qui imprime/retourne un résultat.
+
+\paragraph{} P est un ensemble infini dénombrable (chaîne de caractère d'un 
+alphabet fini) récursif (il existe un programme, le compilateur, qui détermine 
+si un programme est un programme Java ou non).
+
+\paragraph{} P = $P_0$, $P_1$,... ,$P_k$,... (énumération des programmes Java 
+sans répétition). Ce qui implique qu'on peut numéroter les programmes Java.\\
+On définit $P_k$ comme le programme k dans P et $\phi^{(n)}_k$ : $N^n 
+\rightarrow N$ comme étant la fonction calculée pas $P_k$
+
+\paragraph{} Il existe donc une fonction f : $N\rightarrow P$ telle que :
+\begin{itemize}
+	\item f(k) = $P_k$
+	\item f calculable
+	\item k (numéro d'un programme) et $P_k$ sont deux représentations 
+		distinctes d'un même objet.
+\end{itemize}
+% subsection programmes_et_fonctions (end)
+
+\subsection{Existence de fonctions non calculable}
+\label{sub:existence_de_fonction_non_calculables}
+Il existe beaucoup de fonctions non calculables, car le nombre de fonctions de N 
+dans N est non dénombrable (Démo par Cantor lors d'un TP). Or le nombre de 
+programmes Java est dénombrable. Donc il y a beaucoup de fonctions qui ne sont 
+pas calculables.
+
+\paragraph{} On ne s'intéresse qu'aux fonctions qui sont définies par une table 
+finie (on ne sait pas définir les tables infinies). Il en existe une infinité 
+dénombrable.
+
+\paragraph{} On va maintenant montrer que ce n'est pas parce qu’une fonction 
+est définie par une table finie qu'elle est nécessairement calculable (avec la 
+fonction halt qui détermine si un programme se termine ou non).
+
+\subsection{Problème de l'arrêt}
+\label{sub:probl_me_de_l_arr_t}
+
+Soit la fonction halt: P x N $\rightarrow$ N telle que \\
+\begin{tabular}{cc}
+  halt(n, x) = 1 & si $P_n(x)$ se termine \\
+  halt(n, x) = 0 & sinon \\
+  ou &\\
+  halt(n, x) = 1 & si $\phi_n(x)\neq \perp$ \\
+  halt(n, x) = 0 & sinon \\
+\end{tabular}
+
+halt est une fonction bien définie, totale et sa table est infinie mais décrite 
+de manière finie. Or on va montrer que halt n'est pas calculable par 
+diagonalisation (comme pour la démonstration de Cantor).\\
+
+TODO \\
+
+\paragraph{Conclusion} Il n'existe pas d'algorithme qui détermine si n'importe 
+quel programme $P_n$ se termine ou non. Mais dans certains formalismes qui ne 
+sont pas des modèles complets, par exemple un langage qui ne permet de calculer 
+que des fonctions totale, halt est calculable (halt retourne toujours 1). \\
+De plus, il faut faire attention car ce n'est pas parce que halt n'est pas 
+calculable que pour un programme donné k, $halt(k,x)$ est non calculable. Par 
+exemple $halt(32,123)$ est une fonction constant donc calculable (ce n'est pas 
+pour autant qu'on est capable d'écrire l'algorithme), $halt(32,x)$ ça dépend du 
+programme 32, par exemple si celui-ci est constant.
+
+\paragraph{} Cette partie du cours est très importante car on a trouvé un 
+"trou dans le mur des fonctions calculables" et on va étendre le trou (métaphore
+de Mr Deville). C'est-à-dire que maintenant on va utiliser halt pour montrer 
+que d'autres fonctions sont calculables.
+
+\paragraph{} Il existe donc au moins un ensemble non récursif (dans notre 
+modèle?)\\
+K = 
+\begin{tabular}{c}
+{n|(n,n)$\in$ HALT}\\
+{n| halt(n,n)=1}\\
+{n| $P_n(b)$ se termine} \\
+\end{tabular}
+
+Où HALT est l'ensemble des programmes k qui se termine pour l'entrée x (HALT = {(n,x)|$P_n(x)$ se 
+termine}). Et K est l'ensemble des programmes n qui se termine pour l'entrée n.
+
+\paragraph{Propriétés} \\
+
+\begin{itemize}
+	\item  K et HALT ne sont pas récursifs
+	\item  Ils sont récursivement énumérables\\
+		Car il suffit de lancer le programme et s’il retourne quelque 
+		chose il se termine sinon on ne sait pas.
+	\item  $\stcomp{HALT}$ n'est pas récursivement énumérable sinon HALT 
+		serait récursif.
+	\item $\stcomp{K}$ n'est pas récursivement énumérable
+\end{itemize}
+
+TODO insérer le schéma sur les fonctions et les ensembles
+
+\paragraph{Ensemble co-récursivement énumérable} est un ensemble dont le 
+complément est récursivement énumérable. Par exemple $\stcomp{HALT}$. On peut 
+en déduire que si un ensemble est récursivement énumérable et co-récursivement 
+énumérable alors il est récursif.
+
+
+% subsection probl_me_de_l_arr_t (end)
+
+
+% subsection existence_de_fonction_non_calculables (end)
 
 % section r_sultats_fondamentaux (end)
 
