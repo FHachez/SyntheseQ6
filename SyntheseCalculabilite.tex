@@ -30,6 +30,7 @@
 
 \renewcommand{\stcomp}[1]{\overline{#1}} 
 
+
 % Modification de 'listing'
 \lstset{
   language=Java,						% choose the language of the code
@@ -489,6 +490,8 @@ dénombrable.
 est définie par une table finie qu'elle est nécessairement calculable (avec la 
 fonction halt qui détermine si un programme se termine ou non).
 
+% subsection existence_de_fonction_non_calculables (end)
+
 \subsection{Problème de l'arrêt}
 \label{sub:probl_me_de_l_arr_t}
 
@@ -501,7 +504,7 @@ Soit la fonction halt: P x N $\rightarrow$ N telle que \\
   halt(n, x) = 0 & sinon \\
 \end{tabular}
 
-halt est une fonction bien définie, totale et sa table est infinie mais décrite 
+halt est une fonction bien définie, totale et sa table est infinie, mais décrite 
 de manière finie. Or on va montrer que halt n'est pas calculable par 
 diagonalisation (comme pour la démonstration de Cantor).\\
 
@@ -525,7 +528,7 @@ que d'autres fonctions sont calculables.
 \paragraph{} Il existe donc au moins un ensemble non récursif (dans notre 
 modèle?)\\
 K = 
-\begin{tabular}{c}
+\begin{tabular}{l}
 {n|(n,n)$\in$ HALT}\\
 {n| halt(n,n)=1}\\
 {n| $P_n(b)$ se termine} \\
@@ -534,7 +537,7 @@ K =
 Où HALT est l'ensemble des programmes k qui se termine pour l'entrée x (HALT = {(n,x)|$P_n(x)$ se 
 termine}). Et K est l'ensemble des programmes n qui se termine pour l'entrée n.
 
-\paragraph{Propriétés} \\
+\paragraph{Propriétés}
 
 \begin{itemize}
 	\item  K et HALT ne sont pas récursifs
@@ -553,11 +556,119 @@ complément est récursivement énumérable. Par exemple $\stcomp{HALT}$. On peu
 en déduire que si un ensemble est récursivement énumérable et co-récursivement 
 énumérable alors il est récursif.
 
-
 % subsection probl_me_de_l_arr_t (end)
 
+\subsection{Insuffisance des fonctions totales}
+\label{sub:insuffisance_des_fonctions_totales}
+Comme on a vu qu'il était possible de calculer halt dans un modèle qui ne 
+permet de calculer que des fonctions totales, on se pose la question de 
+pourquoi on n'utilise pas un tel modèle. De plus les fonctions "pratiques" sont 
+des fonctions totales. Un tel modèle est par exemple Java, mais sans boucle 
+donc par intuition on se doute qu'il y a beaucoup de choses qu'on ne peut pas 
+calculer.
 
-% subsection existence_de_fonction_non_calculables (end)
+\paragraph{} Posons Q un langage dont tous les programmes se terminent et pour 
+lequel il existe un interpréteur calculable, interpret(n,x)=$\phi'_n$. Où
+$\phi'_k$ la fonction calculée par le programme $Q_k$. L'interpréteur est une 
+fonction totale.
+
+\paragraph{Théorème de Hoare-Allison}
+\label{par:th_or_me_de_hoare_allison}
+interpret(n,x) n'est pas calculable dans Q.\\
+
+TODO démonstration par diagonalisation
+
+% paragraph th_or_me_de_hoare_allison (end)
+
+\paragraph{}
+Si un langage ne permet que le calcul de fonction total alors :
+\begin{itemize}
+	\item l'interpréteur de ce langage n'est pas calculable dans ce langage
+	\item il existe des fonctions totales non programmables dans ce langage
+	\item ce langage est \bf{restrictif}
+\end{itemize}
+
+\paragraph{} Si un langage permet de programmer son propre interpréteur alors il ne permet 
+pas de programmer la fonction halt de ce langage.
+
+\paragraph{} Dans un langage de programmation, il est donc impossible que 
+l'interpréteur et la fonction halt (de ce langage) puissent être programmés dans ce langage.
+
+\paragraph{} Ça implique que si on veut pouvoir programmer toutes les fonctions 
+totales dans un langage, le langage doit permettre la programmation de 
+fonctions non totales.
+
+\paragraph{} L'ensemble {n| $\phi_n$ est totale} n'est pas récursif. (sinon on 
+saurait créer un langage qui ne calcule que des fonctions totales??)
+
+TODO insérer la fonction universelle ???
+
+% subsection insuffisance_des_fonctions_totales (end)
+
+\subsection{Extension de fonctions partielles}
+\label{sub:extension_de_fonctions_partielles}
+\paragraph{Théorème} Il existe une fonction partielle calculable g telle 
+qu'aucune fonction totale calculable n'est une extension de g.
+
+\paragraph{} Ca implique que si on a une fonction partielle g, il n'est pas 
+toujours possible de créer une fonction totale f qui étend g
+tel que en dehors du domaine de g, f retourne un code d'erreur.
+
+% subsection extension_de_fonctions_partielles (end)
+
+\subsection{Théorème de Rice}
+\label{sub:th_or_me_de_rice}
+Soit A $\subseteq$ $N$ \\
+Si A récursif et A$\neq \emptyset$ et A $\neq$ $N$ \\
+Alors $exists$ i $\in$ A et j $\in N$\ A tel que $\phi _i = \phi _j$ \\
+
+Par contre, \\
+Si $\forall$ i $\in$ A et $\forall$j $\in N$\ A tel que $\phi_i \neq \phi_j$ \\
+Si A non récursif et A$=\emptyset$ et A $= N$ \\
+
+\paragraph{} On est intéressé par l'analyse des propriétés d'un programme. La 
+question est est-ce que ces propriétés peuvent être déterminées par un 
+algorithme. On va utiliser le théorème de Rice pour caractériser les propriétés 
+qu'il est possible de déterminer par un algorithme de celle pour lesquelles ce 
+n'est pas possible.
+
+\paragraph{}Pour ça, considérons A comme étant l'ensemble des programmes qui 
+respecte une propriété. Par exemple $A_1$ = {i| $\phi_i$ est total e} ou 
+$A_2$={i|$\phi_i = f$},... (il y a plein d'exemples dans le cours).
+
+\paragraph{Analyse} 
+\begin{itemize}
+	\item Si la propriété est vérifiée par certain programme, mais pas tous 
+		est décidable, alors il existe deux programmes calculant la 
+		même fonction, mais l'un vérifie la propriété, mais pas l'autre.
+
+	\item Si la propriété est vérifiée par un programme, mais pas tous 
+		alors cette propriété ne peut-être décidée pas un algorithme.
+
+	\item S'il existe un algorithme permettant de déterminer si un 
+		programme quelconque calcule une fonction ayant cette propriété 
+		alors toutes les fonctions calculables ont cette propriété ou 
+		aucune fonction calculable n'a cette propriété.
+	\item Aucune question relative au programme, vu sous l'angle de la 
+		fonction qu'ils calculent, ne peut être décidée par 
+		l'application d'un algorithme.
+	\item Les propriétés intéressantes d'un programme concernant la 
+		fonction qu'il calcule, non pas la forme d'un programme.
+\end{itemize}
+
+TODO preuve du théorème de RICE.
+
+% subsection th_or_me_de_rice (end)
+
+\subsection{Théorème de la paramétrisation}
+\label{sub:th_or_me_de_la_param_trisation}
+
+
+
+
+% subsection th_or_me_de_la_param_trisation (end)
+
+% Conclusion Rice => point fixe =>Rice,..
 
 % section r_sultats_fondamentaux (end)
 
