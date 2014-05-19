@@ -223,9 +223,9 @@ Notation :
 \label{ssub:Langages}
 Notation : 
 \begin{itemize}
-	\item une chaine de caractère ou un mot : séquence FINIE de symboles. 
+	\item une chaîne de caractère ou un mot : séquence FINIE de symboles. 
 		abceced, 010101101
-	\item chaine de caractères vide : $\epsilon$
+	\item chaîne de caractères vide : $\epsilon$
 	\item un alphabet $\sum$ est un ensemble de symboles. $\sum = {1, 2}$
 	\item un langage est un ensemble de mots constitués de symboles d'un alphabet
 		donné.
@@ -250,7 +250,7 @@ Soient A, B des ensembles.
 \label{ssub:fonctions}
 Soient A, B des ensembles.
 \begin{itemize}
-	\item Une fonction f: A \rightarrow B est une relation telle que a $\in$
+	\item Une fonction f: A $\rightarrow$ B est une relation telle que a $\in$
 	A, il existe au plus un b $\in$ B tel que <a,b> $\in$ f
 	\item écrire f(a)=b est équivalent à <a,b> $\in$ f
 	\item Si il n'existe pas de b $\in$ B tel que f(a)=b alors f(a) est indéfini,
@@ -263,7 +263,7 @@ l'extension. \\
 f est une extension de g si $\forall x \in A$ : $g(x)\neq \perp \Rightarrow f(x) = g(x)$
 Autrement dit, f a la même valeur que g partout où g est définie.
 
-\paragraph{Définition d'une fonction}\\
+\paragraph{Définition d'une fonction}
 \label{par:d_finition_d_une_fonciton}
 On définit une fonction par sa table qui peut-être infinie.\\
 On peut définir la table de plusieurs façons :
@@ -338,5 +338,103 @@ Généralement on va utiliser une des techniques suivantes:
 
 % subsection conclusion (end)
 % section concepts (end)
+
+\section{Résultats fondamentaux}
+\label{sec:r_sultats_fondamentaux}
+
+\subsection{Algorithmes et effectivité}
+\label{sub:algorithmes_et_effectivit_}
+Qu'est-ce qu'un algorithme? C'est une procédure qui peut être appliquée à n'importe
+quelles données et qui a pour effet de produire un résultat. C'est un ensemble fini
+d'instructions qui peuvent être exécutées. Dans on ne tracasse pas de la taille des données,
+des instructions ni de la mémoire disponible, mais les considères comme finies. 
+
+\paragraph{}
+Attention, un algorithme n'est pas une fonction, mais ça calcule une fonction.\\
+De plus dans le cours on se limite aux fonctions de $N^n$ dans $N$. Car on peut,
+montrer que ça revient au même que de considéré de $N^n$ dans $N^n$. On va aussi
+utiliser Java comme modèle étant donné que c'est plus facile et qu'on va montrer 
+que les modèles complets sont équivalents.
+
+% subsection algorithmes_et_effectivit_ (end)
+
+\subsection{Fonctions calculables, ensembles récrusids et récursivement énumérables}
+\label{sub:fonctions_calculables_ensembles_r_crusids_et_r_cursivement_num_rables}
+
+\subsubsection{Fonction calculable}
+\label{ssub:fonction_calculable}
+Une fonction est calculable s’ il existe un algorithme qui, recevant comme donnée
+n'importe quels nombres naturels $X_1$,...$X_n$ fourni (tôt ou tard) comme 
+résultat f(x) s’il existe.
+\paragraph{} S’il ne se termine pas c'est que $f(x)=\perp$. \\
+De plus, il faut faire attention entre ne pas être capable d'écrire un algorithme
+et ne pas savoir l'écrire. (Voir exemple TP et cours : rose vert sur Mars ou encore
+x occurrences de 5 dans $\pi$.
+\paragraph{} Une fonction peut-être totale calculable ou partielle calculable.
+
+% subsubsection fonction_calculable (end)
+
+\subsubsection{Ensemble récursif et récursivement énumérable}
+\label{ssub:ensemble_r_cursif_et_r_cursivement_num_rable}
+Soit $A\subseteq N$\\
+\paragraph{}A est récursif s’ il existe un algorithme qui recevant un $X\in N$, fourni (tôt ou 
+tard) comme résultat 1 si $x\in A$, 0 si $x\notin A$.\\
+L'algorithme décide si x est dans A ou non.
+
+\paragraph{}A est récursivement énumérable s’ il existe un algorithme qui recevant
+un $X\in N$, fourni (tôt ou tard) comme résultat 1 si $x\in A$, ne se termine pas
+ou fourni un résultat $\neq1$si $x\notin A$.\\
+Le souci c'est que même si l'algorithme permet de dire si x est dans A, si x
+n'est pas dans A on ne sait rien dire car on ne peut pas dire à un moment qu'on
+arrête l'algorithme. Car c'est possible que x soit dans A et que l'algorithme ne
+l'a pas encore déterminé (retourne tôt ou tard !).
+
+\paragraph{Définition importante}
+\label{par:d_finition_importante}
+Fonction caractéristique de A: \\
+$X_A$ : N $\rightarrow$ N tel que \\
+$X_A(x)$ = 1 si x $\in$ A
+       = 0 si x $\notin$ A %TODO better allign
+\\
+A est un ensemble récursif ssi $X_A$ est une fonction totale calculable. Ce qui
+est évident, ça veut dire qu'il existe une fonction $X_A$ qui décide si n'importe
+qu'elle x appartient ou non à A.\\
+A est un ensemble récursivement énumérable ssi A = dom(f) et $X_A$ est une 
+fonction (totale ou partielle) calculable. En effet, si f(x) est défini alors
+x appartient à A.\\
+A est un ensemble récursivement énumérable ssi A est vide ou A = image(f) et f
+est une fonction totale calculable. Car f est une fonction d'énumération (elle
+peut répéter plusieurs fois un élément, mais ce n'est pas gênant).\\
+
+\paragraph{Propriétés importantes}
+\label{par:propri_t_s_importantes}
+\begin{itemize}
+	\item A récursif $\Rightarrow$ A récursivement énumérable. (Propriété plus
+		faible)
+	\item A récursif $\Rightarrow$ (N \ A) énumérable.\\ On peut facilement créer
+		un programme qui retourne 1 - le programme qui décide A.
+	\item A récursivement énumérable et (N \ A) récursivement énumérable 
+		$\Rightarrow$ A récursivement énumérable.\\ Il suffit de créer un programme
+		qui exécuté un peu du programme qui décide A puis un peu de celui qui
+		décide (N \ A). \\Jusqu'au moment ou l'un des programmes retourne une
+		réponse.
+	\item A fini $\Rightarrow$ A récursif. (Trivial)
+	\item (N \ A) fini $\Rightarrow$ A récursif. (Trivial)
+\end{itemize}
+
+% paragraph propri_t_s_importantes (end)
+% paragraph d_finition_importante (end)
+
+
+
+% subsubsection ensemble_r_cursif_et_r_cursivement_num_rable (end)
+
+
+
+
+% subsection fonctions_calculables_ensembles_r_crusids_et_r_cursivement_num_rables (end)
+
+
+% section r_sultats_fondamentaux (end)
 
 \end{document}
