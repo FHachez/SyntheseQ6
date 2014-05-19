@@ -239,17 +239,104 @@ Notation :
 Soient A, B des ensembles.
 \begin{itemize}
 	\item Une relation R sur A, B est un sous-ensemble de A x B. C'est-à-dire
-		un ensemble de paires (a,b) avec $a\in A$ $b\in B$.
+		un ensemble de paires <a,b> avec $a\in A$ $b\in B$.
 	\item On peut définir une relation par sa table
+	\item On peut écrire <a,b> $\in$ R ou aRb ou R(a,b) 
 \end{itemize}
 
 % subsubsection relations (end)
 
+\subsubsection{Fonctions}
+\label{ssub:fonctions}
+Soient A, B des ensembles.
+\begin{itemize}
+	\item Une fonction f: A \rightarrow B est une relation telle que a $\in$
+	A, il existe au plus un b $\in$ B tel que <a,b> $\in$ f
+	\item écrire f(a)=b est équivalent à <a,b> $\in$ f
+	\item Si il n'existe pas de b $\in$ B tel que f(a)=b alors f(a) est indéfini,
+		f(a) = $\perp$
+\end{itemize}
 
+Dans le cours on utilise les propriétés classique: dom(f), image(f), fonction totale,
+fonction partielle, fonction surjective, injective et injective. On utilise aussi 
+l'extension. \\
+f est une extension de g si $\forall x \in A$ : $g(x)\neq \perp \Rightarrow f(x) = g(x)$
+Autrement dit, f a la même valeur que g partout où g est définie.
 
+\paragraph{Définition d'une fonction}\\
+\label{par:d_finition_d_une_fonciton}
+On définit une fonction par sa table qui peut-être infinie.\\
+On peut définir la table de plusieurs façons :
+\begin{itemize}
+	\item Par un texte fini déterminant sans contradiction ni ambigüité le contenu
+		de la table.
+	\item Par un algorithme ex : f(x) = $2x^3+5$
+	\item Écrire toutes les paires de la relation.
+\end{itemize}
+Attention, il n'est pas nécessaire de décrire ou de connaître un moyen de la calculer
+pour pouvoir la définir. Ex : f(x) = 1 s'il y a de la vie autre part que sur terre,
+0 sinon.
+% paragraph d_finition_d_une_fonction (end)
+% subsubsection fonctions (end)
 % subsection ensembles_langages_relations_et_fonctions (end)
 
+\subsection{Ensemble énumérable}
+\label{sub:ensemble_num_rables}
 
+Avant de dire ce qu'est un ensemble énumérable, on doit savoir que deux ensembles
+ont le même cardinal s’il existe une bijection entre eux.
+
+\paragraph{}
+Un ensemble est énumérable ou dénombrable si soir il est fini ou il a le même cardinal que $\mathbb{N}$. \\
+Quelques propriétés : 
+\begin{itemize}
+	\item Tout sous-ensemble d'un ensemble énumérable est énumérable.
+	\item L'union et l'intersection de deux ensembles énumérables est énumérable.
+	\item L'union d'une infinité d'ensembles énumérables est énumérable. (Facile à
+		démontrer voir TP)
+\end{itemize}
+
+Quelques ensembles non énumérables : 
+\begin{itemize}
+	\item L'ensemble R
+	\item L'ensemble des sous-ensemble de N
+	\item L'ensemble des chaînes infinies de caractère sur un alphabet fini
+	\item L'ensemble des fonctions de N dans N (Cas important)
+\end{itemize}
+% subsection ensemble_num_rables (end)
+
+\subsection{Cantor}
+\label{sub:cantor}
+On va montrer qu'il existe des ensembles non énumérables. Ex R.
+L'idée de la démonstration est de :
+\begin{enumerate}
+	\item Supposer que l'ensemble est énumérable
+ 	\item Construire une table contenant une soi-disant énumération
+	\item Sélectionner la diagonale et dire qu'on doit l'énumérer
+	\item Modifier l'élément égal à la diagonale
+	\item Montrer que l'élément n'est pas dans l'énumération => Contradiction
+	\item Conclusion l'ensemble est pas énumérable
+\end{enumerate}
+On montre que quand on essaye d'énumérer on loupe toujours des éléments.
+
+TO DO
+
+% subsection cantor (end)
+
+\subsection{Conclusion}
+\label{sub:conclusion}
+Les ensembles énumérables sont importants pour la suite du cours et aussi car en 
+informatique on ne considère que les ensembles énumérables.
+Dans le cours, on va souvent devoir montrer qu'un ensemble est énumérable/non énumérable.
+Généralement on va utiliser une des techniques suivantes: 
+\begin{itemize}
+	\item montrer qu'il y a une bijection avec N ou R
+	\item montrer que l'ensemble est fini
+	\item utiliser Cantor
+	\item écrire un programme qui énumère l'ensemble
+\end{itemize}
+
+% subsection conclusion (end)
 % section concepts (end)
 
 \end{document}
