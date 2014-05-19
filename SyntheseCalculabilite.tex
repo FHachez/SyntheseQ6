@@ -28,6 +28,8 @@
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 
+\renewcommand{\stcomp}[1]{\overline{#1}} 
+
 % Modification de 'listing'
 \lstset{
   language=Java,						% choose the language of the code
@@ -193,5 +195,61 @@ le programme détecteur non plus.
 % subsection d_tection_de_virus (end)
 
 % section introduction (end)Introduction
+
+\section{Concepts}
+\label{sec:concepts}
+
+% Dans cette partie il y a pas moyen de synthétiser beaucoup.
+
+\subsection{Ensembles, langages, relations et fonctions}
+\label{sub:ensembles_langages_relations_et_fonctions}
+
+\subsubsection{Ensembles}
+\label{ssub:ensembles}
+Un ensemble est une collection d'objets, sans répétition, appelés les éléments
+de l'ensemble.\\
+
+Notation : 
+\begin{itemize}
+	\item Ensemble fini : { 0, 1, 2}
+	\item Ensemble infini : { 0, 1, 2, ...}
+	\item Produit cartésien : A x B
+	\item Complément : $\stcomp{A}$
+\end{itemize}
+
+% subsubsection ensembles (end)
+
+\subsubsection{Langages}
+\label{ssub:Langages}
+Notation : 
+\begin{itemize}
+	\item une chaine de caractère ou un mot : séquence FINIE de symboles. 
+		abceced, 010101101
+	\item chaine de caractères vide : $\epsilon$
+	\item un alphabet $\sum$ est un ensemble de symboles. $\sum = {1, 2}$
+	\item un langage est un ensemble de mots constitués de symboles d'un alphabet
+		donné.
+	\item ensemble de tous les mots possible avec $\sum$ : $\sum ^*$
+\end{itemize}
+
+% subsubsection Langages (end)
+
+\subsubsection{Relations}
+\label{ssub:relations}
+Soient A, B des ensembles.
+\begin{itemize}
+	\item Une relation R sur A, B est un sous-ensemble de A x B. C'est-à-dire
+		un ensemble de paires (a,b) avec $a\in A$ $b\in B$.
+	\item On peut définir une relation par sa table
+\end{itemize}
+
+% subsubsection relations (end)
+
+
+
+% subsection ensembles_langages_relations_et_fonctions (end)
+
+
+% section concepts (end)
 
 \end{document}
