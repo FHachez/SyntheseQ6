@@ -30,7 +30,7 @@
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 
-\renewcommand{\stcomp}[1]{\overline{#1}} 
+\newcommand{\stcomp}[1]{\overline{#1}} 
 
 % Sets
 \newcommand{\R}{\mathbb{R}}
@@ -129,7 +129,6 @@
 \label{sec:introduction}
 
 \paragraph{}
-\label{par:}
 La calculabilité c'est l'étude des limites de l'informatique. Il faut bien 
 faire attention à faire la différence entre les limites théoriques et les limites
 pratiques. Pour calculabilité, on s'occupe des limites théoriques.
@@ -142,7 +141,6 @@ La question principale de la calculabilité est quels sont les problèmes qui pe
 non calculables et non calculables en pratique.
 
 \paragraph{}
-\label{par:}
 Ça nous permet de savoir quand ça ne sert à rien de résoudre un problème.
 De plus, on est conscient de sa complexité intrinsèque d'un
 problème.
@@ -152,7 +150,6 @@ problème.
 \label{subsec:notion_de_probl_me}
 
 \paragraph{}
-\label{par:}
 Premièrement, on doit parler la notion de problème.
 Attention, il ne faut pas confondre un problème avec un programme.
 Les caractéristiques d'un problème sont:
@@ -375,7 +372,7 @@ TO DO
 % subsection cantor (end)
 
 \subsection{Conclusion}
-\label{sub:conclusion}
+
 Les ensembles énumérables sont importants pour la suite du cours et aussi, car en 
 informatique on ne considère que les ensembles énumérables.
 Dans le cours, on va souvent devoir montrer qu'un ensemble est énumérable/non énumérable.
@@ -866,7 +863,7 @@ retourne un programme qui peut être différent.
 \end{myrem}
 
 \begin{myrem}
-	on peut donc voir le transformation de programmes $S^m_n$ comme un 
+	On peut donc voir la transformation de programmes $S^m_n$ comme un 
 	programme qui particularise un autre programme à m+n argument en rendant 
 	constant les m derniers paramètres.
 \end{myrem}
@@ -879,7 +876,7 @@ TODO Preuve.
 \end{mytheo}
 
 TODO Démonstration avec les lapins (les 3 lapins qui permettent
-de commencer la démonstration ne sont pas super intuitif)
+de commencer la démonstration ne sont pas super intuitifs)
 \begin{myrem}
 	Le théorème \ref{point-fixe} n'est pas très intuitif. Mais on peut le 
 	voir comme quelque soit un transformateur programme T qui calcule f 
@@ -887,7 +884,7 @@ de commencer la démonstration ne sont pas super intuitif)
 	de programme), \\
 	il existe deux programmes $P_k$ et $P_j$ tels que 
 	\begin{itemize}
-		\item $P_j$ est la tranformation de $P_k$ via T ($k=f(j)$)
+		\item $P_j$ est la transformation de $P_k$ via T ($k=f(j)$)
 		\item $P_k$ et $P_j$ calcule la \textbf{même} fonction
 	\end{itemize}
 \end{myrem}
@@ -906,7 +903,7 @@ TODO demo de Rice à partir du point fixe
 	\end{itemize}
 	Le problème consiste à décider s’ il existe une suite d'entiers 
 	$i_1,i_2,..,i_n$ telle que les mots $u_{i1},u_{i_2},...,u_{in}$ et 
-	$v_{i1},v_{i_2},...,v_{in}$ soient \textbf{identiquese}
+	$v_{i1},v_{i_2},...,v_{in}$ soient \textbf{identique}
 \end{mydef}
 
 \begin{mydef}
@@ -955,23 +952,510 @@ dont notamment des exemples sur les grammaires dans le cours.
 % subsection nombres_calculables (end)
 
 \subsection{Conclusion}
-\label{sub:conclusion}
+
 Le théorème S-m-n permet de démontrer le théorème du point fixe.
 Le théorème du point fixe est un résultat central de la calculabilité. Il 
 implique le théorème de rice, la non-récursivité de K et la non-calculabilité 
 de la fonction halt.
 
 % subsection conclusion (end)
-
-
-
-% subsubsection transformation_de_programmes (end)
-
-
-
-% subsection th_or_me_de_la_param_trisation (end)
-
-% Conclusion Rice => point fixe =>Rice,..
 % section r_sultats_fondamentaux (end)
+
+\section{Modèle de la calculabilité}
+\label{sec:mod_le_de_la_calculabilit_}
+
+\subsection{Familles de modèles}
+\label{sub:fammilles_de_mod_les}
+
+Il y a deux grandes familles de modèles :
+\begin{itemize}
+	\item Modèle de calcul
+	\item Modèle de langages
+\end{itemize}
+
+\subsubsection{Modèle de calcul}
+\label{ssub:mod_le_de_calcul}
+L'objectif est de modéliser le concept de fonctions calculables, processus de 
+calcul, algorithme effectif.
+
+\paragraph{} on peut encore classer les modèles de calcul en 2 catégories, les 
+modèles déterministes et les modèles non déterministes.
+
+\begin{mydef}
+	\textbf{Modèles déterministes :} une seule exécution possible
+\end{mydef}
+
+\begin{mydef}
+	\textbf{Modèles non déterministes :} il existe plusieurs exécutions 
+	possibles
+\end{mydef}
+
+On va voir les modèles de calcul suivant : 
+\begin{itemize}
+	\item Automate fini
+	\item Automate à pile
+	\item Machine de Turing
+	\item Langages de programmation
+	\item Lambda calcul
+	\item Fonction récursive
+\end{itemize}
+
+Mais, il en existe beaucoup d'autres.
+% subsubsection mod_le_de_calcul (end)
+
+\subsubsection{Modèle de langage}
+\label{ssub:mod_le_de_langage}
+Un langage est défini pas une grammaire formelle. L'objectif est de modéliser 
+une classe de langage. Le langage est alors soit un ensemble récursif ou un 
+ensemble récursivement énumérable.
+
+% subsubsection mod_le_de_langage (end)
+% subsection fammilles_de_mod_les (end)
+
+\subsection{Langages de programmation}
+\label{sub:langages_de_programmation}
+C'est un modèle possible de la calculabilité. Pour définir un langage de 
+programmation comme modèle de la calculabilité, il faut définir : 
+\begin{itemize}
+	\item Syntaxe du langage
+	\item Sémantique du langage
+	\item Convention de représentation d'une fonction par un programme
+\end{itemize}
+
+On se pose de la question est-ce qu'il y a des langages plus puissants que 
+d'autre. On va montrer que tous les langages complets sont équivalents. (Et la 
+plus par des langages sont complet).
+
+\paragraph{} Mais il existe aussi des langages qui ne sont pas complet comme le 
+langage BLOOP (bounded loop).
+
+\begin{mydef}
+	BLOOP : Sous ensemble de Java qui ne calcule que des fonctions totales. 
+	(pas de boucle while, boucle for mais sans modification du compteur 
+	dans le for, pas de goto, pas de fonctions récursives)
+\end{mydef}
+
+BLOOP a donc toutes les propriétés qui découlent du chapitre précédent.
+
+% subsection langages_de_programmation (end)
+
+\subsubsection{Langage de programmation non déterministe}
+\label{ssub:langague_de_programmation_non_d_terministe}
+
+\begin{myrem}
+	Il est difficile d'avoir de l'intuition sur cette partie. Mais on peut 
+	voir un programme ND comme un programme qui produit des résultats 
+	différents d'une exécution à l'autre mais concernant la complexité on 
+	considère qu'il trouve directement la solution. C'est pourquoi on ne 
+	considère que la profondeur de l'arbre pour la complexité.
+\end{myrem}
+
+On va un introduire un nouveau langage ND-Pascal qui est le langage java 
+auquel on ajoute le non-déterminisme. C'est à dire on ajout la fonction 
+prédéfinie $choose(n)$. Celle-ci retourne un entier compris entre 0 et n et elle 
+est non déterministe.
+
+\paragraph{} On peut voir un programme ND de 2 manières différentes :
+
+\begin{enumerate}
+	\item Il calcule une relation plutôt qu'une fonction
+	\item Le voir comme un moyen de décider si un élément appartient à un 
+		ensemble
+\end{enumerate}
+
+On considère l'approche 2 en calculabilité.
+
+\begin{mydef}
+	Un ensemble $A \subseteq \N$ est \textbf{ND-récursif} s’il existe un 
+	ND-programme tel que lorsqu'il reçoit comme donnée n'importe quel nombre 
+	naturel x \\
+	\begin{tabular}{c}
+	si $x \in A$ alors il existe une exécution fournissant tôt ou tard 
+	comme résultat 1 \\
+	si $x \notin A$ alors toutes les exécutions fournissent tôt ou tard 
+	comme résultat 0 \\
+	\end{tabular}
+\end{mydef}
+
+\begin{mydef}
+	Un ensemble $A \subseteq \N$ est \textbf{ND-récursivement énumérable} s’il existe un 
+	ND-programme tel que lorsqu'il reçoit comme donnée n'importe quel nombre 
+	naturel x
+	\begin{tabular}{c}
+	si $x \in A$ alors il existe une exécution fournissant tôt ou tard 
+	comme résultat 1 \\
+	si $x \notin A$ alors les exécutions possibles ne se terminent pas ou 
+	retournent un résultat $\neq 1$ \\
+	\end{tabular}
+\end{mydef}
+
+\begin{myprop}
+	On peut simuler les exécutions d'un ND-programme à l'aide d'un programme 
+	déterministe. (BFS dans l'arbre d'exécution)
+\end{myprop}
+
+\begin{mytheo}
+	Un ensemble est ND-récursif ssi il est récursif
+\end{mytheo}
+
+\begin{mytheo}
+	Un ensemble est ND-récursivement énumérable ssi il est récursivement 
+	énumérable
+\end{mytheo}
+
+\subsection{Automates finis FA}
+\label{sub:automates_finis}
+
+\paragraph{Objectif :} Décider si un mot donné appartient ou non à un langage.
+
+\paragraph{Utilisation :} Utiliser dans les interfaces avec les humains par 
+exemple les distributeurs.
+
+\subsubsection{Modèles des automates finis}
+\label{ssub:mod_les_des_automates_finis}
+Un automate fini est composé de :
+
+\begin{itemize}
+	\item $\sum$ : ensemble fini de symboles
+	\item $S$ : ensemble fini d'états
+	\item $s_0 \in S$ : état initial
+	\item $A \subseteq S$ : ensemble des états acceptant
+	\item $\delta$: $S$x$\sum \rightarrow S$ : fonction de transition
+\end{itemize}
+
+\begin{myrem}
+	On peut aussi représenter un automate fini à l'aide d'un diagramme 
+	d'état.
+\end{myrem}
+
+\paragraph{Fonctionnement}
+\begin{itemize}
+	\item départ avec un état initial
+	\item parcours des symboles du mot d'entrée, un à un
+	\item à chaque symbole lu, l'état change (fonction de transition 
+		$\delta$) en fonction de l'état courant et du symbole lu
+	\item état final est l'état après avoir parcouru tous les symboles en 
+		entrée
+	\item l'état final peut-être acceptant ou non
+\end{itemize}
+
+\begin{myrem}
+	Il n'y a donc pas de mémoire. De plus, un automate peut-être simulé 
+	par un programme Java.
+\end{myrem}
+
+\begin{myprop}
+	Un automate fini défini un ensemble récursif de mots $=\{m|m$ est 
+		accepté par FA$\}$
+\end{myprop}
+
+\begin{myprop}
+	Certains ensembles récursifs ne peuvent pas être reconnus par un 
+	automate fini. Par exemple $L = { a^n b^n | n\geq 0}$ (il me semble que 
+	c'est par ce que ça nécessiterait un nombre infini d'états)
+\end{myprop}
+
+\begin{myprop}
+	L'interpréteur des automates finis est calculable mais ne peut pas être 
+	représenté par un automate fini, car ce n'est pas un \textbf{modèle 
+	complet} de la calculabilité (Hoare Allison)
+\end{myprop}
+
+\begin{mydef}
+	\textbf{Langage régulier :} est un langage défini par une expression 
+	régulière.
+\end{mydef}
+
+\begin{mydef}
+	Expression régulière :  dans le cours on prend comme syntaxe, "+" pour 
+	signifié ou, "." pour signifier la concaténation, "*" pour la 
+	fermeture (???) et "()" pour la répétition.
+\end{mydef}
+% subsubsection mod_les_des_automates_finis (end)
+
+\subsubsection{Automate fini ND}
+\label{ssub:automate_fini_nd}
+On étend le modèle en permettant d'avoir plusieurs transitions possibles pour 
+une paire <état,symbole>. Ce qui implique que plusieurs exécutions sont 
+possibles.
+
+\paragraph{} De même que pour un ND programme, un mot est accepté par un NDFA 
+s’il existe au moins une exécution ou l'état final est acceptant. Dans l'autre 
+sens, un 
+mot n'est pas accepté si toute exécution ne se termine pas avec l'état final 
+acceptant.
+
+\begin{myprop}
+	Si un ensemble récursif est défini par un NDFA, alors cet ensemble est 
+	défini par un FA.
+\end{myprop}
+
+\begin{myprop}
+	Un NDFA définit un ensemble récursif de mots
+\end{myprop}
+
+\paragraph{Ajout de transitions vides $\epsilon$} on peut encore étendre le modèle NDFA en 
+rajoutant une possibilité de transition sans lire de symbole (transition 
+spontanée). Ça a la même puissance et les mêmes propriétés qu'un NDFA.
+
+% subsubsection automate_fini_nd (end)
+
+\subsection{Automate à pile PDA}
+\label{sub:automate_pile}
+C'est une extension du modèle des automates finis. On ajoute une mémoire avec 
+la pile de symboles.
+Les différences principales sont :
+\begin{itemize}
+	\item la transition entre états dépend du symbole lu et du symbole au 
+		sommet de la pile
+	\item	chaque transition peut enlever le sommet de la pile et empiler 
+		de nouveaux éléments ou ne pas changer la pile.
+\end{itemize}
+
+\paragraph{Objectif :} Décider si le mot donné appartient ou non à un langage.
+
+\paragraph{Utilisation :} Utiliser dans les compilateurs
+
+\paragraph{Composition :}
+On rajoute $\Gamma$ et on change la fonction de transition en une nouvelle 
+relation de transition.
+\begin{itemize}
+	\item $\sum$ : ensemble fini de symboles d'entrée
+	\item $\Gamma$ : ensemble fini de symboles de pile
+	\item $S$ : ensemble fini d'états
+	\item $s_0 \in S$ : état initial
+	\item $A \subseteq S$ : ensemble des états acceptant
+	\item $\Delta \subset Sx\times \sum \times \Gamma \times S \times 
+		\Gamma^*$ : relation de transition (finie)
+\end{itemize}
+
+\begin{myprop}
+	Tout comme NDFA, un PDA définit un ensemble récursif de mots (langage 
+	récursif)
+\end{myprop}
+
+\paragraph{Convention :} 
+\begin{itemize}
+	\item Z est le symbole initial de la pile (pile vide)
+	\item $\epsilon$ signifie qu’aucun symbole ne doit être lu pour cette 
+		transition (symbole "vide")
+	\item A, B / C : A est le symbole lu, B est le symbole au 
+		sommet de la pile et C est ce qui va remplacer le 
+		sommet de la pile (peut-être un symbole et B pour 
+		rajouter, $\epsilon$ pour retirer le sommet de la pile, 
+		ou juste B pour ne pas changer le sommet)
+\end{itemize}
+
+\begin{myprop}
+	Certains ensembles récursifs ne peuvent pas être reconnus par un automate 
+	à pile. Ex: L = ${a^n b^n a^n | n\geq 1}$
+\end{myprop}
+
+\begin{myprop}
+	Les automates à pile sont plus puissants que les automates finis (ils 
+	peuvent reconnaitre plus d'ensembles)
+\end{myprop}
+
+\begin{myprop}
+	Ce n'est pas un modèle complet de la calculabilité donc par Hoare 
+	Allison, l'interpréteur n'est pas calculable dans le modèle
+\end{myprop}
+
+% subsection automate_pile (end)
+
+\subsection{Grammaires et modèles de calcul}
+\label{sub:grammaires_et_mod_les_de_calcul}
+
+\paragraph{Objectif :}
+Définition d'un langage (ensemble de mots) et à partir de la grammaire on peut 
+générer/dériver les mots du langage.
+
+\paragraph{Utilisation :} Utilisé pour la définition de langage de 
+programmation, pour l'analyse du langage naturel...
+
+\paragraph{Composition du modèle :}
+
+\begin{itemize}
+	\item $\sum$ : alphabet
+	\item éléments de $\sum$ sont des symboles terminaux
+	\item autres symboles utilisés durant la dérivation : symboles non 
+		terminaux (A,B, ..., <dig>,..
+	\item S : point de départ de la dérivation (symbole non terminal)
+\end{itemize}
+
+\begin{mydef}
+	On appelle un ensemble de règles de dérivation des règles de production
+\end{mydef}
+
+\begin{myexem}
+	$\sum ={0,1,2}$ \\
+	$S \rightarrow <Dig>$ \\
+	$<Dig> \rightarrow D$ \\
+	$D \rightarrow 0 | 1 |2 | \epsilon $ ($\epsilon$ ne signifie rien)
+\end{myexem}
+TODO Exemple littéraux real en Java
+
+\begin{mydef}
+	\textbf{Dériver} c'est appliquer des règles de la grammaire pour vérifier 
+	si une chaîne de symbole appartient au langage (on part d'une chaîne de symbole 
+	et on vérifie les règles sur celle-ci).
+\end{mydef}
+
+\begin{mydef}
+	\textbf{Inférer} c'est une dérivation dans "le sens contraire", 
+	c'est-à-dire, on part des règles de grammaire et on génère une chaîne 
+	de symboles.
+\end{mydef}
+
+\begin{mydef}
+	Un arbre syntaxique permet de représenter la dérivation, chaque noeud 
+	correspond à un symbole terminal ou non. Et les arêtes correspondent à 
+	l'application d'une règle. Il y a plusieurs noeuds enfants si la règle 
+	"génère" plusieurs symboles.
+\end{mydef}
+
+\begin{myprop}
+	On peut dériver de plusieurs façons équivalente, leftmost (on dérive 
+	toujours le plus à gauche d'abord), rightmost (contraire de leftmost) 
+	ou  aucun des deux
+\end{myprop}
+
+\subsubsection{Hiérarchie de Chomsky}
+\label{ssub:hi_rarchie_de_chomsky}
+
+Chomsky a défini 4 types de grammaires formelles. On peut les classer selon 
+leur "puissance".
+
+\begin{mydef}
+	Une grammaire A est plus puissante qu'une B si on peut définir plus 
+	de langage avec A qu'avec B
+\end{mydef}
+
+On peut aussi faire correspondre chaque type de grammaire avec un type de 
+calcul permettant de reconnaitre un langage de cette grammaire.
+
+\begin{tabular}{|c|c|c|}
+	\hline	
+	 Type & Type de grammaire & Modèle de calcul\\
+	 \hline
+	3 & régulière & Automate fini \\
+	2 & hors contexte & Automate à pile \\
+	1 & sensible au contexte & Machine de Turing à ruban fini \\
+	0 & récursivement énumérable & Machine de Turing \\
+	\hline
+\end{tabular}
+
+Chaque type de grammaire est définie par une règle de production $A\rightarrow 
+B$. Mais, il y a des conditions différentes sur A et B selon le type de 
+grammaire.
+% subsubsection hi_rarchie_de_chomsky (end)
+
+\subsubsection{Grammaires régulières}
+
+\paragraph{Règle de production :} 
+\begin{itemize}
+	\item $A \rightarrow \omega B$
+	\item $A \rightarrow \omega$
+\end{itemize}
+
+\paragraph{Conditions :}
+
+\begin{itemize}
+	\item  $\omega \in \sum^*$ c'est à dire $\omega$ est une chaîne de symbole non 
+	terminal. 
+	\item A et B ne peuvent être qu’ un symbole non terminal
+\end{itemize}
+
+\begin{myexem}
+	$S \rightarrow abS$ \\
+	$S \rightarrow \epsilon$ \\
+	Cette grammaire définit différents langages, par exemple $L1 = 
+	\{(ab)^n|n \geq 0\}$. Ce langage peut-être défini par une expression 
+	régulière.
+\end{myexem}
+
+
+\subsubsection{Grammaires hors contexte}
+
+Cette grammaire est importante, car il suffit de lui rajouter la portée des 
+variables pour définir la syntaxe d'un langage.
+
+\paragraph{Règle de production :} 
+\begin{itemize}
+	\item $A \rightarrow \beta$
+\end{itemize}
+
+\paragraph{Conditions :}
+
+\begin{itemize}
+	\item  $\beta$ est une chaîne de symbole composé de symboles terminaux
+	       	ou non
+	\item A ne peut être qu’ un symbole non terminal
+\end{itemize}
+
+\begin{myexem}
+	$S \rightarrow aSb$ \\
+	$S \rightarrow \epsilon$ \\
+	Un langage défini par cette grammaire est par exemple $L1 = \{a^nb^n|n 
+		\geq 0\}$
+\end{myexem}
+
+\subsubsection{Grammaires sensibles au contexte}
+
+\paragraph{Règle de production :} 
+\begin{itemize}
+	\item $\alpha \rightarrow \beta$
+\end{itemize}
+
+\paragraph{Conditions :}
+
+\begin{itemize}
+	\item $\alpha$ et $\beta$ sont des chaînes de symboles composées de 
+		symboles terminaux ou non. De plus, $\beta$ contient au moins 
+		autant de symboles que $\alpha$.
+\end{itemize}
+
+\begin{myexem}
+	$S \rightarrow aSBA$ \\
+	$S \rightarrow abA$ \\
+	$AB \rightarrow BA$ \\
+	$bB \rightarrow bb$ \\
+	$bA \rightarrow ba$ \\
+	$aA \rightarrow aa$ \\
+	Un langage défini par cette grammaire est par exemple $L1 =
+	\{a^nb^na^n|n \geq 0\}$
+\end{myexem}
+
+
+\subsubsection{Grammaires sans restriction}
+
+\paragraph{Règle de production :} 
+\begin{itemize}
+	\item $\alpha \rightarrow \beta$
+\end{itemize}
+
+\paragraph{Conditions :}
+
+\begin{itemize}
+	\item $\alpha$ et $\beta$ sont des chaînes de symboles composées de 
+		symboles terminaux ou non.
+\end{itemize}
+
+\begin{myexem}
+	Il y a donc moyen de créer des règles qui bouclent : \\
+	$\alpha \rightarrow \beta$ \\
+	$\beta \rightarrow \alpha$\\
+\end{myexem}
+
+\subsection{Machines de Turing}
+\label{sub:machines_de_turing}
+\paragrah{Intérêt :} Le modèle des machines de Turing est le modèle le plus 
+simple, le plus élémentaire et le plus puissant possible. Il permet une 
+définition précise de procédure, d'algorithme ou encore de calcul.
+
+
+% subsection machines_de_turing (end)
+
+% section mod_le_de_la_calculabilit_ (end)
 
 \end{document}
