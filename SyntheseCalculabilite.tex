@@ -1448,11 +1448,264 @@ variables pour définir la syntaxe d'un langage.
 \end{myexem}
 
 \subsection{Machines de Turing}
-\label{sub:machines_de_turing}
-\paragrah{Intérêt :} Le modèle des machines de Turing est le modèle le plus 
+
+\textbf{Intérêt :} Le modèle des machines de Turing est le modèle le plus 
 simple, le plus élémentaire et le plus puissant possible. Il permet une 
 définition précise de procédure, d'algorithme ou encore de calcul.
 
+\paragraph{Composition "abstraite" :}
+
+\begin{description}
+	\item[Ruban] Suite de case potentiellement infinie (des 2 cotés) mais à 
+		chaque moment, le ruban nécessaire est fini
+	\item[Tête] Une seule tête, sur une case qui peut écrire et lire la 
+		case sur laquelle elle est
+	\item[Contrôle] Dirige les actions/opérations
+\end{description}
+
+\subsubsection{Contrôle}
+\label{ssub:contr_le}
+Le contrôleur est composé d'un nombre d'état fini dont un état initial et un 
+final. Il contient un programme (des instructions)
+
+\begin{mydef}
+	\textbf{Une instruction} est sous la forme 
+	$$<q,c> \rightarrow <new_q, Mouv, new_c>$$
+	\begin{itemize}
+		\item q : état courrant
+		\item c : symbole sous la tête de lecture
+		\item $new_c$ : symbole à écrire sous la tête de lecture
+		\item Mouv : G ou D, mouvement que la tête de lecture doit faire
+		\item $new_q$ : le nouvel état
+	\end{itemize}
+\end{mydef}
+
+% subsubsection contr_le (end)
+
+\subsubsection{Modélisation}
+Pour définir une machine de Turing il faut :
+\begin{itemize}
+	\item $\sum$ : ensemble fini de symboles d'entrée
+	\item $\Gamma$ : ensemble fini de symboles de ruban.
+	\item $S$ : ensemble fini d'états
+	\item $s_0 \in S$ : état initial
+	\item $stop \in S$ : état arrêt
+	\item $A \subseteq S$ : ensemble des états acceptant
+	\item $\delta : Sx\times \times \Gamma \rightarrow S \times \{G,D\} 
+	\times \Gamma$ : relation de transition (finie)
+\end{itemize}
+Il faut aussi que $\sum \subset \Gamma$ et que B $\in \Gamma$ mais que B 
+$\notin \sum$
+
+\begin{mydef}
+		B correspond au symbole blanc
+\end{mydef}
+
+\subsubsection{Exécution}
+Au départ il y a juste les données sur le ruban. Sur les autres case il y a le 
+symbole B. La tête de lecture se trouve sur la première case. Tant que c'est 
+possible on applique des instructions. Il y a 2 cas possible pour l'arrêt soit 
+l'état devient stop. Soit il n'y a plus d'instruction applicable.
+
+\paragraph{} Le résultat est le contenu du ruban à l'état stop. Si la machine 
+ne s'arrête pas sur l'état stop alors il n'y a pas de résultat.
+
+\begin{mydef}
+	\textbf{T-calculable} Une fonction f est T-calculable si il existe une machine de Turing qui, 
+	recevant comme donnée n'importe quel nombre entier x fourni tôt ou tard 
+	comme résultat f(x) si celui-ci existe.
+\end{mydef}
+
+\begin{mydef}
+	\textbf{T-récursif} Soit $A\subseteq \N$, A est T-récursif si il existe 
+	une machine de Turing qui, recevant comme donnée n'importe quel nombre 
+	naturel x, fourni tôt ou tard comme résultat : 
+	\begin{tabular}{l}
+		1 si $x\in A$ \\
+		0 si $x\notin A$ \\
+	\end{tabular}
+\end{mydef}
+
+\begin{mydef}
+	\textbf{T-récursivement énumérable} Soit $A\subseteq \N$, A est 
+	T-récursivement énumérable si il existe 
+	une machine de Turing qui, recevant comme donnée n'importe quel nombre 
+	naturel x, fourni tôt ou tard comme résultat : \\
+	\begin{tabular}{l}
+		1 si $x\in A$ \\
+		si $x\notin A$ la machine s'arrête avec un état$\neq$ stop ou 
+		alors, celle-ci boucle\\
+	\end{tabular}
+\end{mydef}
+
+\subsubsection{Thèse de Church-Turing}
+\begin{enumerate}
+	\item Toute fonction T-calculable est calculable
+	\item Toute fonction calculable est T-calculable
+	\item Tout ensemble T-récursif est récursif
+	\item Tout ensemble récursif est T-récursif
+	\item Tout ensemble T-récursivement énumérable est récursivement 
+		énumérable
+	\item Tout ensemble récursivement énumérable est T-récursivement 
+		énumérable
+\end{enumerate}
+Les points 1, 3 et 5 sont des théorèmes. Les autres sont des thèses.
+
+\subsubsection{Extension du modèle}
+On peut modifier le modèle pour changer sa puissance et son efficacité.
+
+\begin{mydef}
+	\textbf{Efficacité d'une MT} L'efficacité d'une MT se calcule en 
+	fonction du nombre d'instructions à exécuter (on ne tient pas compte de 
+	la taille d'un mot mémoire).
+\end{mydef}
+
+\paragraph{Changer les conventions}
+On peut par exemple permettre de se déplacer de plusieurs cases à la fois ou 
+encore de permettre plusieurs états stop.
+
+\paragraph{Influence :} 
+\begin{itemize}
+	\item Même puissance
+	\item Speedup linéaire (pour aller 20 cases à gauche on doit plus 
+		exécuter 20 instructions se déplacer à gauche)
+\end{itemize}
+
+Réduire les symboles => binaire
+
+\paragraph{Influence :} 
+\begin{itemize}
+	\item Même puissance
+	\item Même efficacité, car même s’ il y a un facteur logarithmique en 
+		calculabilité on le néglige
+\end{itemize}
+
+Limiter le nombre d'états, ça implique qu'il y a seulement un nombre fini de 
+machines de Turing différentes.
+
+\paragraph{Influence :} 
+\begin{itemize}
+	\item Moins puissant
+\end{itemize}
+
+\paragraph{Autres rubans}
+
+Ruban unidirectionnel, c'est-à-dire limité d'un coté (à priori à gauche)/
+
+\paragraph{Influence :} 
+\begin{itemize}
+	\item Même puissance
+	\item Slowdown linéaire : il faut faire plus de déplacement, en 
+		effet, avant les cases étaient numéroté 
+		$-\inf,...-2,-1,0,1,2,...,\inf$, alors que maintenant
+	       	$0,-1,1,-2,2,...,-\inf,\inf$ 
+\end{itemize}
+
+Ruban multicases, c'est-à-dire la tête lis plusieurs cases en parallèle. Ce qui 
+implique que la taille de l'alphabet augmente.
+
+\paragraph{Influence :} 
+\begin{itemize}
+	\item Même puissance
+	\item Même efficacité
+\end{itemize}
+
+Plusieurs rubans c'est-à-dire la tête peut se déplacer dans des directions 
+différentes d'un ruban à l'autre. On doit pour ça changer la relation de 
+transition. Elle doit maintenant prendre plusieurs symboles et un état et 
+retourner un état, plusieurs symboles à écrire et plusieurs directions différentes.
+$$<s_1,s_2,...s_n>, E \  \rightarrow \ E', M_1, M_2,..., M_n, D_1, D_2,..., 
+D_n$$
+\paragraph{Influence :} 
+\begin{itemize}
+	\item Même puissance
+	\item Même efficacité
+\end{itemize}
+
+\subsubsection{Machine de Turing non déterministe NDT}
+Tout comme pour les automates non déterministes, on permet plusieurs 
+transitions possibles pour une paire <état, symbole>. Ce qui implique qu'il y a 
+plusieurs exécutions possibles.
+
+\begin{myrem}
+	On utilise les NDT uniquement pour décider un ensemble
+\end{myrem}
+
+\begin{myrem}
+	Cette partie importante pour la partie concernant la complexité
+\end{myrem}
+
+\begin{mydef}
+	\textbf{NDT-récursif} Soit $A\subseteq \N$, A est NDT-récursif s’ il 
+	existe une ND-machine de Turing telle que lorsqu'elle reçoit comme 
+	donnée n'importe quel nombre naturel x\\
+	\begin{tabular}{l}
+		Si $x\in A$, alors il existe une exécution fournissant tôt ou 
+		tard comme résultat 1\\
+		Si $x\notin A$, alors il existe une exécution fournissant tôt ou 
+		tard comme résultat 0\\
+	\end{tabular}
+\end{mydef}
+
+\begin{mydef}
+	\textbf{NDT-récursivement énumérable} Soit $A\subseteq \N$, A est 
+	NDT-récursivement énumérable s’ il 
+	existe une ND-machine de Turing telle que lorsqu'elle reçoit comme 
+	donnée n'importe quel nombre naturel x\\
+	\begin{tabular}{l}
+		Si $x\in A$, alors il existe une exécution fournissant tôt ou 
+		tard comme résultat 1\\
+		Si $x\notin A$, les exécutions possibles soit retourne un 
+		nombre $\neq 1$ \\
+		soit ne se termine pas ou encore s'arrête avec 
+		un état $\neq$ stop\\
+	\end{tabular}
+\end{mydef}
+
+\paragraph{Influence :} 
+\begin{itemize}
+	\item Même puissance, car il existe une machine de Turing qui interprète
+	 les NDT 
+	\item Speedup exponentielle, car on "descend" directement au bon endroit 
+		dans l'arbre. Mais en comme en pratique on doit simuler 
+		l'exécution non déterministe ça ne change rien.
+\end{itemize}
+
+\subsubsection{Machine de Turing avec Oracle}
+On ajoute 3 états spéciaux : soit $A \subseteq \N$
+\begin{itemize}
+	\item $oracle_{ask}$ : demander si l'entier représenté à droite de la 
+		tête de lecture appartient à l'ensemble A
+	\item $oracle_{yes}$ : l'entier appartient à A
+	\item $oracle_{no}$ :  l'entier n'appartient pas à A
+\end{itemize}
+
+\paragraph{Puissance :} Ça dépend de A car si A est récursif, ça n'apporte pas 
+grand-chose, car on peut remplacer l'oracle par un programme qui décide A. Donc 
+même puissance. Par contre si A n'est pas récursif, alors c'est un modèle plus 
+puissant (on pourrait déterminer halt). Mais ce n’est pas possible d'exécuter un tel programme. 
+
+\begin{myrem}
+	Utilité : permets d'établir une hiérarchie parmi les problèmes 
+	indécidables. Ça permet de dire et si K est récursif quels problèmes 
+	seraient encore indécidable.
+\end{myrem}
+
+\subsubsection{Machine de Turing Universelle}
+
+\paragraph{Objectif :} Construire une machine de Turing qui soit un 
+interpréteur de machines de Turing
+
+\begin{myrem}
+	On définit un encodage de 0, 1 qui permet de représenter une MT
+\end{myrem}
+
+Une telle machine est possible à construire. Il faut 3 rubans:
+\begin{itemize}
+	\item codage de la MT à interpréter
+	\item donnée
+	\item résultat intermédiaire de l'interpréteur
+\end{itemize}
 
 % subsection machines_de_turing (end)
 
