@@ -2,9 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
-\usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{pdfpages}
 \usepackage{palatino}
@@ -14,6 +12,10 @@
 \usepackage{tabularx}
 \usepackage{tikz}
 \usepackage{placeins}
+% Math symbols
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
 
 \usepackage[bottom]{footmisc}
 \usepackage{desclist}
@@ -29,6 +31,28 @@
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 
 \renewcommand{\stcomp}[1]{\overline{#1}} 
+
+% Sets
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rn}{\R^n}
+\newcommand{\Rnn}{\R^{n \times n}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Kn}{\K^n}
+\newcommand{\Knn}{\K^{n \times n}}
+
+% Theorem and definitions
+\theoremstyle{definition}
+\newtheorem{mydef}{Définition}
+\newtheorem{mynota}[mydef]{Notation}
+\newtheorem{myprop}[mydef]{Propriétés}
+\newtheorem{myrem}[mydef]{Remarque}
+\newtheorem{myform}[mydef]{Formules}
+\newtheorem{mycorr}[mydef]{Corrolaire}
+\newtheorem{mytheo}[mydef]{Théorème}
+\newtheorem{mylem}[mydef]{Lemme}
+\newtheorem{myexem}[mydef]{Exemple}
+\newtheorem{myineg}[mydef]{Inégalité}
 
 
 % Modification de 'listing'
@@ -109,18 +133,18 @@
 La calculabilité c'est l'étude des limites de l'informatique. Il faut bien 
 faire attention à faire la différence entre les limites théoriques et les limites
 pratiques. Pour calculabilité, on s'occupe des limites théoriques.
-Alors que pour la complexité on s'occupe des limites pratiques, détermine la frontière
-entre faisable en pratique et infaisable en pratique.
+Alors que pour la complexité on s'occupe des limites pratiques. La complexité
+détermine la frontière entre faisable en pratique et infaisable en pratique.
 La question principale de la calculabilité est quels sont les problèmes qui peuvent
 être résolus par un programme et lesquels ne peuvent pas.
 
-\paragraph{} Le but est de tracer des frontières entre les programmes calculables,
+\paragraph{} Le but est donc de tracer des frontières entre les programmes calculables,
 non calculables et non calculables en pratique.
 
 \paragraph{}
 \label{par:}
-L'intérêt pratique est qu'on peut donc savoir quand ça ne sert à rien 
-de résoudre un problème. De plus, on est conscient de a complexité intrinsèque d'un
+Ça nous permet de savoir quand ça ne sert à rien de résoudre un problème.
+De plus, on est conscient de sa complexité intrinsèque d'un
 problème.
 % paragraph  (end)
 
@@ -131,14 +155,14 @@ problème.
 \label{par:}
 Premièrement, on doit parler la notion de problème.
 Attention, il ne faut pas confondre un problème avec un programme.
-Les caractéristiques sont:
+Les caractéristiques d'un problème sont:
 
 \begin{itemize}
 	\item un problème est générique : il s'applique à un ensemble de données.
 	\item pour chaque donnée particulière, il existe une réponse.
 \end{itemize}
 On représente un problème dans le cours par une fonction. Donc dans le cours,
-la description d'un problème est équivalente à la description delà fonction.
+la description d'un problème est équivalente à la description d'une fonction.
 % paragraph  (end)
 % subsection notion_de_probl_me (end)
 
@@ -170,28 +194,37 @@ Il existe plein de formalisme permettant la description de "procédure effective
 \label{sub:d_tection_de_virus}
 On veut déterminer si un programme P avec une entrée D est nuisible.
 
-Spécification du programme détecteur(P,D):\\
-Préconditions : un programme P et une donnée D\\
-Postconditions : "Mauvais" si P(D) est nuisible,
+Spécification du programme detecteur(P,D):\\
+\textbf{Préconditions :} un programme P et une donnée D\\
+\textbf{Postconditions :} "Mauvais" si P(D) est nuisible,
 		"Bon" sinon
 
-\paragraph{}On va créer un programme drôle(P) et essayer de détecter s’ il est nuisible.
+\paragraph{}On va créer un programme drole(P) et essayer de détecter s’ il est nuisible.
 
-drôle(P) \\
-if( détecteur(P,P)="Mauvais" then stop \\
-else infecter un autre programme en y insérant P
+\begin{lstlisting}
+drole(P) \\
+if detecteur(P,P) = "Mauvais" 
+	then stop
+else infecter un autre programme en y inserant P
+\end{lstlisting}
 
-\paragraph{}
-Testons drôle(drôle). \\
-drôle(drôle) \\
-if( détecteur(drôle, drôle)="Mauvais" then stop \\
-else infecter un autre programme en y insérant drôle \\
+Testons drole(drole).
+\begin{lstlisting}
+drole(drole)
+if detecteur(drole, drole) = "Mauvais" 
+	then stop
+else infecter un autre programme en y inserant drole
 
-Si drôle(drôle) est nuisible alors le programme s'arrête or il n'est pas nuisible
-puisqu'il n'a infecté aucun programme.\\
-Si par contre il n'est pas nuisible alors il va un infecter un autre programme.\\
-On a donc une contradiction ce qui implique que le programme drôle ne peut exister,
-le programme détecteur non plus.
+\end{lstlisting}
+
+\begin{itemize}
+	\item Si drole(drole) est nuisible alors le programme s'arrête or il
+	       	n'est pas nuisible puisqu'il n'a infecté aucun programme.
+	\item Si par contre il n'est pas nuisible alors il va un infecter un 
+		autre programme.
+\end{itemize}
+On a donc une contradiction ce qui implique que le programme drole ne peut 
+exister, ce qui implique que  le programme détecteur non plus.
 % paragraph  (end)
 % subsection d_tection_de_virus (end)
 
@@ -258,9 +291,10 @@ Soient A, B des ensembles.
 		f(a) = $\perp$
 \end{itemize}
 
-Dans le cours on utilise les propriétés classique: dom(f), image(f), fonction totale,
-fonction partielle, fonction surjective, injective et injective. On utilise aussi 
-l'extension. \\
+Dans le cours on utilise les propriétés classiques: dom(f), image(f), fonction totale,
+fonction partielle, fonction surjective, injective et injective. Celles-ci ne 
+seront pas redéfinies ici.\\
+On utilise aussi l'\textbf{extension} : 
 f est une extension de g si $\forall x \in A$ : $g(x)\neq \perp \Rightarrow f(x) = g(x)$
 Autrement dit, f a la même valeur que g partout où g est définie.
 
@@ -288,27 +322,43 @@ Avant de dire ce qu'est un ensemble énumérable, on doit savoir que deux ensemb
 ont le même cardinal s’il existe une bijection entre eux.
 
 \paragraph{}
-Un ensemble est énumérable ou dénombrable si soir il est fini ou il a le même cardinal que $\mathbb{N}$. \\
+Un ensemble est énumérable ou dénombrable si soit il est fini ou il a le même cardinal que $\mathbb{\N}$. \\
 Quelques propriétés : 
-\begin{itemize}
-	\item Tout sous-ensemble d'un ensemble énumérable est énumérable.
-	\item L'union et l'intersection de deux ensembles énumérables est énumérable.
-	\item L'union d'une infinité d'ensembles énumérables est énumérable. (Facile à
+\begin{myprop}
+	Tout sous-ensemble d'un ensemble énumérable est énumérable.
+\end{myprop}
+
+\begin{myprop}
+L'union et l'intersection de deux ensembles énumérables sont énumérables.
+\end{myprop}
+
+\begin{myprop}
+L'union d'une infinité d'ensembles énumérables est énumérable. (Facile à
 		démontrer voir TP)
-\end{itemize}
+\end{myprop}
 
 Quelques ensembles non énumérables : 
-\begin{itemize}
-	\item L'ensemble R
-	\item L'ensemble des sous-ensemble de N
-	\item L'ensemble des chaînes infinies de caractère sur un alphabet fini
-	\item L'ensemble des fonctions de N dans N (Cas important)
-\end{itemize}
+\begin{myexem}
+ L'ensemble $\R$
+\end{myexem}
+
+\begin{myexem}
+ L'ensemble des sous-ensembles de $\N$
+\end{myexem}
+
+\begin{myexem}
+ L'ensemble des chaînes infinies de caractère sur un alphabet fini
+\end{myexem}
+
+\begin{myexem}
+ L'ensemble des fonctions de $\N$ dans $\N$ (Cas important)
+\end{myexem}
+
 % subsection ensemble_num_rables (end)
 
 \subsection{Cantor}
 \label{sub:cantor}
-On va montrer qu'il existe des ensembles non énumérables. Ex R.
+On va montrer qu'il existe des ensembles non énumérables. Ex $\R$.
 L'idée de la démonstration est de :
 \begin{enumerate}
 	\item Supposer que l'ensemble est énumérable
@@ -326,14 +376,14 @@ TO DO
 
 \subsection{Conclusion}
 \label{sub:conclusion}
-Les ensembles énumérables sont importants pour la suite du cours et aussi car en 
+Les ensembles énumérables sont importants pour la suite du cours et aussi, car en 
 informatique on ne considère que les ensembles énumérables.
 Dans le cours, on va souvent devoir montrer qu'un ensemble est énumérable/non énumérable.
 Généralement on va utiliser une des techniques suivantes: 
 \begin{itemize}
-	\item montrer qu'il y a une bijection avec N ou R
+	\item montrer qu'il y a une bijection avec $\N$ ou $\R$
 	\item montrer que l'ensemble est fini
-	\item utiliser Cantor
+	\item utiliser la diagonalisation (cf. Cantor)
 	\item écrire un programme qui énumère l'ensemble
 \end{itemize}
 
@@ -347,82 +397,135 @@ Généralement on va utiliser une des techniques suivantes:
 \label{sub:algorithmes_et_effectivit_}
 Qu'est-ce qu'un algorithme? C'est une procédure qui peut être appliquée à n'importe
 quelles données et qui a pour effet de produire un résultat. C'est un ensemble fini
-d'instructions qui peuvent être exécutées. Dans on ne tracasse pas de la taille des données,
-des instructions ni de la mémoire disponible, mais les considères comme finies. 
+d'instructions qui peuvent être exécutées. Dans ce cours, on ne tracasse pas 
+de la taille des données, des instructions ni de la mémoire disponible, mais 
+les considères comme finies. 
 
-\paragraph{}
-Attention, un algorithme n'est pas une fonction, mais ça calcule une fonction.\\
-De plus dans le cours on se limite aux fonctions de $N^n$ dans $N$. Car on peut,
-montrer que ça revient au même que de considéré de $N^n$ dans $N^n$. On va aussi
-utiliser Java comme modèle étant donné que c'est plus facile et qu'on va montrer 
-que les modèles complets sont équivalents.
+\begin{myrem}
+	Un algorithme n'est pas une fonction, mais un algorithme calcule une 
+	fonction.
+	De plus dans le cours on se limite aux fonctions de $\N^n$ dans $\N$. Car on peut,
+	montrer que ça revient au même que de considéré de $\N^n$ dans $\N^n$ (
+	$\N^n$ est énumérable et donc au plus de même cardinal que $\N$). On va aussi
+	utiliser Java comme modèle étant donné que c'est plus facile et qu'on va montrer 
+	que les modèles complets sont équivalents.
+\end{myrem}
 
 % subsection algorithmes_et_effectivit_ (end)
 
-\subsection{Fonctions calculables, ensembles récrusids et récursivement énumérables}
+\subsection{Fonctions calculables, ensembles récursifs et récursivement énumérables}
 \label{sub:fonctions_calculables_ensembles_r_crusids_et_r_cursivement_num_rables}
 
 \subsubsection{Fonction calculable}
 \label{ssub:fonction_calculable}
 Une fonction est calculable s’ il existe un algorithme qui, recevant comme donnée
-n'importe quels nombres naturels $X_1$,...$X_n$ fourni (tôt ou tard) comme 
+n'importe quels nombres naturels $X_1$,...$X_n$ fourni \textbf{tôt ou tard} comme 
 résultat f(x) s’il existe.
 \paragraph{} S’il ne se termine pas c'est que $f(x)=\perp$. \\
-De plus, il faut faire attention entre ne pas être capable d'écrire un algorithme
-et ne pas savoir l'écrire. (Voir exemple TP et cours : rose vert sur Mars ou encore
-x occurrences de 5 dans $\pi$.
-\paragraph{} Une fonction peut-être totale calculable ou partielle calculable.
+
+\begin{myrem}
+	De plus, il faut faire attention entre ne pas être capable d'écrire un algorithme
+	et ne pas savoir l'écrire. (Voir exemple TP et cours : rose vert sur Mars ou encore
+	x occurrences de 5 dans $\pi$.
+\end{myrem}
+
+\begin{myrem}
+	Une fonction peut-être totale calculable ou partielle calculable.
+\end{myrem}
 
 % subsubsection fonction_calculable (end)
 
 \subsubsection{Ensemble récursif et récursivement énumérable}
 \label{ssub:ensemble_r_cursif_et_r_cursivement_num_rable}
-Soit $A\subseteq N$\\
-\paragraph{}A est récursif s’ il existe un algorithme qui recevant un $X\in N$, fourni (tôt ou 
-tard) comme résultat 1 si $x\in A$, 0 si $x\notin A$.\\
-L'algorithme décide si x est dans A ou non.
+Soit $A\subseteq \N$
 
-\paragraph{}A est récursivement énumérable s’ il existe un algorithme qui recevant
-un $X\in N$, fourni (tôt ou tard) comme résultat 1 si $x\in A$, ne se termine pas
-ou fourni un résultat $\neq1$si $x\notin A$.\\
-Le souci c'est que même si l'algorithme permet de dire si x est dans A, si x
-n'est pas dans A on ne sait rien dire car on ne peut pas dire à un moment qu'on
-arrête l'algorithme. Car c'est possible que x soit dans A et que l'algorithme ne
-l'a pas encore déterminé (retourne tôt ou tard !).
+\begin{mydef}
+	A est récursif s’ il existe un algorithme qui recevant un $X\in \N$
+	, fourni \textbf{tôt ou tard} comme résultat 
+	\begin{tabular}{l}
+		1 si $x\in A$\\
+		0 si $x\notin A$\\
+	\end{tabular}
+	. L'algorithme décide si x est dans A ou non.
+\end{mydef}
 
-\paragraph{Définition importante}
+\begin{mydef}
+	A est récursivement énumérable s’ il existe un algorithme qui recevant
+	un $X\in \N$, fourni \textbf{tôt ou tard} comme résultat
+	\begin{tabular}{l}
+		1 si $x\in A$\\
+		 ne se termine pas ou retourne un résultat $\neq1$ si
+		 $x\notin A$\\
+	\end{tabular}
+\end{mydef}
+
+\begin{myrem}
+		Le souci c'est que même si l'algorithme permet de dire si x est dans A, si x
+		n'est pas dans A on ne sait rien dire, car on ne peut pas dire à un moment qu'on
+		arrête l'algorithme. Car c'est possible que x soit dans A et que l'algorithme ne
+		l'a pas encore déterminé (retourne tôt ou tard !).
+\end{myrem}
+
+\paragraph{Définition importante :}
 \label{par:d_finition_importante}
-Fonction caractéristique de A: \\
-$X_A$ : N $\rightarrow$ N tel que \\
-$X_A(x)$ = 1 si x $\in$ A
-       = 0 si x $\notin$ A %TODO better allign
-\\
-A est un ensemble récursif ssi $X_A$ est une fonction totale calculable. Ce qui
-est évident, ça veut dire qu'il existe une fonction $X_A$ qui décide si n'importe
-qu'elle x appartient ou non à A.\\
-A est un ensemble récursivement énumérable ssi A = dom(f) et $X_A$ est une 
-fonction (totale ou partielle) calculable. En effet, si f(x) est défini alors
-x appartient à A.\\
-A est un ensemble récursivement énumérable ssi A est vide ou A = image(f) et f
-est une fonction totale calculable. Car f est une fonction d'énumération (elle
-peut répéter plusieurs fois un élément, mais ce n'est pas gênant).\\
+
+\begin{mydef}
+	Fonction caractéristique de A:
+	$X_A$ : $\N$ $\rightarrow$ $\N$ tel que $X_A(x)$ =
+\begin{tabular}{l}
+	1 si x $\in$ A \\	
+	0 si x $\notin$ A 
+\end{tabular}
+\end{mydef}
+
+\begin{mydef}
+	A est un ensemble récursif ssi $X_A$ est une fonction totale calculable. Ce qui
+	est évident, ça veut dire qu'il existe une fonction $X_A$ qui décide si n'importe
+	qu'elle x appartient ou non à A.\\
+\end{mydef}
+
+\begin{mydef}
+	A est un ensemble récursivement énumérable ssi A = dom(f) et $X_A$ est une 
+	fonction (totale ou partielle) calculable. En effet, si f(x) est défini alors
+	x appartient à A.\\
+\end{mydef}
+
+\begin{mydef}
+	A est un ensemble récursivement énumérable ssi A est vide ou A = image(f) et f
+	est une fonction totale calculable. Car f est une fonction d'énumération (elle
+	peut répéter plusieurs fois un élément, mais ce n'est pas gênant).\\
+\end{mydef}
+
 % paragraph d_finition_importante (end)
 
 \paragraph{Propriétés importantes}
 \label{par:propri_t_s_importantes}
-\begin{itemize}
-	\item A récursif $\Rightarrow$ A récursivement énumérable. (Propriété plus
+\begin{myprop}
+	A récursif $\Rightarrow$ A récursivement énumérable. (Propriété plus
 		faible)
-	\item A récursif $\Rightarrow$ (N \ A) énumérable.\\ On peut facilement créer
+\end{myprop}
+
+\begin{myprop}
+	A récursif $\Rightarrow$ ($\N$ \ A) énumérable.\\ On peut facilement créer
 		un programme qui retourne 1 - le programme qui décide A.
-	\item A récursivement énumérable et (N \ A) récursivement énumérable 
+\end{myprop}
+
+\begin{myprop}
+	A récursivement énumérable et ($\N$ \ A) récursivement énumérable 
 		$\Rightarrow$ A récursivement énumérable.\\ Il suffit de créer un programme
 		qui exécuté un peu du programme qui décide A puis un peu de celui qui
-		décide (N \ A). \\Jusqu'au moment ou l'un des programmes retourne une
+		décide ($\N$ \ A). \\Jusqu'au moment ou l'un des programmes retourne une
 		réponse.
-	\item A fini $\Rightarrow$ A récursif. (Trivial)
-	\item (N \ A) fini $\Rightarrow$ A récursif. (Trivial)
-\end{itemize}
+\end{myprop}
+
+\begin{myprop}
+	A fini $\Rightarrow$ A récursif. (Trivial)
+\end{myprop}
+
+\begin{myprop}
+	($\N$ \ A) fini $\Rightarrow$ A récursif. (Trivial)
+\end{myprop}
+
 
 % paragraph propri_t_s_importantes (end)
 % subsubsection ensemble_r_cursif_et_r_cursivement_num_rable (end)
@@ -431,7 +534,7 @@ peut répéter plusieurs fois un élément, mais ce n'est pas gênant).\\
 \subsection{Thèse de Church-Turing}
 \label{sub:th_se_de_church_turing}
 Grâce à la définition, on sait montrer qu'une fonction est calculable. Mais comment
-montrer qu'une fonction n'est pas calculable? Pour ça on a besoin de définition
+montrer qu'une fonction n'est pas calculable? Pour ça on a besoin d'une définition
 couvrant la totalité des fonctions calculables. \\
 Une autre question est est-ce que prendre un modèle particulier est restrictif?\\
 La thèse de Turing répond à ces questions.
@@ -454,35 +557,49 @@ La thèse de Turing répond à ces questions.
 \subsection{Programmes et fonctions}
 \label{sub:programmes_et_fonctions}
 Dans le cours on utilise un langage de programmation, Java, comme modèle.
-Soit P l'ensemble des programmes Java qui reçoit un ou plusieurs entiers comme 
-donnée et qui imprime/retourne un résultat.
 
-\paragraph{} P est un ensemble infini dénombrable (chaîne de caractère d'un 
-alphabet fini) récursif (il existe un programme, le compilateur, qui détermine 
-si un programme est un programme Java ou non).
+\begin{mydef}
+	Soit P l'ensemble des programmes Java qui reçoit un ou plusieurs entiers comme 
+	donnée et qui imprime/retourne un résultat.
+\end{mydef}
 
-\paragraph{} P = $P_0$, $P_1$,... ,$P_k$,... (énumération des programmes Java 
-sans répétition). Ce qui implique qu'on peut numéroter les programmes Java.\\
-On définit $P_k$ comme le programme k dans P et $\phi^{(n)}_k$ : $N^n 
-\rightarrow N$ comme étant la fonction calculée pas $P_k$
+\begin{myprop}
+	P est un ensemble infini dénombrable (chaîne de caractère d'un 
+	alphabet fini) récursif (il existe un programme, le compilateur, qui détermine 
+	si un programme est un programme Java ou non).
+\end{myprop}
 
-\paragraph{} Il existe donc une fonction f : $N\rightarrow P$ telle que :
-\begin{itemize}
-	\item f(k) = $P_k$
-	\item f calculable
-	\item k (numéro d'un programme) et $P_k$ sont deux représentations 
-		distinctes d'un même objet.
-\end{itemize}
+\begin{mydef}
+	P = $P_0$, $P_1$,... ,$P_k$,... (énumération des programmes Java 
+	sans répétition). Ce qui implique qu'on peut numéroter les programmes Java.\\
+\end{mydef}
+
+\begin{mydef}
+	$P_k$ est le programme k dans P et $\phi^{(n)}_k$ : $\N^n 
+	\rightarrow \N$ comme étant la fonction calculée pas $P_k$
+\end{mydef}
+
+
+\begin{myprop}
+	Il existe donc une fonction f : $\N\rightarrow P$ telle que :
+	\begin{itemize}
+		\item f(k) = $P_k$
+		\item f calculable
+		\item k (numéro d'un programme) et $P_k$ sont deux représentations 
+			distinctes d'un même objet.
+	\end{itemize}
+\end{myprop}
+
 % subsection programmes_et_fonctions (end)
 
 \subsection{Existence de fonctions non calculable}
 \label{sub:existence_de_fonction_non_calculables}
-Il existe beaucoup de fonctions non calculables, car le nombre de fonctions de N 
-dans N est non dénombrable (Démo par Cantor lors d'un TP). Or le nombre de 
+Il existe beaucoup de fonctions non calculables, car le nombre de fonctions de $\N$ 
+dans $\N$ est non dénombrable (Démo par Cantor lors d'un TP). Or le nombre de 
 programmes Java est dénombrable. Donc il y a beaucoup de fonctions qui ne sont 
 pas calculables.
 
-\paragraph{} On ne s'intéresse qu'aux fonctions qui sont définies par une table 
+\paragraph{} On va s'intéresser qu'aux fonctions qui sont définies par une table 
 finie (on ne sait pas définir les tables infinies). Il en existe une infinité 
 dénombrable.
 
@@ -495,8 +612,8 @@ fonction halt qui détermine si un programme se termine ou non).
 \subsection{Problème de l'arrêt}
 \label{sub:probl_me_de_l_arr_t}
 
-Soit la fonction halt: P x N $\rightarrow$ N telle que \\
-\begin{tabular}{cc}
+Soit la fonction halt: P x $\N$ $\rightarrow$ $\N$ telle que \\
+\begin{tabular}{rl}
   halt(n, x) = 1 & si $P_n(x)$ se termine \\
   halt(n, x) = 0 & sinon \\
   ou &\\
@@ -504,102 +621,141 @@ Soit la fonction halt: P x N $\rightarrow$ N telle que \\
   halt(n, x) = 0 & sinon \\
 \end{tabular}
 
-halt est une fonction bien définie, totale et sa table est infinie, mais décrite 
-de manière finie. Or on va montrer que halt n'est pas calculable par 
-diagonalisation (comme pour la démonstration de Cantor).\\
+\begin{myprop}
+	halt est une fonction bien définie, totale et sa table est infinie, mais décrite 
+	de manière finie. Or on va montrer que halt n'est pas calculable par 
+	diagonalisation (comme pour la démonstration de Cantor).\\
+\end{myprop}
 
 TODO \\
 
 \paragraph{Conclusion} Il n'existe pas d'algorithme qui détermine si n'importe 
 quel programme $P_n$ se termine ou non. Mais dans certains formalismes qui ne 
-sont pas des modèles complets, par exemple un langage qui ne permet de calculer 
-que des fonctions totale, halt est calculable (halt retourne toujours 1). \\
-De plus, il faut faire attention car ce n'est pas parce que halt n'est pas 
+sont pas des modèles complets. Par exemple un langage qui ne permet de calculer 
+que des fonctions totale (exemple java sans aucune boucle)
+, halt est calculable (halt retourne toujours 1). \\
+
+De plus, il faut faire attention, car ce n'est pas parce que halt n'est pas 
 calculable que pour un programme donné k, $halt(k,x)$ est non calculable. Par 
 exemple $halt(32,123)$ est une fonction constant donc calculable (ce n'est pas 
-pour autant qu'on est capable d'écrire l'algorithme), $halt(32,x)$ ça dépend du 
+pour autant qu'on est capable d'écrire l'algorithme), $halt(32,x)$ peut-être 
+calculable mais ça dépend du 
 programme 32, par exemple si celui-ci est constant.
 
-\paragraph{} Cette partie du cours est très importante car on a trouvé un 
-"trou dans le mur des fonctions calculables" et on va étendre le trou (métaphore
-de Mr Deville). C'est-à-dire que maintenant on va utiliser halt pour montrer 
-que d'autres fonctions sont calculables.
+\begin{myrem}
+	Cette partie du cours est très importante, car on a trouvé un 
+	"trou dans le mur des fonctions calculables" et on va étendre le trou (métaphore
+	de Mr Deville). C'est-à-dire que maintenant on va utiliser halt pour montrer 
+	que d'autres fonctions sont calculables/non calculable. (par exemple 
+	par réduction, en effet, si on peut calculer halt grâce à une fonction 
+	alors celle-ci n'est pas calculable.
+\end{myrem}
 
-\paragraph{} Il existe donc au moins un ensemble non récursif (dans notre 
+Il existe donc au moins un ensemble non récursif (dans notre 
 modèle?)\\
 K = 
 \begin{tabular}{l}
-{n|(n,n)$\in$ HALT}\\
-{n| halt(n,n)=1}\\
-{n| $P_n(b)$ se termine} \\
+	\{n|(n,n)$\in$ HALT\}\\
+	\{n| halt(n,n)=1\}\\
+	\{n| $P_n(b)$ se termine\} \\
 \end{tabular}
 
-Où HALT est l'ensemble des programmes k qui se termine pour l'entrée x (HALT = {(n,x)|$P_n(x)$ se 
-termine}). Et K est l'ensemble des programmes n qui se termine pour l'entrée n.
+Où HALT est l'ensemble des programmes k qui se termine pour l'entrée x, 
+HALT = {(n,x)|$P_n(x)$ se termine}). Et K est l'ensemble des programmes n qui
+se termine pour l'entrée n.
 
-\paragraph{Propriétés}
-
-\begin{itemize}
-	\item  K et HALT ne sont pas récursifs
-	\item  Ils sont récursivement énumérables\\
-		Car il suffit de lancer le programme et s’il retourne quelque 
-		chose il se termine sinon on ne sait pas.
-	\item  $\stcomp{HALT}$ n'est pas récursivement énumérable sinon HALT 
+\begin{myprop}
+	K et HALT ne sont pas récursifs
+\end{myprop}
+	
+\begin{myprop}
+	K et HALT sont récursivement énumérables (car il suffit de lancer le 
+	programme et s’il retourne quelque chose il se termine sinon on ne sait 
+	pas)
+\end{myprop}
+	
+\begin{myprop}
+	$\stcomp{HALT}$ n'est pas récursivement énumérable sinon HALT 
 		serait récursif.
-	\item $\stcomp{K}$ n'est pas récursivement énumérable
-\end{itemize}
+\end{myprop}
+	
+\begin{myprop}
+	$\stcomp{K}$ n'est pas récursivement énumérable
+\end{myprop}
+	
 
 TODO insérer le schéma sur les fonctions et les ensembles
 
-\paragraph{Ensemble co-récursivement énumérable} est un ensemble dont le 
-complément est récursivement énumérable. Par exemple $\stcomp{HALT}$. On peut 
-en déduire que si un ensemble est récursivement énumérable et co-récursivement 
-énumérable alors il est récursif.
+\begin{mydef}
+	\textbf{Un ensemble co-récursivement énumérable} est un ensemble dont le 
+	complément est récursivement énumérable. Par exemple $\stcomp{HALT}$. On peut 
+	en déduire que si un ensemble est récursivement énumérable et co-récursivement 
+	énumérable alors il est récursif.
+\end{mydef}
 
 % subsection probl_me_de_l_arr_t (end)
 
 \subsection{Insuffisance des fonctions totales}
 \label{sub:insuffisance_des_fonctions_totales}
-Comme on a vu qu'il était possible de calculer halt dans un modèle qui ne 
+Comme on a vu qu'il était possible de calculer halt dans un modèle qui
 permet de calculer que des fonctions totales, on se pose la question de 
 pourquoi on n'utilise pas un tel modèle. De plus les fonctions "pratiques" sont 
-des fonctions totales. Un tel modèle est par exemple Java, mais sans boucle 
-donc par intuition on se doute qu'il y a beaucoup de choses qu'on ne peut pas 
-calculer.
+des fonctions totales. Mais on va montrer qu'un tel modèle nous restreint 
+beaucoup sur ce qu'on peut calculer.
 
-\paragraph{} Posons Q un langage dont tous les programmes se terminent et pour 
-lequel il existe un interpréteur calculable, interpret(n,x)=$\phi'_n$. Où
-$\phi'_k$ la fonction calculée par le programme $Q_k$. L'interpréteur est une 
-fonction totale.
+\begin{myexem}
+	Un tel modèle est par exemple Java, mais sans boucle 
+	donc par intuition on se doute qu'il y a beaucoup de choses qu'on ne peut pas 
+	calculer.
+\end{myexem}
 
-\paragraph{Théorème de Hoare-Allison}
-\label{par:th_or_me_de_hoare_allison}
-interpret(n,x) n'est pas calculable dans Q.\\
+\begin{mydef}
+	Posons Q un langage dont tous les programmes se terminent et pour 
+	lequel il existe un interpréteur calculable, interpret(n,x)=$\phi'_n$. Où
+	$\phi'_k$ est la fonction calculée par le programme $Q_k$. L'interpréteur est une 
+	fonction totale.
+\end{mydef}
 
-TODO démonstration par diagonalisation
+\begin{mytheo}
+	\label{Hoare_Allison}
+	\textbf{Hoare-Allison :}
+	interpret(n,x) n'est pas calculable dans Q.\\
+	TODO démonstration par diagonalisation
+\end{mytheo}
 
-% paragraph th_or_me_de_hoare_allison (end)
 
-\paragraph{}
-Si un langage ne permet que le calcul de fonction total alors :
-\begin{itemize}
-	\item l'interpréteur de ce langage n'est pas calculable dans ce langage
-	\item il existe des fonctions totales non programmables dans ce langage
-	\item ce langage est \bf{restrictif}
-\end{itemize}
 
-\paragraph{} Si un langage permet de programmer son propre interpréteur alors il ne permet 
-pas de programmer la fonction halt de ce langage.
+\subsubsection{Implication du théorème \ref{Hoare_Allison} }
 
-\paragraph{} Dans un langage de programmation, il est donc impossible que 
-l'interpréteur et la fonction halt (de ce langage) puissent être programmés dans ce langage.
+\begin{myprop}
+	Si un langage ne permet que le calcul de fonction total alors :
+	\begin{itemize}
+		\item l'interpréteur de ce langage n'est pas calculable dans ce langage
+		\item il existe des fonctions totales non programmables dans ce langage
+		\item ce langage est \bf{restrictif}
+	\end{itemize}
+\end{myprop}
+	
+\begin{myprop}
+	Si un langage permet de programmer son propre interpréteur alors il ne permet 
+	pas de programmer la fonction halt de ce langage.
+\end{myprop}
 
-\paragraph{} Ça implique que si on veut pouvoir programmer toutes les fonctions 
-totales dans un langage, le langage doit permettre la programmation de 
-fonctions non totales.
+\begin{myprop}
+	Dans un langage de programmation, il est donc impossible que 
+	l'interpréteur et la fonction halt (de ce langage) puissent être programmés dans ce langage.
+\end{myprop}
 
-\paragraph{} L'ensemble {n| $\phi_n$ est totale} n'est pas récursif. (sinon on 
-saurait créer un langage qui ne calcule que des fonctions totales??)
+\begin{myprop}
+	Si on veut pouvoir programmer toutes les fonctions 
+	totales dans un langage, le langage doit permettre la programmation de 
+	fonctions non totales.
+\end{myprop}
+
+\begin{myprop}
+	L'ensemble {n| $\phi_n$ est totale} n'est pas récursif. (sinon on 
+	saurait créer un langage qui ne calcule que des fonctions totales??)
+\end{myprop}
 
 TODO insérer la fonction universelle ???
 
@@ -607,24 +763,37 @@ TODO insérer la fonction universelle ???
 
 \subsection{Extension de fonctions partielles}
 \label{sub:extension_de_fonctions_partielles}
-\paragraph{Théorème} Il existe une fonction partielle calculable g telle 
-qu'aucune fonction totale calculable n'est une extension de g.
 
-\paragraph{} Ca implique que si on a une fonction partielle g, il n'est pas 
-toujours possible de créer une fonction totale f qui étend g
-tel que en dehors du domaine de g, f retourne un code d'erreur.
+\begin{mytheo}
+	Il existe une fonction partielle calculable g telle 
+	qu'aucune fonction totale calculable n'est une extension de g.
+\end{mytheo}
 
+\begin{myrem}
+	Ca implique que si on a une fonction partielle g, il n'est pas 
+	toujours possible de créer une fonction totale f qui étend g
+	tel que en dehors du domaine de g, f retourne un code d'erreur.
+\end{myrem}
+	
 % subsection extension_de_fonctions_partielles (end)
 
 \subsection{Théorème de Rice}
 \label{sub:th_or_me_de_rice}
-Soit A $\subseteq$ $N$ \\
-Si A récursif et A$\neq \emptyset$ et A $\neq$ $N$ \\
-Alors $exists$ i $\in$ A et j $\in N$\ A tel que $\phi _i = \phi _j$ \\
 
-Par contre, \\
-Si $\forall$ i $\in$ A et $\forall$j $\in N$\ A tel que $\phi_i \neq \phi_j$ \\
-Si A non récursif et A$=\emptyset$ et A $= N$ \\
+Soit A $\subseteq$ $\N$ \\
+
+\begin{mytheo}
+	Si A récursif et A$\neq \emptyset$ et A $\neq$ $\N$ \\
+	Alors $\exists$ i $\in$ A et j $\in \N$\ A tel que $\phi _i = \phi _j$
+\end{mytheo}
+
+Par contre,
+
+\begin{mytheo}
+	Si $\forall$ i $\in$ A et $\forall$j $\in \N$\ A tel que $\phi_i \neq 
+	\phi_j$ \\
+	Si A non récursif et A$=\emptyset$ et A $= \N$
+\end{mytheo}
 
 \paragraph{} On est intéressé par l'analyse des propriétés d'un programme. La 
 question est est-ce que ces propriétés peuvent être déterminées par un 
@@ -633,13 +802,13 @@ qu'il est possible de déterminer par un algorithme de celle pour lesquelles ce
 n'est pas possible.
 
 \paragraph{}Pour ça, considérons A comme étant l'ensemble des programmes qui 
-respecte une propriété. Par exemple $A_1$ = {i| $\phi_i$ est total e} ou 
+respecte une propriété. Par exemple $A_1$ = {i| $\phi_i$ est total} ou 
 $A_2$={i|$\phi_i = f$},... (il y a plein d'exemples dans le cours).
 
 \paragraph{Analyse} 
 \begin{itemize}
 	\item Si la propriété est vérifiée par certain programme, mais pas tous 
-		est décidable, alors il existe deux programmes calculant la 
+		et elle est décidable, alors il existe deux programmes calculant la 
 		même fonction, mais l'un vérifie la propriété, mais pas l'autre.
 
 	\item Si la propriété est vérifiée par un programme, mais pas tous 
@@ -662,7 +831,6 @@ TODO preuve du théorème de RICE.
 
 \subsection{Théorème de la paramétrisation}
 \label{sub:th_or_me_de_la_param_trisation}
-
 
 
 
