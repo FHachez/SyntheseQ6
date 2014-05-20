@@ -827,17 +827,151 @@ $A_2$={i|$\phi_i = f$},... (il y a plein d'exemples dans le cours).
 
 TODO preuve du théorème de RICE.
 
+
 % subsection th_or_me_de_rice (end)
 
 \subsection{Théorème de la paramétrisation}
 \label{sub:th_or_me_de_la_param_trisation}
+
+\subsubsection{Transformation de programmes}
+\label{ssub:transformation_de_programmes}
+On peut voir une fonction f: $\N \rightarrow \N$ comme une fonction qui prend 
+le numéro d'un programme et que retourne le numéro d'un autre programme f: $P 
+\rightarrow P$. Donc on peut voir $P_k$, le programme qui calcule f comme un 
+transformateur de programme. En effet, $P_k$ prend un programme en entrée et 
+retourne un programme qui peut être différent.
+
+\begin{mytheo}
+	\label{S-m-n}
+	\textbf{S-m-n :} Pour tout $m,n \leq 0$, \\
+	il existe une fonction totale calculable $S^m_n : \N^{m+1} \rightarrow 
+	\N$ \\
+	telle que pour tout k,
+	$$ \phi^{(n+m)}_k(x_A,...,x_n,x_{n+1},...,x_{n+m}) = 
+	\phi^{(n)}_{S^n(k,x_{n+1}, ...,x_{n+m})} (x_1,...,x_n)$$
+\end{mytheo}
+
+\begin{myrem}
+	On peut voir le théorème \ref{S-m-n} comme : \\
+	Étant donné $m,n \leq 0$\\
+	il existe un transformateur de programme, $S^m_n$, qui recevant comme 
+	données : 
+	\begin{itemize}
+		\item un programme $P_k$ à n+m arguments
+		\item m valeurs $v_1,...,v_m$
+	\end{itemize}
+	fournit comme résultat: un programme P à n arguments tel que 
+	$P(x_1,...,x_n)$ calcule la même fonction que 
+	$P_k(x_1,...,x_n,,v_1,...,v_m)$
+\end{myrem}
+
+\begin{myrem}
+	on peut donc voir le transformation de programmes $S^m_n$ comme un 
+	programme qui particularise un autre programme à m+n argument en rendant 
+	constant les m derniers paramètres.
+\end{myrem}
+TODO Preuve.
+
+\begin{mytheo}
+	\label{point-fixe}
+	\textbf{Point fixe :} Soient $n \geq 0$ et f : fonction totale 
+	calculable, il existe k tel que $\phi^{(n}_k = phi^{(n}_{f(k)}$  
+\end{mytheo}
+
+TODO Démonstration avec les lapins (les 3 lapins qui permettent
+de commencer la démonstration ne sont pas super intuitif)
+\begin{myrem}
+	Le théorème \ref{point-fixe} n'est pas très intuitif. Mais on peut le 
+	voir comme quelque soit un transformateur programme T qui calcule f 
+	(n'importe quelle fonction totale calculable peut être vu comme un transformateur 
+	de programme), \\
+	il existe deux programmes $P_k$ et $P_j$ tels que 
+	\begin{itemize}
+		\item $P_j$ est la tranformation de $P_k$ via T ($k=f(j)$)
+		\item $P_k$ et $P_j$ calcule la \textbf{même} fonction
+	\end{itemize}
+\end{myrem}
+
+TODO demo de Rice à partir du point fixe
+
+\subsection{Autres problèmes non calculables}
+\label{sub:autres_probl_mes_non_calculable}
+
+\begin{mydef}
+	\textbf{Problème de correspondance de Post :} Soient deux listes U et V 
+	de mots non vides sur un alphabet $\sum$ : 
+	\begin{itemize}
+		\item U = ${u_1,u_2,...,u_k}$
+		\item V = ${v_1,v_2,...,v_k}$
+	\end{itemize}
+	Le problème consiste à décider s’ il existe une suite d'entiers 
+	$i_1,i_2,..,i_n$ telle que les mots $u_{i1},u_{i_2},...,u_{in}$ et 
+	$v_{i1},v_{i_2},...,v_{in}$ soient \textbf{identiquese}
+\end{mydef}
+
+\begin{mydef}
+	\textbf{Problème des équations diophantines:} Décider si une équation 
+	polynomiale de degré supérieur ou égal à 4 possède une solution entière.
+\end{mydef}
+
+Il n'existe pas d'algorithme résolvant ces problèmes. Il en existe bien d'autres 
+dont notamment des exemples sur les grammaires dans le cours.
+% subsection autres_probl_mes_non_calculable (end)
+
+\subsection{Nombres calculables}
+\label{sub:nombres_calculables}
+
+\begin{mydef}
+	Un nombre réel est défini comme la limite d'une suite (convergente) de 
+	nombres rationnels. $\lim_{n \rightarrow \inf} |x-s(n)| = 0 $ ou s est 
+	une fonction totale
+\end{mydef}
+
+\begin{mydef}
+	Un nombre réel x est calculable s’ il existe une fonction totale 
+	calculable s tel que $\lim_{n \rightarrow \inf} |x-s(n)| =\leq 2^{-n}$
+\end{mydef}
+
+\begin{myrem}
+	Donc un nombre est calculable s'il existe un programme qui peut 
+	l'approximer aussi près que l'on veut. Par exemple $\pi$ et $e$ sont 
+	calculable
+\end{myrem}
+
+\begin{myprop}
+	L'ensemble des nombres réels calculable est énumérable, car on peut énumérer les 
+	fonction totale calculable.	
+\end{myprop}
+
+\begin{myprop}
+	Il existe des nombres réels non calculables
+\end{myprop}
+
+\begin{myprop}
+	Il existe des nombres réels non calculables qui peuvent être définis de 
+	manière finie.
+\end{myprop}
+
+% subsection nombres_calculables (end)
+
+\subsection{Conclusion}
+\label{sub:conclusion}
+Le théorème S-m-n permet de démontrer le théorème du point fixe.
+Le théorème du point fixe est un résultat central de la calculabilité. Il 
+implique le théorème de rice, la non-récursivité de K et la non-calculabilité 
+de la fonction halt.
+
+% subsection conclusion (end)
+
+
+
+% subsubsection transformation_de_programmes (end)
 
 
 
 % subsection th_or_me_de_la_param_trisation (end)
 
 % Conclusion Rice => point fixe =>Rice,..
-
 % section r_sultats_fondamentaux (end)
 
 \end{document}
