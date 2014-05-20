@@ -2,8 +2,9 @@ SyntheseQ6
 ==========
 
 J'ai commencé à écrire une synthèse pour le cours de Calculabilité.
-Je n'ai pas encore passé de temps au niveau de la présentation.
+Pour le moment, j'ai écrit les 3 premiers chapitres. 
+Il manque encore des démonstrations dans le chapitre 3.
 
-Vous êtes bien sur les bien venu à contribuer.
+Vous êtes bien sûr, les biens venus à contribuer.
 
 Floran Hachez
