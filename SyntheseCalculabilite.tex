@@ -1,20 +1,7 @@
 \input{lib.tex}
-%\documentclass[11pt,a4paper]{article}
-\usepackage[T1]{fontenc}
-\usepackage{amsfonts}
-\usepackage{graphicx}
 \usepackage{pdfpages}
 \usepackage{palatino}
-\usepackage{listingsutf8} 
-\usepackage{xcolor}
 \usepackage{enumitem}
-\usepackage{tabularx}
-\usepackage{tikz}
-\usepackage{placeins}
-% Math symbols
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
 
 \usepackage[bottom]{footmisc}
 \usepackage{desclist}
@@ -31,8 +18,14 @@
 
 \newcommand{\stcomp}[1]{\overline{#1}} 
 \newcommand{\N}{\mathbb{N}}
-%\newtheoremstyle{indenteddefinition}{\topsep}{\topsep}{\hangindent=2em}{}{}{}{.5em}{}
-%\theoremstyle{indenteddefinition}
+
+% Make the style indentedefinition use bold for the name of the theorem
+\makeatletter
+\def\th@indenteddefinition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
 
 \lstset{language={Java}}
 
@@ -784,8 +777,8 @@ le numéro d'un programme et que retourne le numéro d'un autre programme f: $P
 transformateur de programme. En effet, $P_k$ prend un programme en entrée et 
 retourne un programme qui peut être différent.
 
-\begin{mytheo}
-	\label{S-m-n}[S-m-n :] Pour tout $m,n \leq 0$, \\
+\begin{mytheo}[S-m-n :] 
+	\label{S-m-n}Pour tout $m,n \leq 0$, \\
 	il existe une fonction totale calculable $S^m_n : \N^{m+1} \rightarrow 
 	\N$ \\
 	telle que pour tout k,
@@ -814,8 +807,8 @@ retourne un programme qui peut être différent.
 \end{myrem}
 TODO Preuve.
 
-\begin{mytheo}
-	\label{point-fixe}[Point fixe :] Soient $n \geq 0$ et f : fonction totale 
+\begin{mytheo}[Point fixe :] 
+	\label{point-fixe}Soient $n \geq 0$ et f : fonction totale 
 	calculable, il existe k tel que $\phi^{(n}_k = phi^{(n}_{f(k)}$  
 \end{mytheo}
 
@@ -2201,7 +2194,7 @@ La principale différence, c'est que $A \leq_a B$ est plus du point de vue de la
 calculabilité. On s'intéresse au fait que ça soit possible, on peut utiliser 
 autant de fois que l'on veut le fait que B soit récursif. \\
 Alors que $A \leq_f B$ est plus du point de vue de la complexité. On est 
-obliger d'utiliser un certain schéma d'algorithme :
+obligé d'utiliser un certain schéma d'algorithme :
 
 \begin{lstlisting}
 input a
@@ -2210,13 +2203,13 @@ if a2 in B then 1
 else 0
 \end{lstlisting}
 
-On est donc limiter à utiliser qu'une fois le test $f(a) \in B$ \textbf{en 
-	dernier lieux}.
+On est donc limité à utiliser qu'une fois le test $f(a) \in B$ \textbf{en 
+	derniers lieux}.
 
 \subsection{Modèles de calcul}
 D'habitude, on utilise les machines de Turing pour avoir une définition précise 
-de la complexité. Mais c'est peu intuitif et on s'intéresse au frontière. Or la 
-différence de complexité entre différent modèle est un facteur polynomial 
+de la complexité. Mais c'est peu intuitif et on s'intéresse aux frontières. Or la 
+différence de complexité entre différents modèles est un facteur polynomial 
 (c'est une thèse) ce qui n'a pas d'influence sur les frontières.
 
 
