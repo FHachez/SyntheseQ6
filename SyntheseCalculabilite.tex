@@ -66,6 +66,10 @@
 \tableofcontents
 \newpage
 
+La synthèse est assez longue mais elle reprend ce qui est selon moi intéressant à connaitre
+pour l'examen et qui devrait suffire pour répondre et pour justifier les QCM.
+Attention, il manque encore quelques démonstrations.
+
 \section{Introduction}
 \label{sec:introduction}
 
@@ -259,9 +263,11 @@ pour pouvoir la définir. Ex : f(x) = 1 s'il y a de la vie autre part que sur te
 Avant de dire ce qu'est un ensemble énumérable, on doit savoir que deux ensembles
 ont le même cardinal s’il existe une bijection entre eux.
 
-\paragraph{}
-Un ensemble est énumérable ou dénombrable si soit il est fini ou il a le même cardinal que $\mathbb{\N}$. \\
-Quelques propriétés : 
+\begin{mydef}[Ensemble énumérable]
+	Un ensemble est énumérable ou dénombrable si soit il est fini ou il a le même cardinal que $\mathbb{\N}$. \\
+	Quelques propriétés : 
+\end{mydef}
+	
 \begin{myprop}
 	Tout sous-ensemble d'un ensemble énumérable est énumérable.
 \end{myprop}
@@ -306,7 +312,7 @@ L'idée de la démonstration est de :
 	\item Montrer que l'élément n'est pas dans l'énumération => Contradiction
 	\item Conclusion l'ensemble est pas énumérable
 \end{enumerate}
-On montre que quand on essaye d'énumérer on loupe toujours des éléments.
+On montre que lorsqu'on essaye d'énumérer on loupe toujours des éléments.
 
 TO DO
 
@@ -333,11 +339,15 @@ Généralement on va utiliser une des techniques suivantes:
 
 \subsection{Algorithmes et effectivité}
 \label{sub:algorithmes_et_effectivit_}
-Qu'est-ce qu'un algorithme? C'est une procédure qui peut être appliquée à n'importe
-quelles données et qui a pour effet de produire un résultat. C'est un ensemble fini
-d'instructions qui peuvent être exécutées. Dans ce cours, on ne tracasse pas 
-de la taille des données, des instructions ni de la mémoire disponible, mais 
-les considères comme finies. 
+Qu'est-ce qu'un algorithme? 
+
+\begin{mydef}[Algorithme]
+	C'est une procédure qui peut être appliquée à n'importe
+	quelles données et qui a pour effet de produire un résultat. C'est un ensemble fini
+	d'instructions qui peuvent être exécutées. Dans ce cours, on ne tracasse pas 
+	de la taille des données, des instructions ni de la mémoire disponible, mais 
+	les considères comme finies. 
+\end{mydef}
 
 \begin{myrem}
 	Un algorithme n'est pas une fonction, mais un algorithme calcule une 
@@ -356,15 +366,19 @@ les considères comme finies.
 
 \subsubsection{Fonction calculable}
 \label{ssub:fonction_calculable}
-Une fonction est calculable s’ il existe un algorithme qui, recevant comme donnée
-n'importe quels nombres naturels $X_1$,...$X_n$ fourni \textbf{tôt ou tard} comme 
-résultat f(x) s’il existe.
+
+\begin{mydef}[Fonction calculable]
+	Une fonction est calculable s’il existe un algorithme qui, recevant comme donnée
+	n'importe quels nombres naturels $X_1$,...$X_n$ fourni \textbf{tôt ou tard} comme 
+	résultat f(x) s’il existe.
+\end{mydef}
+	
 \paragraph{} S’il ne se termine pas c'est que $f(x)=\perp$. \\
 
 \begin{myrem}
-	De plus, il faut faire attention entre ne pas être capable d'écrire un algorithme
-	et ne pas savoir l'écrire. (Voir exemple TP et cours : rose vert sur Mars ou encore
-	x occurrences de 5 dans $\pi$.
+	Il faut faire attention entre ne pas être capable d'écrire un algorithme
+	et ne pas savoir l'écrire. (Voir exemple TP et cours : y a-t-il une rose 
+	vert sur Mars ou encore x occurrences de 5 dans $\pi$.
 \end{myrem}
 
 \begin{myrem}
@@ -377,7 +391,7 @@ résultat f(x) s’il existe.
 \label{ssub:ensemble_r_cursif_et_r_cursivement_num_rable}
 Soit $A\subseteq \N$
 
-\begin{mydef}
+\begin{mydef}[Ensemble récursif]
 	A est récursif s’ il existe un algorithme qui recevant un $X\in \N$
 	, fourni \textbf{tôt ou tard} comme résultat 
 	\begin{tabular}{l}
@@ -387,9 +401,10 @@ Soit $A\subseteq \N$
 	. L'algorithme décide si x est dans A ou non.
 \end{mydef}
 
-\begin{mydef}
+\begin{mydef}[Ensemble récursivement énumérable]
 	A est récursivement énumérable s’ il existe un algorithme qui recevant
-	un $X\in \N$, fourni \textbf{tôt ou tard} comme résultat
+	un $X\in \N$, fourni \textbf{tôt ou tard} \\
+	comme résultat
 	\begin{tabular}{l}
 		1 si $x\in A$\\
 		 ne se termine pas ou retourne un résultat $\neq1$ si
@@ -398,41 +413,48 @@ Soit $A\subseteq \N$
 \end{mydef}
 
 \begin{myrem}
-		Le souci c'est que même si l'algorithme permet de dire si x est dans A, si x
-		n'est pas dans A on ne sait rien dire, car on ne peut pas dire à un moment qu'on
-		arrête l'algorithme. Car c'est possible que x soit dans A et que l'algorithme ne
-		l'a pas encore déterminé (retourne tôt ou tard !).
+	Le souci lorsque c'est récursivement énumérable,
+	c'est que même si l'algorithme permet de dire si x est dans A, si x
+	n'est pas dans A on ne sait rien dire. En effet, on ne peut pas dire à un moment qu'on
+	arrête l'algorithme et que l'élément n'est pas dans A.
+       	Car il est possible que x soit dans A et que l'algorithme ne
+	l'ait pas encore déterminé (l'algorithme retourne tôt ou tard un
+	résultat si x est dans A!).
 \end{myrem}
 
 \paragraph{Définition importante :}
 \label{par:d_finition_importante}
 
-\begin{mydef}
+\begin{mydef}[Fonction caractéristique]
 	Fonction caractéristique de A:
-	$X_A$ : $\N$ $\rightarrow$ $\N$ tel que $X_A(x)$ =
-\begin{tabular}{l}
-	1 si x $\in$ A \\	
-	0 si x $\notin$ A 
-\end{tabular}
+	$X_A$ : $\N$ $\rightarrow$ $\N$, \\
+	tel que $X_A(x)$ =
+	\begin{tabular}{l}
+		1 si x $\in$ A \\	
+		0 si x $\notin$ A 
+	\end{tabular}
 \end{mydef}
 
-\begin{mydef}
-	A est un ensemble récursif ssi $X_A$ est une fonction totale calculable. Ce qui
-	est évident, ça veut dire qu'il existe une fonction $X_A$ qui décide si n'importe
-	qu'elle x appartient ou non à A.\\
-\end{mydef}
+\begin{myprop}
+	A est un ensemble récursif ssi $X_A$ est une fonction totale
+	calculable. \\ 
+	Ça veut dire qu'il existe une fonction $X_A$ qui décide si n'importe
+	qu'elle x appartient ou non à A. Ce qui est évident.
+\end{myprop}
 
-\begin{mydef}
+\begin{myprop}
 	A est un ensemble récursivement énumérable ssi A = dom(f) et $X_A$ est une 
-	fonction (totale ou partielle) calculable. En effet, si f(x) est défini alors
-	x appartient à A.\\
-\end{mydef}
+	fonction (totale ou partielle) calculable.\\
+       	En effet, si f(x) est défini alors
+	x appartient à A.
+\end{myprop}
 
-\begin{mydef}
+\begin{myprop}
 	A est un ensemble récursivement énumérable ssi A est vide ou A = image(f) et f
-	est une fonction totale calculable. Car f est une fonction d'énumération (elle
-	peut répéter plusieurs fois un élément, mais ce n'est pas gênant).\\
-\end{mydef}
+	est une fonction totale calculable. \\
+	Car f est une fonction d'énumération (elle
+	peut répéter plusieurs fois un élément, mais ce n'est pas gênant).
+\end{myprop}
 
 % paragraph d_finition_importante (end)
 
@@ -444,16 +466,16 @@ Soit $A\subseteq \N$
 \end{myprop}
 
 \begin{myprop}
-	A récursif $\Rightarrow$ ($\N$ \ A) énumérable.\\ On peut facilement créer
+	A récursif $\Rightarrow$ ($\N$\textbackslash A) énumérable.\\ On peut facilement créer
 		un programme qui retourne 1 - le programme qui décide A.
 \end{myprop}
 
 \begin{myprop}
-	A récursivement énumérable et ($\N$ \ A) récursivement énumérable 
+	A récursivement énumérable et ($\N$\textbackslash A) récursivement énumérable 
 		$\Rightarrow$ A récursivement énumérable.\\ Il suffit de créer un programme
-		qui exécuté un peu du programme qui décide A puis un peu de celui qui
-		décide ($\N$ \ A). \\Jusqu'au moment ou l'un des programmes retourne une
-		réponse.
+		qui exécute un peu du programme qui décide A puis un peu de celui qui
+		décide ($\N$\textbackslash A). Et ainsi de suite, jusqu'au moment ou l'un 
+		des programmes retourne une réponse.
 \end{myprop}
 
 \begin{myprop}
@@ -461,7 +483,7 @@ Soit $A\subseteq \N$
 \end{myprop}
 
 \begin{myprop}
-	($\N$ \ A) fini $\Rightarrow$ A récursif. (Trivial)
+	($\N$\textbackslash A) fini $\Rightarrow$ A récursif. (Trivial)
 \end{myprop}
 
 
@@ -488,7 +510,8 @@ La thèse de Turing répond à ces questions.
 	\item Toutes les formalisations de la calculabilité établies par la 
 		suite seront équivalentes aux définitions connues
 \end{enumerate}
-1, 2 et 4 sont des thèses universellement reconnues comme vraies.
+1, 2 et 4 sont des thèses universellement reconnues comme vraies et la 3 est un
+théorème.
 
 % subsection th_se_de_church_turing (end)
 
@@ -496,25 +519,29 @@ La thèse de Turing répond à ces questions.
 \label{sub:programmes_et_fonctions}
 Dans le cours on utilise un langage de programmation, Java, comme modèle.
 
-\begin{mydef}
+\begin{mydef}[P]
 	Soit P l'ensemble des programmes Java qui reçoit un ou plusieurs entiers comme 
 	donnée et qui imprime/retourne un résultat.
 \end{mydef}
 
 \begin{myprop}
-	P est un ensemble infini dénombrable (chaîne de caractère d'un 
-	alphabet fini) récursif (il existe un programme, le compilateur, qui détermine 
-	si un programme est un programme Java ou non).
+	P est un ensemble infini dénombrable car c'est chaîne de caractère d'un 
+	alphabet fini. P est récursif car il existe un programme, le compilateur, qui détermine 
+	si un programme est un programme Java ou non.
 \end{myprop}
 
-\begin{mydef}
-	P = $P_0$, $P_1$,... ,$P_k$,... (énumération des programmes Java 
-	sans répétition). Ce qui implique qu'on peut numéroter les programmes Java.\\
+\begin{mydef}[Énumération de P]
+	P = $P_0$, $P_1$,... ,$P_k$,... est l'énumération des programmes Java 
+	sans répétition. Ce qui implique qu'on peut numéroter les programmes Java.\\
 \end{mydef}
 
-\begin{mydef}
-	$P_k$ est le programme k dans P et $\phi^{(n)}_k$ : $\N^n 
-	\rightarrow \N$ comme étant la fonction calculée pas $P_k$
+\begin{mydef}[$P_k$]
+	$P_k$ est le programme numéro k dans P
+\end{mydef}
+
+\begin{mydef}[$\phi^{(n)}_k$]
+	$\phi^{(n)}_k$ : $\N^n \rightarrow \N$ comme 
+	étant la fonction calculée par $P_k$
 \end{mydef}
 
 
@@ -542,7 +569,7 @@ finie (on ne sait pas définir les tables infinies). Il en existe une infinité
 dénombrable.
 
 \paragraph{} On va maintenant montrer que ce n'est pas parce qu’une fonction 
-est définie par une table finie qu'elle est nécessairement calculable (avec la 
+est définie par une table finie qu'elle est nécessairement calculable (exemple la 
 fonction halt qui détermine si un programme se termine ou non).
 
 % subsection existence_de_fonction_non_calculables (end)
@@ -570,7 +597,7 @@ TODO \\
 \paragraph{Conclusion} Il n'existe pas d'algorithme qui détermine si n'importe 
 quel programme $P_n$ se termine ou non. Mais dans certains formalismes qui ne 
 sont pas des modèles complets. Par exemple un langage qui ne permet de calculer 
-que des fonctions totale (exemple java sans aucune boucle)
+que des fonctions totales (exemple java sans aucune boucle)
 , halt est calculable (halt retourne toujours 1). \\
 
 De plus, il faut faire attention, car ce n'est pas parce que halt n'est pas 
@@ -585,21 +612,20 @@ programme 32, par exemple si celui-ci est constant.
 	"trou dans le mur des fonctions calculables" et on va étendre le trou (métaphore
 	de Mr Deville). C'est-à-dire que maintenant on va utiliser halt pour montrer 
 	que d'autres fonctions sont calculables/non calculable. Par exemple 
-	par réduction, en effet, si on peut calculer halt grâce à une fonction 
-	alors celle-ci n'est pas calculable.
+	par réduction par rapport à halt.
 \end{myrem}
 
-Il existe donc au moins un ensemble non récursif (dans notre 
-modèle?)\\
+Il existe donc au moins un ensemble non récursif
 K = 
 \begin{tabular}{l}
 	\{n|(n,n)$\in$ HALT\}\\
 	\{n| halt(n,n)=1\}\\
-	\{n| $P_n(b)$ se termine\} \\
+	\{n| $P_n(n)$ se termine\} \\
 \end{tabular}
 
 Où HALT est l'ensemble des programmes k qui se termine pour l'entrée x, 
-HALT = {(n,x)|$P_n(x)$ se termine}). Et K est l'ensemble des programmes n qui
+\[ HALT = \{(n,x)|P_n(x)\text{se termine}\}\]
+Et K est l'ensemble des programmes n qui
 se termine pour l'entrée n.
 
 \begin{myprop}
@@ -635,8 +661,9 @@ TODO insérer le schéma sur les fonctions et les ensembles
 \subsection{Insuffisance des fonctions totales}
 \label{sub:insuffisance_des_fonctions_totales}
 Comme on a vu qu'il était possible de calculer halt dans un modèle qui
-permet de calculer que des fonctions totales, on se pose la question de 
-pourquoi on n'utilise pas un tel modèle. De plus les fonctions "pratiques" sont 
+ne permet de calculer que des fonctions totales. On se pose la question de 
+pourquoi on n'utilise pas un tel modèle dans lequel la fonction halt est
+calculable. De plus les fonctions "pratiques" sont 
 des fonctions totales. Mais on va montrer qu'un tel modèle nous restreint 
 beaucoup sur ce qu'on peut calculer.
 
@@ -648,10 +675,16 @@ beaucoup sur ce qu'on peut calculer.
 
 \begin{mydef}
 	Posons Q un langage dont tous les programmes se terminent et pour 
-	lequel il existe un interpréteur calculable, interpret(n,x)=$\phi'_n$. Où
-	$\phi'_k$ est la fonction calculée par le programme $Q_k$. L'interpréteur est une 
-	fonction totale.
+	lequel il existe un interpréteur calculable, interpret(n,x)=$\phi'_n$.
 \end{mydef}
+	
+\begin{mydef}
+	$\phi'_k$ est la fonction calculée par le programme $Q_k$.
+\end{mydef}
+
+\begin{myprop}
+	 L'interpréteur est une fonction totale.
+\end{myprop}
 
 \begin{mytheo}[Hoare-Allison]
 	\label{Hoare_Allison}
@@ -661,7 +694,7 @@ beaucoup sur ce qu'on peut calculer.
 
 
 
-\subsubsection{Implication du théorème \ref{Hoare_Allison} }
+\subsubsection{Implication du théorème \ref{Hoare_Allison}, Hoare Allison }
 
 \begin{myprop}
 	Si un langage ne permet que le calcul de fonction total alors :
@@ -673,8 +706,8 @@ beaucoup sur ce qu'on peut calculer.
 \end{myprop}
 	
 \begin{myprop}
-	Si un langage permet de programmer son propre interpréteur alors il ne permet 
-	pas de programmer la fonction halt de ce langage.
+	Si on peut programmer l'interpréteur d'un langage L dans L alors il est
+	impossible de programmer la fonction halt de L car celle-ci n'est pas calculable. 
 \end{myprop}
 
 \begin{myprop}
@@ -689,7 +722,7 @@ beaucoup sur ce qu'on peut calculer.
 \end{myprop}
 
 \begin{myprop}
-	L'ensemble {n| $\phi_n$ est totale} n'est pas récursif. (sinon on 
+	L'ensemble \{n| $\phi_n$ est totale\} n'est pas récursif. (sinon on 
 	saurait créer un langage qui ne calcule que des fonctions totales??)
 \end{myprop}
 
@@ -738,21 +771,21 @@ qu'il est possible de déterminer par un algorithme de celle pour lesquelles ce
 n'est pas possible.
 
 \paragraph{}Pour ça, considérons A comme étant l'ensemble des programmes qui 
-respecte une propriété. Par exemple $A_1$ = {i| $\phi_i$ est total} ou 
-$A_2$={i|$\phi_i = f$},... (il y a plein d'exemples dans le cours).
+respecte une propriété. Par exemple $A_1$ = \{i| $\phi_i$ est total\} ou 
+$A_2$=\{i|$\phi_i = f$\},... (il y a plein d'exemples dans le cours).
 
 \paragraph{Analyse} 
 \begin{itemize}
 	\item Si la propriété est vérifiée par certain programme, mais pas tous 
-		et elle est décidable, alors il existe deux programmes calculant la 
+		et qu'elle est décidable, alors il existe deux programmes calculant la 
 		même fonction, mais l'un vérifie la propriété, mais pas l'autre.
 
 	\item Si la propriété est vérifiée par un programme, mais pas tous 
 		alors cette propriété ne peut-être décidée pas un algorithme.
 
 	\item S'il existe un algorithme permettant de déterminer si un 
-		programme quelconque calcule une fonction ayant cette propriété 
-		alors toutes les fonctions calculables ont cette propriété ou 
+		programme quelconque calcule une fonction ayant cette propriété. 
+		Alors toutes les fonctions calculables ont cette propriété ou 
 		aucune fonction calculable n'a cette propriété.
 	\item Aucune question relative au programme, vu sous l'angle de la 
 		fonction qu'ils calculent, ne peut être décidée par 
@@ -771,11 +804,13 @@ TODO preuve du théorème de RICE.
 
 \subsubsection{Transformation de programmes}
 \label{ssub:transformation_de_programmes}
-On peut voir une fonction f: $\N \rightarrow \N$ comme une fonction qui prend 
-le numéro d'un programme et que retourne le numéro d'un autre programme f: $P 
-\rightarrow P$. Donc on peut voir $P_k$, le programme qui calcule f comme un 
-transformateur de programme. En effet, $P_k$ prend un programme en entrée et 
-retourne un programme qui peut être différent.
+\begin{mydef}[Transformateur de programme]
+	On peut voir une fonction f: $\N \rightarrow \N$ comme une fonction qui prend 
+	le numéro d'un programme et que retourne le numéro d'un autre programme f: $P 
+	\rightarrow P$. Donc on peut voir $P_k$, le programme qui calcule f comme un 
+	transformateur de programme. En effet, $P_k$ prend un programme en entrée et 
+	retourne un programme qui peut être différent.
+\end{mydef}
 
 \begin{mytheo}[S-m-n] 
 	\label{S-m-n}Pour tout $m,n \leq 0$, \\
@@ -787,17 +822,13 @@ retourne un programme qui peut être différent.
 \end{mytheo}
 
 \begin{myrem}
-	On peut voir le théorème \ref{S-m-n} comme : \\
+	On peut voir le théorème \ref{S-m-n}, S-m-n, comme : \\
 	Étant donné $m,n \leq 0$\\
 	il existe un transformateur de programme, $S^m_n$, qui recevant comme 
-	données : 
-	\begin{itemize}
-		\item un programme $P_k$ à n+m arguments
-		\item m valeurs $v_1,...,v_m$
-	\end{itemize}
+	données : un programme $P_k$ à n+m arguments et m valeurs $v_1,...,v_m$
 	fournit comme résultat: un programme P à n arguments tel que 
 	$P(x_1,...,x_n)$ calcule la même fonction que 
-	$P_k(x_1,...,x_n,,v_1,...,v_m)$
+	$P_k(x_1,...,x_n,,v_1,...,v_m)$ (Ce programme effectue une projection)
 \end{myrem}
 
 \begin{myrem}
@@ -809,19 +840,19 @@ TODO Preuve.
 
 \begin{mytheo}[Point fixe] 
 	\label{point-fixe}Soient $n \geq 0$ et f : fonction totale 
-	calculable, il existe k tel que $\phi^{(n}_k = phi^{(n}_{f(k)}$  
+	calculable, il existe k tel que $\phi^{(n)}_k = \phi^{(n)}_{f(k)}$  
 \end{mytheo}
 
 TODO Démonstration avec les lapins (les 3 lapins qui permettent
 de commencer la démonstration ne sont pas super intuitifs)
 \begin{myrem}
 	Le théorème \ref{point-fixe} n'est pas très intuitif. Mais on peut le 
-	voir comme quelque soit un transformateur programme T qui calcule f 
+	voir comme : quelque soit un transformateur programme T qui calcule f 
 	(n'importe quelle fonction totale calculable peut être vu comme un transformateur 
 	de programme), \\
 	il existe deux programmes $P_k$ et $P_j$ tels que 
 	\begin{itemize}
-		\item $P_j$ est la transformation de $P_k$ via T ($k=f(j)$)
+		\item $P_j$ est la transformation de $P_k$ via T.
 		\item $P_k$ et $P_j$ calcule la \textbf{même} fonction
 	\end{itemize}
 \end{myrem}
@@ -848,20 +879,20 @@ TODO demo de Rice à partir du point fixe
 	polynomiale de degré supérieur ou égal à 4 possède une solution entière.
 \end{mydef}
 
-Il n'existe pas d'algorithme résolvant ces problèmes. Il en existe bien d'autres 
-dont notamment des exemples sur les grammaires dans le cours.
+Il n'existe pas d'algorithme résolvant ces problèmes. Il existe beaucoup
+d'autre problème calculable. Il y a d'autres exemples sur les grammaires dans le cours.
 % subsection autres_probl_mes_non_calculable (end)
 
 \subsection{Nombres calculables}
 \label{sub:nombres_calculables}
 
-\begin{mydef}
+\begin{mydef}[Nombre réel]
 	Un nombre réel est défini comme la limite d'une suite (convergente) de 
-	nombres rationnels. $\lim_{n \rightarrow \inf} |x-s(n)| = 0 $ ou s est 
+	nombres rationnels: $\lim_{n \rightarrow \inf} |x-s(n)| = 0 $ ou s est 
 	une fonction totale
 \end{mydef}
 
-\begin{mydef}
+\begin{mydef}[Nombre réel calculable]
 	Un nombre réel x est calculable s’ il existe une fonction totale 
 	calculable s tel que $\lim_{n \rightarrow \inf} |x-s(n)| =\leq 2^{-n}$
 \end{mydef}
@@ -874,7 +905,7 @@ dont notamment des exemples sur les grammaires dans le cours.
 
 \begin{myprop}
 	L'ensemble des nombres réels calculable est énumérable, car on peut énumérer les 
-	fonction totale calculable.	
+	fonctions totales calculables.	
 \end{myprop}
 
 \begin{myprop}
@@ -915,7 +946,7 @@ Il y a deux grandes familles de modèles :
 L'objectif est de modéliser le concept de fonctions calculables, processus de 
 calcul, algorithme effectif.
 
-\paragraph{} on peut encore classer les modèles de calcul en 2 catégories, les 
+On peut encore classer les modèles de calcul en 2 catégories, les 
 modèles déterministes et les modèles non déterministes.
 
 \begin{mydef}[Modèles déterministes] une seule exécution possible
@@ -934,7 +965,6 @@ On va voir les modèles de calcul suivant :
 	\item Lambda calcul
 	\item Fonction récursive
 \end{itemize}
-
 Mais, il en existe beaucoup d'autres.
 % subsubsection mod_le_de_calcul (end)
 
@@ -990,18 +1020,16 @@ auquel on ajoute le non-déterminisme. C'est à dire on ajout la fonction
 prédéfinie $choose(n)$. Celle-ci retourne un entier compris entre 0 et n et elle 
 est non déterministe.
 
-\paragraph{} On peut voir un programme ND de 2 manières différentes :
-
+On peut voir un programme ND de 2 manières différentes :
 \begin{enumerate}
 	\item Il calcule une relation plutôt qu'une fonction
 	\item Le voir comme un moyen de décider si un élément appartient à un 
 		ensemble
 \end{enumerate}
-
 On considère l'approche 2 en calculabilité.
 
-\begin{mydef}
-	Un ensemble $A \subseteq \N$ est \textbf{ND-récursif} s’il existe un 
+\begin{mydef}[ND-récursif]
+	Un ensemble $A \subseteq \N$ est ND-récursif s’il existe un 
 	ND-programme tel que lorsqu'il reçoit comme donnée n'importe quel nombre 
 	naturel x \\
 	\begin{tabular}{c}
@@ -1012,11 +1040,11 @@ On considère l'approche 2 en calculabilité.
 	\end{tabular}
 \end{mydef}
 
-\begin{mydef}
-	Un ensemble $A \subseteq \N$ est \textbf{ND-récursivement énumérable} s’il existe un 
+\begin{mydef}[ND-récursivement énumérable]
+	Un ensemble $A \subseteq \N$ est ND-récursivement énumérable s’il existe un 
 	ND-programme tel que lorsqu'il reçoit comme donnée n'importe quel nombre 
 	naturel x
-	\begin{tabular}{c}
+	\begin{tabular}{l}
 	si $x \in A$ alors il existe une exécution fournissant tôt ou tard 
 	comme résultat 1 \\
 	si $x \notin A$ alors les exécutions possibles ne se terminent pas ou 
@@ -1029,14 +1057,14 @@ On considère l'approche 2 en calculabilité.
 	déterministe. (BFS dans l'arbre d'exécution)
 \end{myprop}
 
-\begin{mytheo}
+\begin{myprop}
 	Un ensemble est ND-récursif ssi il est récursif
-\end{mytheo}
+\end{myprop}
 
-\begin{mytheo}
+\begin{myprop}
 	Un ensemble est ND-récursivement énumérable ssi il est récursivement 
 	énumérable
-\end{mytheo}
+\end{myprop}
 
 \subsection{Automates finis FA}
 \label{sub:automates_finis}
@@ -1044,7 +1072,7 @@ On considère l'approche 2 en calculabilité.
 \paragraph{Objectif :} Décider si un mot donné appartient ou non à un langage.
 
 \paragraph{Utilisation :} Utiliser dans les interfaces avec les humains par 
-exemple les distributeurs.
+exemple, les distributeurs.
 
 \subsubsection{Modèles des automates finis}
 \label{ssub:mod_les_des_automates_finis}
@@ -1086,7 +1114,7 @@ Un automate fini est composé de :
 
 \begin{myprop}
 	Certains ensembles récursifs ne peuvent pas être reconnus par un 
-	automate fini. Par exemple $L = { a^n b^n | n\geq 0}$ (il me semble que 
+	automate fini. Par exemple $L = \{ a^n b^n | n\geq 0\}$ (il me semble que 
 	c'est par ce que ça nécessiterait un nombre infini d'états)
 \end{myprop}
 
@@ -1100,9 +1128,9 @@ Un automate fini est composé de :
 	régulière.
 \end{mydef}
 
-\begin{mydef}
-	Expression régulière :  dans le cours on prend comme syntaxe, "+" pour 
-	signifié ou, "." pour signifier la concaténation, "*" pour la 
+\begin{mydef}[Expression régulière] 
+       	Dans le cours la syntaxe d'une expression régulière est la suivante :
+	comme syntaxe, "+" pour signifié ou, "." pour signifier la concaténation, "*" pour la 
 	fermeture (???) et "()" pour la répétition.
 \end{mydef}
 % subsubsection mod_les_des_automates_finis (end)
@@ -1111,7 +1139,8 @@ Un automate fini est composé de :
 \label{ssub:automate_fini_nd}
 On étend le modèle en permettant d'avoir plusieurs transitions possibles pour 
 une paire <état,symbole>. Ce qui implique que plusieurs exécutions sont 
-possibles.
+possibles. On a donc plus une fonction de transition mais on a maintenant une
+relation de transition.
 
 \paragraph{} De même que pour un ND programme, un mot est accepté par un NDFA 
 s’il existe au moins une exécution ou l'état final est acceptant. Dans l'autre 
@@ -1175,14 +1204,14 @@ relation de transition.
 		transition (symbole "vide")
 	\item A, B / C : A est le symbole lu, B est le symbole au 
 		sommet de la pile et C est ce qui va remplacer le 
-		sommet de la pile (peut-être un symbole et B pour 
-		rajouter, $\epsilon$ pour retirer le sommet de la pile, 
+		sommet de la pile (peut-être un symbole x et B pour 
+		rajouter x sur la pile, $\epsilon$ pour retirer le sommet de la pile, 
 		ou juste B pour ne pas changer le sommet)
 \end{itemize}
 
 \begin{myprop}
 	Certains ensembles récursifs ne peuvent pas être reconnus par un automate 
-	à pile. Ex: L = ${a^n b^n a^n | n\geq 1}$
+	à pile. Ex: L = $\{a^n b^n a^n | n\geq 1\}$
 \end{myprop}
 
 \begin{myprop}
@@ -1213,19 +1242,21 @@ programmation, pour l'analyse du langage naturel...
 	\item $\sum$ : alphabet
 	\item éléments de $\sum$ sont des symboles terminaux
 	\item autres symboles utilisés durant la dérivation : symboles non 
-		terminaux (A,B, ..., <dig>,..
+		terminaux (A,B, ..., <dig>,..)
 	\item S : point de départ de la dérivation (symbole non terminal)
 \end{itemize}
 
-\begin{mydef}
+\begin{mydef}[Règle de production]
 	On appelle un ensemble de règles de dérivation des règles de production
 \end{mydef}
 
 \begin{myexem}
-	$\sum ={0,1,2}$ \\
-	$S \rightarrow <Dig>$ \\
-	$<Dig> \rightarrow D$ \\
-	$D \rightarrow 0 | 1 |2 | \epsilon $ ($\epsilon$ ne signifie rien)
+	\begin{itemize}
+		\item $\sum ={0,1,2}$ 
+		\item $S \rightarrow <Dig>$
+		\item $<Dig> \rightarrow D$
+		\item $D \rightarrow 0 | 1 |2 | \epsilon $ ($\epsilon$ ne signifie rien)
+	\end{itemize}
 \end{myexem}
 TODO Exemple littéraux real en Java
 
@@ -1239,7 +1270,7 @@ TODO Exemple littéraux real en Java
 	de symboles.
 \end{mydef}
 
-\begin{mydef}
+\begin{mydef}[Arbre syntaxique]
 	Un arbre syntaxique permet de représenter la dérivation, chaque noeud 
 	correspond à un symbole terminal ou non. Et les arêtes correspondent à 
 	l'application d'une règle. Il y a plusieurs noeuds enfants si la règle 
@@ -1258,7 +1289,7 @@ TODO Exemple littéraux real en Java
 Chomsky a défini 4 types de grammaires formelles. On peut les classer selon 
 leur "puissance".
 
-\begin{mydef}
+\begin{mydef}[Puissance d'une grammaire]
 	Une grammaire A est plus puissante qu'une B si on peut définir plus 
 	de langage avec A qu'avec B
 \end{mydef}
@@ -1271,8 +1302,11 @@ calcul permettant de reconnaitre un langage de cette grammaire.
 	 Type & Type de grammaire & Modèle de calcul\\
 	 \hline
 	3 & régulière & Automate fini \\
+	 \hline
 	2 & hors contexte & Automate à pile \\
+	 \hline
 	1 & sensible au contexte & Machine de Turing à ruban fini \\
+	 \hline
 	0 & récursivement énumérable & Machine de Turing \\
 	\hline
 \end{tabular}
@@ -1283,7 +1317,6 @@ grammaire.
 % subsubsection hi_rarchie_de_chomsky (end)
 
 \subsubsection{Grammaires régulières}
-
 \paragraph{Règle de production :} 
 \begin{itemize}
 	\item $A \rightarrow \omega B$
@@ -1291,24 +1324,21 @@ grammaire.
 \end{itemize}
 
 \paragraph{Conditions :}
-
 \begin{itemize}
 	\item  $\omega \in \sum^*$ c'est à dire $\omega$ est une chaîne de symbole non 
 	terminal. 
-	\item A et B ne peuvent être qu’ un symbole non terminal
+	\item A et B sont des symboles non terminal
 \end{itemize}
 
 \begin{myexem}
 	$S \rightarrow abS$ \\
 	$S \rightarrow \epsilon$ \\
 	Cette grammaire définit différents langages, par exemple $L1 = 
-	\{(ab)^n|n \geq 0\}$. Ce langage peut-être défini par une expression 
+	\{(ab)^n|n \geq 0\}$. Ce langage peut-être aussi défini par une expression 
 	régulière.
 \end{myexem}
 
-
 \subsubsection{Grammaires hors contexte}
-
 Cette grammaire est importante, car il suffit de lui rajouter la portée des 
 variables pour définir la syntaxe d'un langage.
 
@@ -1322,7 +1352,7 @@ variables pour définir la syntaxe d'un langage.
 \begin{itemize}
 	\item  $\beta$ est une chaîne de symbole composé de symboles terminaux
 	       	ou non
-	\item A ne peut être qu’ un symbole non terminal
+	\item A est un symbole non terminal
 \end{itemize}
 
 \begin{myexem}
@@ -1333,14 +1363,12 @@ variables pour définir la syntaxe d'un langage.
 \end{myexem}
 
 \subsubsection{Grammaires sensibles au contexte}
-
 \paragraph{Règle de production :} 
 \begin{itemize}
 	\item $\alpha \rightarrow \beta$
 \end{itemize}
 
 \paragraph{Conditions :}
-
 \begin{itemize}
 	\item $\alpha$ et $\beta$ sont des chaînes de symboles composées de 
 		symboles terminaux ou non. De plus, $\beta$ contient au moins 
@@ -1357,7 +1385,6 @@ variables pour définir la syntaxe d'un langage.
 	Un langage défini par cette grammaire est par exemple $L1 =
 	\{a^nb^na^n|n \geq 0\}$
 \end{myexem}
-
 
 \subsubsection{Grammaires sans restriction}
 
@@ -1379,12 +1406,12 @@ variables pour définir la syntaxe d'un langage.
 	$\beta \rightarrow \alpha$\\
 \end{myexem}
 
-\subsection{Machines de Turing}[Intérêt] Le modèle des machines de Turing est le modèle le plus 
+\subsection{Machines de Turing}
+\paragraph{Intérêt :}Le modèle des machines de Turing est le modèle le plus 
 simple, le plus élémentaire et le plus puissant possible. Il permet une 
 définition précise de procédure, d'algorithme ou encore de calcul.
 
 \paragraph{Composition "abstraite" :}
-
 \begin{description}
 	\item[Ruban] Suite de case potentiellement infinie (des 2 côtés), mais à 
 		chaque moment, le ruban nécessaire est fini
@@ -1421,7 +1448,7 @@ Pour définir une machine de Turing, il faut :
 	\item $stop \in S$ : état arrêt
 	\item $A \subseteq S$ : ensemble des états acceptant
 	\item $\delta : Sx\times \times \Gamma \rightarrow S \times \{G,D\} 
-	\times \Gamma$ : relation de transition (finie)
+	\times \Gamma$ : fonction de transition (finie)
 \end{itemize}
 Il faut aussi que $\sum \subset \Gamma$ et que B $\in \Gamma$ mais que B 
 $\notin \sum$
@@ -1496,7 +1523,8 @@ encore de permettre plusieurs états stop.
 		exécuter 20 instructions se déplacer à gauche)
 \end{itemize}
 
-Réduire les symboles => binaire
+\paragraph{Réduire les symboles} par exemple de plus avoir que 0 et 1 comme
+symboles.
 
 \paragraph{Influence :} 
 \begin{itemize}
@@ -1515,7 +1543,7 @@ machines de Turing différentes.
 
 \paragraph{Autres rubans}
 
-Ruban unidirectionnel, c'est-à-dire limité d'un coté (à priori à gauche)/
+Ruban unidirectionnel, c'est-à-dire limité d'un coté (à priori à gauche).
 
 \paragraph{Influence :} 
 \begin{itemize}
@@ -1526,7 +1554,7 @@ Ruban unidirectionnel, c'est-à-dire limité d'un coté (à priori à gauche)/
 	       	$0,-1,1,-2,2,...,-\inf,\inf$ 
 \end{itemize}
 
-Ruban multicases, c'est-à-dire la tête lis plusieurs cases en parallèle. Ce qui 
+\paragraph{Ruban multicases}C'est-à-dire la tête lis plusieurs cases en parallèle. Ce qui 
 implique que la taille de l'alphabet augmente.
 
 \paragraph{Influence :} 
@@ -1535,7 +1563,7 @@ implique que la taille de l'alphabet augmente.
 	\item Même efficacité
 \end{itemize}
 
-Plusieurs rubans c'est-à-dire la tête peut se déplacer dans des directions 
+\paragraph{Plusieurs rubans}C'est-à-dire la tête peut se déplacer dans des directions 
 différentes d'un ruban à l'autre. On doit pour ça changer la relation de 
 transition. Elle doit maintenant prendre plusieurs symboles et un état et 
 retourner un état, plusieurs symboles à écrire et plusieurs directions différentes.
@@ -1549,8 +1577,9 @@ D_n$$
 
 \subsubsection{Machine de Turing non déterministe NDT}
 Tout comme pour les automates non déterministes, on permet plusieurs 
-transitions possibles pour une paire <état, symbole>. Ce qui implique qu'il y a 
-plusieurs exécutions possibles.
+transitions possibles pour une paire <état, symbole>. Donc maintenant, on a
+plus une fonction de transition mais une relation de transition. Ce qui
+implique qu'il y a plusieurs exécutions possibles.
 
 \begin{myrem}
 	On utilise les NDT uniquement pour décider un ensemble
@@ -1590,7 +1619,7 @@ plusieurs exécutions possibles.
 	\item Même puissance, car il existe une machine de Turing qui interprète
 	 les NDT 
 	\item Speedup exponentielle, car on "descend" directement au bon endroit 
-		dans l'arbre. Mais en comme en pratique on doit simuler 
+		dans l'arbre. Mais comme en pratique on doit simuler 
 		l'exécution non déterministe ça ne change rien.
 \end{itemize}
 
@@ -1605,12 +1634,14 @@ On ajoute 3 états spéciaux : soit $A \subseteq \N$
 
 \paragraph{Puissance :} Ça dépend de A car si A est récursif, ça n'apporte pas 
 grand-chose, car on peut remplacer l'oracle par un programme qui décide A. Donc 
-même puissance. Par contre si A n'est pas récursif, alors c'est un modèle plus 
+même puissance. 
+
+Par contre si A n'est pas récursif, alors c'est un modèle plus 
 puissant (on pourrait déterminer halt). Mais ce n’est pas possible d'exécuter un tel programme. 
 
 \begin{myrem}
 	Utilité : permets d'établir une hiérarchie parmi les problèmes 
-	indécidables. Ça permet de dire et si K est récursif quels problèmes 
+	indécidables. Ça permet de dire que si K est récursif quels problèmes 
 	seraient encore indécidable.
 \end{myrem}
 
@@ -1761,12 +1792,13 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 	symbole spécial : $\lambda$, (,)
 \end{mydef}
 
-\begin{mydef}[Expression lambda] est
+\begin{mydef}[Expression lambda] est l'une des 3 choses suivantes :
 	\begin{itemize}
 		\item une variable
 		\item $\lambda xB$ si B est une expression lambda et que x est 
-			une variable ($\lambda x$ correspond à la définition 
-			d'une variable \textbf{liée}) \\
+			une variable. \\
+			$\lambda x$ correspond à la définition 
+			d'une variable \textbf{liée} \\
 			$\lambda xB$ correspond à la définition d'une fonction 
 			à un paramètre, x.
 		\item (FA) si F et A sont des expressions lambda. On dit que F 
@@ -1858,7 +1890,7 @@ calculables).
 On va se posé la question de qu'est-ce qui fait un bon formalisme de la 
 calculabilité. La réponse est un formalisme qui vérifie les fondements de la 
 thèse ... Plus précisément on va étudier des caractéristiques (des propriétés) 
-nécessaire et suffisante pour avoir un bon modèle de la calculabilité.
+nécessaires et suffisantes pour avoir un bon modèle de la calculabilité.
 
 \paragraph{} Dans ce chapitre, on va considérer un formalisme de la 
 calculabilité D.
@@ -1874,15 +1906,14 @@ calculabilité D.
 \end{description}
 
 \begin{myrem}
-	Les propriétés sur les descriptions peuvent être vues comme il existe. On 
-	dit qu'il existe une description.
-	Alors que celles sur les algorithmes sont plus concrètes en disant qu'on 
+	Les propriétés sur les descriptions (SD et CD) peuvent être vues comme
+	des il existe. On dit qu'il existe une description.
+	Alors que celles sur les algorithmes (SA, CA) sont plus concrètes en disant qu'on 
 	est capable d'écrire l'algorithme. On dit qu'il existe une description 
 	\textbf{exécutable sur des données}.
 \end{myrem}
 
 \paragraph{Caractérisiques plus en détails}
-\paragraph{Caractéristiques} 
 \begin{description}
 	\item[SD] : Toute fonction D-calculable est calculable (première partie 
 		de la thèse de Turing)
@@ -1908,8 +1939,8 @@ Un bon formalisme de la calculabilité possède toutes ces propriétés. Mais il
 suffit d'en montrer certaines car certaines propriétés en entrainent d'autres.
 
 \begin{myprop}
-	SA $\Rightarrow$ SD, car si on peut trouver une description exécutable 
-	donc celle-ci existe.
+	SA $\Rightarrow$ SD, car si on peut trouver une description exécutable,
+	celle-ci existe.
 \end{myprop}
 
 \begin{myprop}
@@ -1927,7 +1958,7 @@ qu'on a un interpréteur de D, D-calculable. Alors la description est exécutabl
 \end{myprop}
 
 Un bon formalisme doit donc posséder soit SA et CA ou soit SD, CD, U et S ou 
-soit SA, CD et S ou encore CA, SD et U., Car
+soit SA, CD et S ou encore CA, SD et U. Car
 \begin{itemize}
 	\item SA et CA $\iff$ SD, CD, U et S
 	\item SA ,CD et S $\iff$ SD, CA et U
