@@ -1821,7 +1821,7 @@ forme réduite.
 
 \begin{myprop}
 	Si une forme réduite existe, le choix de réduire l'expression la plus à 
-	gauche amène toujours à une forme réduite. (Donc privilégier la 
+	gauche amène toujours à une forme réduite. (Donc, privilégier la 
 	réduction la plus à gauche)
 \end{myprop}
 
@@ -1951,7 +1951,7 @@ Pour prouver qu'un problème est non calculable, on peut utiliser :
 \subsection{Aspects non couverts par la Calculabilité}
 \label{sub:aspects_non_couvert_par_la_calculabilit_}
 La calculabilité se limite au calcul de fonction or certains problèmes de la vie 
-de tous les jours ne corresponde pas à une fonction.
+de tous les jours ne correspondent pas à une fonction.
 
 \begin{myexem}
 	Système d'exploitation
@@ -1996,7 +1996,7 @@ raisonnement :
 
 \section{Complexité}
 \label{sec:complexit_}
-Lors de l'étude de la complexité, on ne va considérer que la borne supérieur 
+Lors de l'étude de la complexité, on ne va considérer que la borne supérieure 
 (notation big O). De plus, on ne va considérer que les fonctions totales et 
 donc la décision d'ensemble récursif. 
 En effet, si la fonction n'est pas totale, l'algorithme peut boucler. 
@@ -2036,7 +2036,7 @@ d'exécution et de l'espace.
 
 \begin{myrem}
 	Certains problèmes sont intrinsèquement complexes juste pour certaines 
-	donnée (simplex). Et celles-ci sont souvent des cas particuliers et peux 
+	données (simplex). Et celles-ci sont souvent des cas particuliers et peuvent 
 	rencontrées en pratique.
 \end{myrem}
 % subsection influence_de_la_repr_sentation_des_donn_es (end)
@@ -2059,7 +2059,7 @@ On va se "limiter" au problème de décision.
 algorithme P. Ça permet :
 \begin{itemize}
 	\item prouver la calculabilité/non calculabilité
-	\item d'analyser le degré de non calculabilité
+	\item d'analyser le degré de non-calculabilité
 	\item déduire la complexité
 	\item d'analyser le degré de complexité
 \end{itemize}
@@ -2088,7 +2088,7 @@ que 3 :
 \end{mydef}
 
 \begin{myrem}
-	Ce qui signifie que ce problèmes appartient à la classe de problème et 
+	Ce qui signifie que ce problème appartient à la classe de problème et 
 	est A-difficile.	
 \end{myrem}
 
@@ -2152,7 +2152,7 @@ car, ça dépend de la complexité de la fonction f.
 
 \begin{mydef}[Réduction fonctionnelle]
 	Un ensemble A est fonctionnellement réductible à un ensemble B 
-	($A\leq_f B$) si il existe une fonction \textbf{total calculable} f 
+	($A\leq_f B$) s’ il existe une fonction \textbf{totale calculable} f 
 	telle que 
 	\[ a\in A \ \iff \ f(a) \in B \]
 \end{mydef}
@@ -2212,6 +2212,258 @@ de la complexité. Mais c'est peu intuitif et on s'intéresse aux frontières. O
 différence de complexité entre différents modèles est un facteur polynomial 
 (c'est une thèse) ce qui n'a pas d'influence sur les frontières.
 
+\subsection{Classe de complexité}
+
+\paragraph{Classes basées sur le modèle déterministe}
+\begin{mydef}[DTIME(f)]
+	Famille des ensembles récursifs pouvant être décidés par un programme 
+	Java de complexité temporelle O(f)
+\end{mydef}
+
+\begin{mydef}[DSPACE(f)]
+	Famille des ensembles récursifs pouvant être décidés par un programme 
+	Java de complexité spatiale O(f)
+\end{mydef}
+
+\paragraph{Classes basées sur le modèle non déterministe}
+\begin{mydef}[NDTIME(f)]
+	Famille des ensembles récursifs pouvant être décidé par un programme 
+	non déterministe Java de complexité temporelle O(f)
+\end{mydef}
+
+\begin{myrem}
+	On considère juste la complexité de la branche d'exécution la plus
+	longue. Donc toutes les branches sont finies.	
+\end{myrem}
+
+\begin{mydef}[NDSPACE(f)]
+	Famille des ensembles récursifs pouvant être décidé par un programme 
+	non déterministe Java de complexité spatiale O(f)
+\end{mydef}
+
+\begin{mydef}[Classe P]
+	\[ P = \cup _{i \leq 0} DTIME(n_i)\]
+	Famille des ensembles récursifs pouvant être décidés par un programme
+	Java de complexité polynomiale.
+\end{mydef}
+
+\begin{myrem}
+	Les classes ne dépendent pas du modèle de calcul
+\end{myrem}
+
+\begin{mydef}[Classe NP]
+	\[ NP = \cup _{i \leq 0} NTIME(n_i)\]
+	Famille des ensembles récursifs pouvant être décidés par un programme
+	Java non déterministe de complexité polynomiale.
+\end{mydef}
+
+\begin{myrem}
+	Si on savait faire du non-déterminisme, on aurait une complexité polynomiale,
+	mais pour le moment on ne peut que le simuler donc on a une complexité
+	exponentielle.
+\end{myrem}
+
+\subsection{Relations entre les classes de complexité}
+\label{sub:relations_entre_les_classes_de_complexit_}
+
+\paragraph{Déterministe vs non-déterministe}
+\begin{myprop}
+	$A \in NTIME(f) \Rightarrow A \in DTIME(c^f)$ \\
+	En effet, f est la profondeur maximale de l'arbre donc si on simule le
+	ND alors on doit faire un bfs dans un arbre de profondeur f.
+\end{myprop}
+
+\begin{myprop}
+	$A \in NSPACE(f) \Rightarrow A \in DSPACE(c^f)$ \\
+	En effet, c'est une borne sur le nombre de noeuds d'un graphe de
+	profondeur f.
+\end{myprop}
+
+\paragraph{Time vs Space}
+\begin{myprop}
+	$A \in DTIME(f) \Rightarrow A \in DSPACE(f)$ \\
+	En effet, le programme ne peut utiliser qu’ au maximum un emplacement
+	mémoire par instruction. Donc, l'espace utilisé est limité par le
+	nombre d'instructions.
+\end{myprop}
+
+\begin{myprop}
+	$A \in NTIME(f) \Rightarrow A \in NSPACE(f)$ \\
+	C'est la même chose que pour le cas déterministe (propriété précédente).
+\end{myprop}
+
+\begin{myprop}
+	$A \in DSPACE(f) \Rightarrow A \in DTIME(c_f)$ \\
+	On sait que le programme se termine donc il trouve la réponse. Or il y
+	a une combinaison de la mémoire qui est la réponse. Donc le programme
+	ne peut pas générer plus que le nombre de combinaison possible de la
+	mémoire sinon il passerait la réponse.
+\end{myprop}
+
+\begin{myprop}
+	$A \in NSPACE(f) \Rightarrow A \in NTIME(c_f)$ \\
+	C'est la même chose que pour le cas déterministe (propriété précédente).
+\end{myprop}
+
+\paragraph{Hiérarchie de complexité}
+On peut prouver qu'il existe pire qu'une complexité exponentielle.
+
+\subsection{NP-complétude}
+La question fondamentale de la complexité est, s’ il existe un algorithme
+non déterministe polynomial, existe-t-il un algorithme déterministe polynomial
+résolvant ce même problème. C'est-à-dire, est-ce que P = NP. On sait que $P
+\subseteq NP$ mais on a pas encore montré si oui ou non $NP\subseteq P$.
+
+\paragraph{} Pour démontrer ça, on essaye de montrer qu'un élément de NP, le
+plus difficile, est dans P. On choisit un élément qui soit NP-complet par
+rapport à une relation de réduction. Ainsi, si on y arrive, ça implique que
+tous les autres éléments de NP sont dans P aussi.
+
+\paragraph{} La question est maintenant de choisir la relation de réduction.
+Les 2 relations de réduction définie précédemment ne suffisent pas. Car, ces
+réductions ne permettent pas d'affirmer quelque chose sur la complexité. On
+introduit donc une nouvelle réduction, la réduction polynomiale.
+
+\begin{mydef}[Réduction polynomiale]
+	Un ensemble A est polynomialement réductible ) un ensemble B, $A \leq
+	_p B$ s’ il existe une fonction \textbf{totale calculable} f de
+	\textbf{complexité temporelle polynomiale} telle que 
+	\[a\in A \ \Leftrightarrow \ f(a)\in B \]
+\end{mydef}
+
+\begin{myrem}
+	On ajoute à la réduction fonctionnelle, une contrainte de complexité
+	sur la fonction f. Cette réduction nous permet donc de tirer des
+	conclusions sur la complexité de A sachant la complexité de B.
+\end{myrem}
+
+\begin{myprop}
+	\[ A \leq_p B \text{ et } B\in P \Rightarrow A\in P \]
+	Ce qui est logique étant donné qu'on à la complexité de f qui est
+	polynomiale + la complexité de la décision de B qui est aussi
+	polynomial.
+\end{myprop}
+
+\begin{myprop}
+	\[ A \leq_p B \text{ et } B\in NP \Rightarrow A\in NP \]
+	Ce qui est logique étant donné qu'on à la complexité de f qui est
+	polynomiale + la complexité de la décision de B qui est non déterministe
+	polynomiale.
+\end{myprop}
+
+
+\begin{mydef}[NP-complétude]
+	Un problème E est NP-complet (par rapport à $\leq_p$) si :
+	\begin{enumerate}
+		\item $E\in NP$
+		\item $\forall B \in NP$ : $B\leq_p E$
+	\end{enumerate}
+\end{mydef}
+
+\begin{myprop}
+	\[ E \leq_p B \text{ et } B\in NP \Rightarrow \text{B est NP-complet} \]
+	Ce qui est logique puisque ça veut dire que B est NP-difficile et dans
+	NP.
+\end{myprop}
+
+TODO schéma sur les classes de problèmes
+
+\paragraph{} On va maintenant essayer de trouver des problèmes NP-complet et de
+trouver des propriétés intéressantes sur P.
+
+\subsubsection{Problème de décision}
+On va définir différemment la classe NP. On va considérer des problèmes de
+décision. Pour un ensemble à ça consiste à dire si oui ou non une donnée x
+appartient à A. On peut voir ça comme un prédicat. Par exemple SAT(x) : la
+formule x est-elle satisfaisable?
+
+\paragraph{Redéfinition de P et NP} en problème de décision.
+
+\begin{mydef}[Classe P]
+	La classe P est la classe des problèmes de décision pouvant être
+	calculés par un algorithme polynomial.
+\end{mydef}
+
+\begin{mydef}[Classe NP]
+	La classe NP est la classe des problèmes de décision A(x) pouvant
+	s'exprimer sous la forme $\exists y \ B(x,y)$ tel que :
+	\begin{itemize}
+		\item $B(x,y) \in P$ (Il est donc facile de vérifier une
+			solution)
+		\item le domaine de y est fini (taille polynomiale en x
+		       	et peut être généré, de manière non déterministe, en 
+			un temps polynomial
+	\end{itemize}
+\end{mydef}
+
+\begin{myrem}
+	On peut se représenter ça comme si le non-déterminisme permettait
+       	de générer tout les y "en même temps" ou 
+	que le non-déterminisme choisissait le bon y.
+\end{myrem}
+
+\begin{mydef}[Calcul d'un problème NP]
+	Pour décider A(x)
+	\begin{enumerate}
+		\item calculer y (de manière non déterministe)
+		\item déterminer B(x,y)
+	\end{enumerate}
+\end{mydef}
+
+\subsection{Théorème de Cook : SAT est NP-complet}
+Pour pouvoir trouver des problèmes NP-complet en les réduisant par rapport à
+un problème NP-complet, il faut trouver un premier problème NP-complet. 
+\paragraph{} On va montrer que SAT est NP-complet en 2 parties :
+\begin{enumerate}
+	\item $SAT \in NP$
+	\item $\forall B \in NP \ : \  B\leq_p SAT $
+\end{enumerate}
+
+\subsubsection{Le problème SAT}
+Le problème SAT(x) est de décider si la formule propositionnelle x est 
+satisfaisable ou non. C'est à dire est-ce que $x\in SAT$.
+
+\paragraph{} La longueur d'une formule x est $O(n\log n)$. Où n est le nombre
+d'occurrences des variables. Ça se justifie par le fait qu'en utilisant un codage
+d'Huffman, le code pour une variable prendra $\log n$ (c'est important pour
+définir la complexité du problème).
+
+\subsubsection{$SAT \in NP$}
+Il existe un programme ND polynomiale capable de décider si $x\in SAT$. On pose
+que m est le nombre de variables de x et n est le nombre d'occurrences de
+variable ($m\leq x$). Étape de l'algorithme avec leur complexité :
+\begin{itemize}
+	\item  Générer une séquence de m valeurs logiques de façon
+		non déterministique : $O(m)$
+	\item  Substituer les occurrences des variables par leur valeur : $O(n
+		\log n)$ 
+	\item Évaluer l'expression : Complexité polynomiale par une technique
+		de réduction.
+\end{itemize}
+
+\subsubsection{$\forall B \in NP \ : \  B\leq_p SAT $}
+Comme $B \in NP$, on a une NDMT qui décide B en un temps polynomial p(n). On va
+montrer qu'on sait transformer en un temps polynomial la NDMT par rapport à n
+en une formule propositionnelle et que cette formule à une longueur qui dépend 
+de p(n) ($O(p(n))$ symboles). Ce qui prouve que $B \leq_p SAT$.
+
+\paragraph{Idée de la transformation} Il me semble qu'on ne doit pas la connaitre
+pour l'examen. Mais l'idée est de représenter le ruban comme un tableau de
+variables booléennes (chaque ligne représente le ruban à un instant), 
+même chose pour les états, le curseur, l'alphabet,...
+
+
+\subsection{Quelques problèmes NP-complets}
+\begin{itemize}
+	\item Problème du circuit hamiltonien HC (trouver un chemin qui passe
+		une seule fois par tous les sommets)
+	\item Problème du voyageur de commerce TS (trouver un chemin qui relie
+		tous les sommets et de longueur $\leq$ B)
+	\item Chemin le plus long entre 2 sommets dans un graphe
+	\item 3SAT (forme conjonctive avec 3 variables par clause)
+	\item Programmai on entière (simplex)
+	\item ...
+\end{itemize}
 
 % section classes_de_complexit_ (end)
 \end{document}
