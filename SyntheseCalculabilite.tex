@@ -1,6 +1,5 @@
-\documentclass[11pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[french]{babel}
+\input{lib.tex}
+%\documentclass[11pt,a4paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage{amsfonts}
 \usepackage{graphicx}
@@ -31,58 +30,11 @@
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 
 \newcommand{\stcomp}[1]{\overline{#1}} 
-
-% Sets
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Rn}{\R^n}
-\newcommand{\Rnn}{\R^{n \times n}}
 \newcommand{\N}{\mathbb{N}}
-\newcommand{\K}{\mathbb{K}}
-\newcommand{\Kn}{\K^n}
-\newcommand{\Knn}{\K^{n \times n}}
+%\newtheoremstyle{indenteddefinition}{\topsep}{\topsep}{\hangindent=2em}{}{}{}{.5em}{}
+%\theoremstyle{indenteddefinition}
 
-% Theorem and definitions
-\theoremstyle{definition}
-\newtheorem{mydef}{Définition}
-\newtheorem{mynota}[mydef]{Notation}
-\newtheorem{myprop}[mydef]{Propriétés}
-\newtheorem{myrem}[mydef]{Remarque}
-\newtheorem{myform}[mydef]{Formules}
-\newtheorem{mycorr}[mydef]{Corrolaire}
-\newtheorem{mytheo}[mydef]{Théorème}
-\newtheorem{mylem}[mydef]{Lemme}
-\newtheorem{myexem}[mydef]{Exemple}
-\newtheorem{myineg}[mydef]{Inégalité}
-
-
-% Modification de 'listing'
-\lstset{
-  language=Java,						% choose the language of the code
-  numbers=left,						% where to put the line-numbers
-  stepnumber=1,						% the step between two line-numbers.        
-  numbersep=5pt,						% how far the line-numbers are from the code
-  backgroundcolor=\color{white},		% choose the background color. You must add \usepackage{color}
-  showspaces=false,					% show spaces adding particular underscores
-  showstringspaces=false,			% underline spaces within strings
-  showtabs=false,					% show tabs within strings adding particular underscores
-  tabsize=2,							% sets default tabsize to 2 spaces
-  captionpos=b,						% sets the caption-position to bottom
-  breaklines=true,					% sets automatic line breaking
-  breakatwhitespace=true,			% sets if automatic breaks should only happen at whitespace
-  title=\lstname,					% show the filename of files included with \lstinputlisting;
-  keywordstyle=\color{blue},			% keyword style
-  numberstyle=\tiny\color{mygray},	% the style that is used for the line-numbers
-  rulecolor=\color{black},			% the frame-color may be changed on line-breaks within not-black text
-  basicstyle=\small\ttfamily,		% text style
-  basewidth=0.51em,					% text height
-  showstringspaces=false,			% show space
-  frame=single,						% type of border
-  commentstyle=\color{mygreen},		% comment style
-  stringstyle=\color{mymauve},		% string literal style
-  tabsize=2,							% sets default tabsize to 2 spaces
-  belowskip=-2mm,
-}
-
+\lstset{language={Java}}
 
 \def\blurb{\textsc{Université catholique de Louvain\\
   École polytechnique de Louvain}}
@@ -679,8 +631,7 @@ se termine pour l'entrée n.
 
 TODO insérer le schéma sur les fonctions et les ensembles
 
-\begin{mydef}
-	\textbf{Un ensemble co-récursivement énumérable} est un ensemble dont le 
+\begin{mydef}[Un ensemble co-récursivement énumérable] est un ensemble dont le 
 	complément est récursivement énumérable. Par exemple $\stcomp{HALT}$. On peut 
 	en déduire que si un ensemble est récursivement énumérable et co-récursivement 
 	énumérable alors il est récursif.
@@ -709,9 +660,8 @@ beaucoup sur ce qu'on peut calculer.
 	fonction totale.
 \end{mydef}
 
-\begin{mytheo}
+\begin{mytheo}[Hoare-Allison :]
 	\label{Hoare_Allison}
-	\textbf{Hoare-Allison :}
 	interpret(n,x) n'est pas calculable dans Q.\\
 	TODO démonstration par diagonalisation
 \end{mytheo}
@@ -835,8 +785,7 @@ transformateur de programme. En effet, $P_k$ prend un programme en entrée et
 retourne un programme qui peut être différent.
 
 \begin{mytheo}
-	\label{S-m-n}
-	\textbf{S-m-n :} Pour tout $m,n \leq 0$, \\
+	\label{S-m-n}[S-m-n :] Pour tout $m,n \leq 0$, \\
 	il existe une fonction totale calculable $S^m_n : \N^{m+1} \rightarrow 
 	\N$ \\
 	telle que pour tout k,
@@ -866,8 +815,7 @@ retourne un programme qui peut être différent.
 TODO Preuve.
 
 \begin{mytheo}
-	\label{point-fixe}
-	\textbf{Point fixe :} Soient $n \geq 0$ et f : fonction totale 
+	\label{point-fixe}[Point fixe :] Soient $n \geq 0$ et f : fonction totale 
 	calculable, il existe k tel que $\phi^{(n}_k = phi^{(n}_{f(k)}$  
 \end{mytheo}
 
@@ -890,8 +838,7 @@ TODO demo de Rice à partir du point fixe
 \subsection{Autres problèmes non calculables}
 \label{sub:autres_probl_mes_non_calculable}
 
-\begin{mydef}
-	\textbf{Problème de correspondance de Post :} Soient deux listes U et V 
+\begin{mydef}[Problème de correspondance de Post :] Soient deux listes U et V 
 	de mots non vides sur un alphabet $\sum$ : 
 	\begin{itemize}
 		\item U = ${u_1,u_2,...,u_k}$
@@ -904,8 +851,7 @@ TODO demo de Rice à partir du point fixe
 	nouveau modèle, la machine de Post qui ressemble à une machine de Turing.
 \end{mydef}
 
-\begin{mydef}
-	\textbf{Problème des équations diophantines:} Décider si une équation 
+\begin{mydef}[Problème des équations diophantines:] Décider si une équation 
 	polynomiale de degré supérieur ou égal à 4 possède une solution entière.
 \end{mydef}
 
@@ -979,12 +925,10 @@ calcul, algorithme effectif.
 \paragraph{} on peut encore classer les modèles de calcul en 2 catégories, les 
 modèles déterministes et les modèles non déterministes.
 
-\begin{mydef}
-	\textbf{Modèles déterministes :} une seule exécution possible
+\begin{mydef}[Modèles déterministes :] une seule exécution possible
 \end{mydef}
 
-\begin{mydef}
-	\textbf{Modèles non déterministes :} il existe plusieurs exécutions 
+\begin{mydef}[Modèles non déterministes :] il existe plusieurs exécutions 
 	possibles
 \end{mydef}
 
@@ -1159,8 +1103,7 @@ Un automate fini est composé de :
 	complet} de la calculabilité (Hoare Allison)
 \end{myprop}
 
-\begin{mydef}
-	\textbf{Langage régulier :} est un langage défini par une expression 
+\begin{mydef}[Langage régulier :] est un langage défini par une expression 
 	régulière.
 \end{mydef}
 
@@ -1293,14 +1236,12 @@ programmation, pour l'analyse du langage naturel...
 \end{myexem}
 TODO Exemple littéraux real en Java
 
-\begin{mydef}
-	\textbf{Dériver} c'est appliquer des règles de la grammaire pour vérifier 
+\begin{mydef}[Dériver] c'est appliquer des règles de la grammaire pour vérifier 
 	si une chaîne de symbole appartient au langage (on part d'une chaîne de symbole 
 	et on vérifie les règles sur celle-ci).
 \end{mydef}
 
-\begin{mydef}
-	\textbf{Inférer} c'est une dérivation dans "le sens contraire", 
+\begin{mydef}[Inférer] c'est une dérivation dans "le sens contraire", 
 	c'est-à-dire, on part des règles de grammaire et on génère une chaîne 
 	de symboles.
 \end{mydef}
@@ -1445,9 +1386,7 @@ variables pour définir la syntaxe d'un langage.
 	$\beta \rightarrow \alpha$\\
 \end{myexem}
 
-\subsection{Machines de Turing}
-
-\textbf{Intérêt :} Le modèle des machines de Turing est le modèle le plus 
+\subsection{Machines de Turing}[Intérêt :] Le modèle des machines de Turing est le modèle le plus 
 simple, le plus élémentaire et le plus puissant possible. Il permet une 
 définition précise de procédure, d'algorithme ou encore de calcul.
 
@@ -1466,8 +1405,7 @@ définition précise de procédure, d'algorithme ou encore de calcul.
 Le contrôleur est composé d'un nombre d'états fini dont un état initial et un 
 final. Il contient un programme (des instructions)
 
-\begin{mydef}
-	\textbf{Une instruction} est sous la forme 
+\begin{mydef}[Une instruction] est sous la forme 
 	$$<q,c> \rightarrow <new_q, Mouv, new_c>$$
 	\begin{itemize}
 		\item q : état courant
@@ -1508,14 +1446,12 @@ l'état devient stop. Soit il n'y a plus d'instruction applicable.
 \paragraph{} Le résultat est le contenu du ruban à l'état-stop. Si la machine 
 ne s'arrête pas sur l'état-stop alors il n'y a pas de résultat.
 
-\begin{mydef}
-	\textbf{T-calculable} Une fonction f est T-calculable s’ il existe une machine de Turing qui, 
+\begin{mydef}[T-calculable] Une fonction f est T-calculable s’ il existe une machine de Turing qui, 
 	recevant comme donnée n'importe quel nombre entier x fourni tôt ou tard 
 	comme résultat f(x) si celui-ci existe.
 \end{mydef}
 
-\begin{mydef}
-	\textbf{T-récursif} Soit $A\subseteq \N$, A est T-récursif s’ il existe 
+\begin{mydef}[T-récursif] Soit $A\subseteq \N$, A est T-récursif s’ il existe 
 	une machine de Turing qui, recevant comme donnée n'importe quel nombre 
 	naturel x, fourni tôt ou tard comme résultat : 
 	\begin{tabular}{l}
@@ -1524,8 +1460,7 @@ ne s'arrête pas sur l'état-stop alors il n'y a pas de résultat.
 	\end{tabular}
 \end{mydef}
 
-\begin{mydef}
-	\textbf{T-récursivement énumérable} Soit $A\subseteq \N$, A est 
+\begin{mydef}[T-récursivement énumérable] Soit $A\subseteq \N$, A est 
 	T-récursivement énumérable s’ il existe 
 	une machine de Turing qui, recevant comme donnée n'importe quel nombre 
 	naturel x, fourni tôt ou tard comme résultat : \\
@@ -1552,8 +1487,7 @@ Les points 1, 3 et 5 sont des théorèmes. Les autres sont des thèses.
 \subsubsection{Extension du modèle}
 On peut modifier le modèle pour changer sa puissance et son efficacité.
 
-\begin{mydef}
-	\textbf{Efficacité d'une MT} L'efficacité d'une MT se calcule en 
+\begin{mydef}[Efficacité d'une MT] L'efficacité d'une MT se calcule en 
 	fonction du nombre d'instructions à exécuter (on ne tient pas compte de 
 	la taille d'un mot mémoire).
 \end{mydef}
@@ -1633,8 +1567,7 @@ plusieurs exécutions possibles.
 	Cette partie importante pour la partie concernant la complexité
 \end{myrem}
 
-\begin{mydef}
-	\textbf{NDT-récursif} Soit $A\subseteq \N$, A est NDT-récursif s’ il 
+\begin{mydef}[NDT-récursif] Soit $A\subseteq \N$, A est NDT-récursif s’ il 
 	existe une ND-machine de Turing telle que lorsqu'elle reçoit comme 
 	donnée n'importe quel nombre naturel x\\
 	\begin{tabular}{l}
@@ -1645,8 +1578,7 @@ plusieurs exécutions possibles.
 	\end{tabular}
 \end{mydef}
 
-\begin{mydef}
-	\textbf{NDT-récursivement énumérable} Soit $A\subseteq \N$, A est 
+\begin{mydef}[NDT-récursivement énumérable] Soit $A\subseteq \N$, A est 
 	NDT-récursivement énumérable s’ il 
 	existe une ND-machine de Turing telle que lorsqu'elle reçoit comme 
 	donnée n'importe quel nombre naturel x\\
@@ -1832,13 +1764,11 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 	et qui contient la base de la programmation fonctionnelle.
 \end{myrem}
 
-\begin{mydef}
-	\textbf{Symboles de base :} Soit une variable : a,b,c,...y,z,... ou un 
+\begin{mydef}[Symboles de base :] Soit une variable : a,b,c,...y,z,... ou un 
 	symbole spécial : $\lambda$, (,)
 \end{mydef}
 
-\begin{mydef}
-	\textbf{Expression lambda} est
+\begin{mydef}[Expression lambda] est
 	\begin{itemize}
 		\item une variable
 		\item $\lambda xB$ si B est une expression lambda et que x est 
@@ -1852,13 +1782,11 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 	\end{itemize}
 \end{mydef}
 
-\begin{mydef}
-	\textbf{Variable liée} est une variable qui suit un $\lambda$ ou qui 
+\begin{mydef}[Variable liée] est une variable qui suit un $\lambda$ ou qui 
 	apparait dans M et qu'on a $\lambda xM$. 
 \end{mydef}
 
-\begin{mydef}
-	\textbf{Variable libre} est une variable qui n'est pas liée.
+\begin{mydef}[Variable libre] est une variable qui n'est pas liée.
 \end{mydef}
 
 \subsubsection{Réduction}
@@ -1867,8 +1795,7 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 jusqu'à ce qu'il n'y ait plus de fonction à appliquer. On obtient alors une 
 forme réduite.
 
-\begin{mydef}
-	\textbf{Application de fonction} Si on a une expression lambda (FA) où 
+\begin{mydef}[Application de fonction] Si on a une expression lambda (FA) où 
 	F est une fonction $\lambda xB$. On remplace toutes les occurrences liées 
 	de x dans B par A.
 \end{mydef}
@@ -1894,8 +1821,7 @@ forme réduite.
 	réduction, on n’arrive pas à une forme réduite.
 \end{myprop}
 
-\begin{mytheo}
-	\textbf{Church-Rosser} Si 2 séquences de réductions d'une expression 
+\begin{mytheo}[Church-Rosser] Si 2 séquences de réductions d'une expression 
 	lambda conduisent ) une forme réduite, alors les expressions obtenues 
 	sont équivalentes.
 \end{mytheo}
@@ -2057,8 +1983,7 @@ le sens ou il pourrait calculer des fonctions non calculables?
 \paragraph{} Ce sont des questions qui font débat. Certain ne veulent même pas 
 poser la deuxième question c'est-à-dire est-ce que H-calculable = calculable.
 
-\begin{mydef}
-	\textbf{H-calculable}
+\begin{mydef}[H-calculable]
 	Une fonction est H-calculable si un être humain calculant cette 
 	fonction peut décrire à un autre humain sa méthode de calcul et que 
 	l'autre humain est capable de calculer cette fonction.
@@ -2079,23 +2004,21 @@ raisonnement :
 \section{Complexité}
 \label{sec:complexit_}
 Lors de l'étude de la complexité, on ne va considérer que la borne supérieur 
-(notation big O). De plus, on ne va considérer que les fonctions totales. 
+(notation big O). De plus, on ne va considérer que les fonctions totales et 
+donc la décision d'ensemble récursif. 
 En effet, si la fonction n'est pas totale, l'algorithme peut boucler. 
 Donc on ne sait pas étudier l'efficacité.
 
-\begin{mydef}
-	\textbf{Complexité d'un problème} Complexité de l'algorithme le 
+\begin{mydef}[Complexité d'un problème] Complexité de l'algorithme le 
 	\textbf{plus efficace} résolvant ce problème.
 \end{mydef}
 
-\begin{mydef}
-	\textbf{Problème pratiquement faisable}
+\begin{mydef}[Problème pratiquement faisable]
 	S’ il existe un algorithme de complexité polynomial qui résolvant ce 
 	problème. Alors, celui-ci est pratiquement faisable.
 \end{mydef}
 
-\begin{mydef}
-	\textbf{Problème intrinsèquement complexe}
+\begin{mydef}[Problème intrinsèquement complexe]
 	S’ il n'existe pas un algorithme de complexité polynomial qui résolvant ce 
 	problème. Alors, celui-ci est intrinsèquement complexe.
 \end{mydef}
@@ -2126,4 +2049,176 @@ d'exécution et de l'espace.
 % subsection influence_de_la_repr_sentation_des_donn_es (end)
 
 % section complexit_ (end)
+
+\section{Classes de complexité}
+\label{sec:classes_de_complexit_}
+On va se "limiter" au problème de décision.
+
+\begin{myrem}
+	on ne se limite pas vraiment car on 
+	peut facilement transformer un problème en un problème de décision.
+\end{myrem}
+
+\subsection{Réduction}
+\label{sub:r_duction}
+
+\paragraph{Objectif :} Déduire un algorithme pour un problème P' à partir d'un 
+algorithme P. Ça permet :
+\begin{itemize}
+	\item prouver la calculabilité/non calculabilité
+	\item d'analyser le degré de non calculabilité
+	\item déduire la complexité
+	\item d'analyser le degré de complexité
+\end{itemize}
+
+\begin{mydef}[Relation de réductibilité]
+	$A \leq B$ : A réductible à B. Cette relation induit des classes 
+	d'équivalence. On peut comprendre ça comme A est plus "simple" que B.
+\end{mydef}
+
+Il existe plusieurs méthodes de réduction qui ont des propriétés différentes.
+Mais dans ce cours on va en étudier 
+que 3 :
+\begin{itemize}
+	\item réduction algorithmique
+	\item réduction fonctionnelle 
+	\item réduction polynomiale
+\end{itemize}
+
+\begin{mydef}[A-complet]
+	Soit A une classe de problème, un problème E est A-complet
+	\textbf{par rapport} à une relation de réduction $\leq$ si 
+	\begin{enumerate}
+		\item $E \in A$
+		\item $\forall B \in A \ : \ B \leq E$
+	\end{enumerate}
+\end{mydef}
+
+\begin{myrem}
+	Ce qui signifie que ce problèmes appartient à la classe de problème et 
+	est A-difficile.	
+\end{myrem}
+
+\begin{mydef}[A-difficile]
+	Soit A une classe de problème, un problème E est A difficile
+	\textbf{par rapport} à une relation de réduction $\leq$ si 
+	\begin{enumerate}
+		\item $\forall B \in A \ : \ B \leq E$
+	\end{enumerate}
+\end{mydef}
+	
+\begin{myrem}
+	Donc n'importe quel problème de A peut être réduit au problème E. 
+	Attention E n'appartient pas nécessairement à A.
+\end{myrem}
+
+
+\subsubsection{Réduction algorithmique}
+Ce type de réduction n'apporte aucune information au niveau de la complexité car, on 
+peut répéter autant de fois qu'on veut l'algorithme qui décide B. On peut aussi 
+faire un calcul avec une complexité très grande en plus d'utiliser B.
+
+\begin{mydef}[Réduction algorithmique]
+	Un ensemble A est algorithmiquement réductible à un ensemble B 
+	($A\leq_a B$) si en supposant B récursif, A est récursif.
+\end{mydef}
+
+\begin{myrem}
+	C'est à dire en supposant qu'on connait un algorithme qui décide B, on 
+	peut construire un algorithme qui décide A.
+\end{myrem}
+
+\begin{myprop}
+	Si $A \leq_a B$ et B récursif, alors A récursif (par définition)
+\end{myprop}
+
+\begin{myprop}
+	Si $A \leq_a B$ et A non récursif, alors B non récursif (par définition)
+\end{myprop}
+
+\begin{myprop}
+	$A \leq_a \stcomp{A}$
+\end{myprop}
+
+\begin{myprop}
+	$A \leq_a B \ \iff \ \stcomp{A} \leq_a \stcomp{B}$
+\end{myprop}
+
+\begin{myprop}
+	Si $A$ est récursif alors peut importe le B, $A \leq B$
+\end{myprop}
+
+\begin{myprop}
+	Si $A \leq_a B$ et B récursivement énumérable alors A n'est pas 
+	\textbf{nécessairement récursivement énumérable}
+\end{myprop}
+
+\subsubsection{Réduction fonctionnelle}
+Ce type de réduction n'apporte aucune information au niveau de la complexité
+car, ça dépend de la complexité de la fonction f.
+
+\begin{mydef}[Réduction fonctionnelle]
+	Un ensemble A est fonctionnellement réductible à un ensemble B 
+	($A\leq_f B$) si il existe une fonction \textbf{total calculable} f 
+	telle que 
+	\[ a\in A \ \iff \ f(a) \in B \]
+\end{mydef}
+
+\begin{myrem}
+	Donc pour décider si $a\in A$ il suffit de calculer $f(a)$ et décider si 
+	$f(a) \in B$. Pour trouver une réduction fonctionnelle, il faut trouver 
+	une fonction qui transforme un problème de A en un problème de B.
+\end{myrem}
+
+\begin{myprop}
+	Si $A \leq_f B$ et B récursif, alors A récursif (par définition)
+\end{myprop}
+
+\begin{myprop}
+	Si $A \leq_f B$ et A non récursif, alors B non récursif (par définition)
+\end{myprop}
+
+\begin{myprop}
+	$A \leq_f B \ \iff \ \stcomp{A} \leq_f \stcomp{B}$
+\end{myprop}
+
+\begin{myprop}
+	Si $A$ est récursif alors peut importe le B, $A \leq B$
+\end{myprop}
+
+\begin{myprop}
+	Si $A \leq_f B$ et B récursivement énumérable alors A est
+	\textbf{nécessairement récursivement énumérable}
+\end{myprop}
+
+\begin{myprop}
+	$A\leq_f \Rightarrow A\leq_a$ (Attention ce n'est pas toujours vrai 
+	dans l'autre sens)
+\end{myprop}
+
+\subsubsection{Différence entre $\leq_a$ et $\leq_f$}
+La principale différence, c'est que $A \leq_a B$ est plus du point de vue de la 
+calculabilité. On s'intéresse au fait que ça soit possible, on peut utiliser 
+autant de fois que l'on veut le fait que B soit récursif. \\
+Alors que $A \leq_f B$ est plus du point de vue de la complexité. On est 
+obliger d'utiliser un certain schéma d'algorithme :
+
+\begin{lstlisting}
+input a
+a2 := f(a)
+if a2 in B then 1
+else 0
+\end{lstlisting}
+
+On est donc limiter à utiliser qu'une fois le test $f(a) \in B$ \textbf{en 
+	dernier lieux}.
+
+\subsection{Modèles de calcul}
+D'habitude, on utilise les machines de Turing pour avoir une définition précise 
+de la complexité. Mais c'est peu intuitif et on s'intéresse au frontière. Or la 
+différence de complexité entre différent modèle est un facteur polynomial 
+(c'est une thèse) ce qui n'a pas d'influence sur les frontières.
+
+
+% section classes_de_complexit_ (end)
 \end{document}
