@@ -307,15 +307,54 @@ L'idée de la démonstration est de :
 \begin{enumerate}
 	\item Supposer que l'ensemble est énumérable
  	\item Construire une table contenant une soi-disant énumération
-	\item Sélectionner la diagonale et dire qu'on doit l'énumérer
+	\item Sélectionner la diagonale
 	\item Modifier l'élément égal à la diagonale
 	\item Montrer que l'élément n'est pas dans l'énumération => Contradiction
 	\item Conclusion l'ensemble est pas énumérable
 \end{enumerate}
 On montre que lorsqu'on essaye d'énumérer on loupe toujours des éléments.
 
-TO DO
+\begin{mytheo}[Diagonalisation de Cantor]
+	Soit $E = \{ x \text{ réel }|0<x\leq1\}$, E est non énumérable.
+\end{mytheo}
 
+\paragraph{Démonstration :}
+On suppose E énumérable. Donc il existe une énumération des éléments de E,
+$x_0, x_1, ...,X_k,...$. On peut représenter un nombre $x_k$ comme étant une
+suite de chiffre $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}...x_{kk}...$.
+
+\begin{enumerate}
+	\item On peut donc construire une table infinie : \\
+		\begin{tabular}{|c||c|c|c|c|c|c|}
+			\hline
+			& 1 digit & 2 digit & 3 digit & ... & k+1 digit & ... \\
+			\hline
+			$x_0$ & $x_{00}$ & $x_{01}$ & $x_{02}$ & ... & $x_{0k}$ & ... \\
+			$x_1$ & $x_{11}$ & $x_{11}$ & $x_{12}$ & ... & $x_{1k}$ & ... \\
+			$x_2$ & $x_{22}$ & $x_{21}$ & $x_{22}$ & ... & $x_{2k}$ & ... \\
+			: & : &:& : & : & : &:\\
+			$x_k$ & $x_{kk}$ & $x_{k1}$ & $x_{k2}$ & ... & $x_{kk}$ & ... \\
+			: & : &:& : & : & : &:\\
+			\hline
+		\end{tabular}
+	\item Sélection de la diagonale (celle si est un nombre réel compris
+		entre 0 et 1)
+		\[ d=0.x_{00}x_{11}...x_{kk}... \]	
+	\item Modification de cet élément d pour obtenir
+		\[ d'=0.x_{00}'x_{11}'...x_{kk}'... \]	
+		Où $x_{ii}'=5$ si $x_{ii}'\neq 5$ \\
+		$x_{ii}'=6$ si $x_{ii}'= 5$ \\
+		On a toujours que cet élément $d'$ est compris entre 0 et 1
+	\item Contradiction car $d'$ est dans l'énumération car E est
+		énumérable (par supposition). Il existe donc $x_p=d'$, 
+		\[ d'=x_p=0.x_{p0}x_{p1}...x_{pp}... \]	
+		\[ d'=0.x_{00}'x_{11}'...x_{pp}'... \]	
+		La contradiction vient du fait qu'on a choisis $x_{pp}' \neq
+	       	x_{pp}$. Donc $d' \neq x_p$ ce qui implique que $d'$ n'est pas
+		dans l'énumération.
+	\item Conclusion : E n'est pas énumérable
+
+\end{enumerate}
 % subsection cantor (end)
 
 \subsection{Conclusion}
