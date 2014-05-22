@@ -503,7 +503,7 @@ La thèse de Turing répond à ces questions.
 		que les Machines de Turing \\
 		Version moderne : Une fonction est calculable s'il existe un 
 		programme d'ordinateur qui calcul cette fonction
-	\item Toute fonction calculable est calculable par une machine de Turin.
+	\item Toute fonction calculable est calculable par une machine de Turing.
 	\item Toutes les définitions formelles de la calculabilité connues à ce 
 		jour sont équivalentes (Théorème, ça a été démontré) (justifie 
 		l'utilisation de Java comme modèle)
@@ -565,7 +565,8 @@ programmes Java est dénombrable. Donc il y a beaucoup de fonctions qui ne sont
 pas calculables.
 
 \paragraph{} On va s'intéresser qu'aux fonctions qui sont définies par une table 
-finie (on ne sait pas définir les tables infinies). Il en existe une infinité 
+finie ou une table infinie que l'on peut décrire de façon finie 
+(on n'est pas capable d'écrire une définition infinie). Il en existe une infinité 
 dénombrable.
 
 \paragraph{} On va maintenant montrer que ce n'est pas parce qu’une fonction 
@@ -616,17 +617,23 @@ programme 32, par exemple si celui-ci est constant.
 \end{myrem}
 
 Il existe donc au moins un ensemble non récursif
-K = 
-\begin{tabular}{l}
-	\{n|(n,n)$\in$ HALT\}\\
-	\{n| halt(n,n)=1\}\\
-	\{n| $P_n(n)$ se termine\} \\
-\end{tabular}
+K.
 
-Où HALT est l'ensemble des programmes k qui se termine pour l'entrée x, 
-\[ HALT = \{(n,x)|P_n(x)\text{se termine}\}\]
-Et K est l'ensemble des programmes n qui
-se termine pour l'entrée n.
+\begin{mydef}[K]
+	K = 
+	\begin{tabular}{l}
+		\{n|(n,n)$\in$ HALT\}\\
+		\{n| halt(n,n)=1\}\\
+		\{n| $P_n(n)$ se termine\} \\
+	\end{tabular}
+	K est donc l'ensemble des programmes n, $P_n$, qui
+	se termine pour l'entrée n.
+\end{mydef}
+	
+\begin{mydef}[HALT]
+	HALT est l'ensemble des programmes k qui se termine pour l'entrée x, 
+	\[ HALT = \{(n,x)|P_n(x)\text{se termine}\}\]
+\end{mydef}
 
 \begin{myprop}
 	K et HALT ne sont pas récursifs
@@ -662,15 +669,16 @@ TODO insérer le schéma sur les fonctions et les ensembles
 \label{sub:insuffisance_des_fonctions_totales}
 Comme on a vu qu'il était possible de calculer halt dans un modèle qui
 ne permet de calculer que des fonctions totales. On se pose la question de 
-pourquoi on n'utilise pas un tel modèle dans lequel la fonction halt est
-calculable. De plus les fonctions "pratiques" sont 
+pourquoi on n'utilise pas un tel modèle pour lequel la fonction halt est
+calculable (pour un tel modèle halt retourne toujours 1.
+De plus les fonctions "pratiques" sont 
 des fonctions totales. Mais on va montrer qu'un tel modèle nous restreint 
 beaucoup sur ce qu'on peut calculer.
 
 \begin{myexem}
-	Un tel modèle est par exemple Java, mais sans boucle 
-	donc par intuition on se doute qu'il y a beaucoup de choses qu'on ne peut pas 
-	calculer.
+	Un tel modèle est par exemple BLOOP (défini plus loin) ou encore 
+	Java, mais sans boucle donc par intuition on se doute qu'il y a 
+	beaucoup de choses qu'on ne peut pas calculer.
 \end{myexem}
 
 \begin{mydef}
@@ -937,8 +945,8 @@ de la fonction halt.
 
 Il y a deux grandes familles de modèles :
 \begin{itemize}
-	\item Modèle de calcul
-	\item Modèle de langages
+	\item Modèle de calcul (calcule une réponse)
+	\item Modèle de langages (décide l'appartenance à un ensemble)
 \end{itemize}
 
 \subsubsection{Modèle de calcul}
@@ -1408,8 +1416,9 @@ variables pour définir la syntaxe d'un langage.
 
 \subsection{Machines de Turing}
 \paragraph{Intérêt :}Le modèle des machines de Turing est le modèle le plus 
-simple, le plus élémentaire et le plus puissant possible. Il permet une 
-définition précise de procédure, d'algorithme ou encore de calcul.
+simple, le plus élémentaire et le plus puissant possible (c'est un modèle
+complet de la calculabilité). Il permet une définition précise de procédure, 
+d'algorithme ou encore de calcul.
 
 \paragraph{Composition "abstraite" :}
 \begin{description}
@@ -1654,7 +1663,8 @@ interpréteur de machines de Turing
 	On définit un encodage de 0, 1 qui permet de représenter une MT
 \end{myrem}
 
-Une telle machine est possible à construire. Il faut 3 rubans:
+Une telle machine est possible à construire. Il y a plusieurs façons de faire
+différents. Une façon de faire est d'utiliser 3 rubans:
 \begin{itemize}
 	\item codage de la MT à interpréter
 	\item donnée
@@ -1979,7 +1989,8 @@ Pour prouver qu'un problème est non calculable, on peut utiliser :
 \end{itemize}
 % subsection techniques_de_preuve (end)
 
-\subsection{Aspects non couverts par la Calculabilité}
+\subsection{Aspects non couverts par la Calculabilité (Section pas très
+	importante pour l'examen)}
 \label{sub:aspects_non_couvert_par_la_calculabilit_}
 La calculabilité se limite au calcul de fonction or certains problèmes de la vie 
 de tous les jours ne correspondent pas à une fonction.
