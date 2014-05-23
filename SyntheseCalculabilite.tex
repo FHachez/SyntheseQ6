@@ -66,9 +66,11 @@
 \tableofcontents
 \newpage
 
-La synthèse est assez longue mais elle reprend ce qui est selon moi intéressant à connaitre
+La synthèse est assez longue et fortement inspirée du cours sur la calculabilité
+de Yves Deville à l'ucl.mais elle reprend ce qui est selon moi intéressant à connaitre
 pour l'examen et qui devrait suffire pour répondre et pour justifier les QCM.
-Attention, il manque encore quelques démonstrations.
+
+Les sources sont sur github : https://github.com/FHachez/SyntheseQ6
 
 \section{Introduction}
 \label{sec:introduction}
@@ -302,23 +304,45 @@ Quelques ensembles non énumérables :
 
 \subsection{Cantor}
 \label{sub:cantor}
-On va montrer qu'il existe des ensembles non énumérables. Ex $\R$.
-L'idée de la démonstration est de :
-\begin{enumerate}
-	\item Supposer que l'ensemble est énumérable
- 	\item Construire une table contenant une soi-disant énumération
-	\item Sélectionner la diagonale
-	\item Modifier l'élément égal à la diagonale
-	\item Montrer que l'élément n'est pas dans l'énumération => Contradiction
-	\item Conclusion l'ensemble est pas énumérable
-\end{enumerate}
-On montre que lorsqu'on essaye d'énumérer on loupe toujours des éléments.
+On va montrer qu'il existe des ensembles non énumérables par diagonalisation. Ex $\R$.
+\begin{myexem}
+	Exemple de démonstration par diagonalisation: 
+	\begin{enumerate}
+		\item Construire une table : Liste de tous les grands
+			mathématiciens \\	
+			\begin{tabular}{l}
+				\textit{\textbf{D}}E MORGAN \\
+				A\textit{\textbf{B}}EL\\
+				BO\textit{\textbf{O}}LE\\
+				BRO\textit{\textbf{U}}WER\\
+				SIER\textit{\textbf{P}}INSKI\\
+				WEIER\textit{\textbf{S}}TRASS\\
+			\end{tabular}
+		\item Sélectionner la diagonale : $diag = $DBOUPS
+		\item Modifier l'élément égal à la diagonale : $diag' =$ CANTOR
+		\item Montrer que l'élément n'est pas dans la liste => Contradiction
+		\item Conclusion :
+			\begin{itemize}
+				\item Soit on sait que la liste est complète\\
+					$ \Rightarrow$ CANTOR n'est pas un grand
+				mathématicien (cas utiliser pour démontrer
+				halt).
+				\item Soit on sait que CANTOR est un grand
+					mathématicien \\
+					$ \Rightarrow$ la liste est incomplète
+				(cas utiliser pour la diagonalisation de CANTOR)
+			\end{itemize}
+	\end{enumerate}
+\end{myexem}
 
 \begin{mytheo}[Diagonalisation de Cantor]
 	Soit $E = \{ x \text{ réel }|0<x\leq1\}$, E est non énumérable.
 \end{mytheo}
 
 \paragraph{Démonstration :}
+On va montrer qu'un nombre $d'$ n'est pas dans l'énumération alors qu'on sait
+que $d'$ est un nombre réel compris entre 0 et 1.
+
 On suppose E énumérable. Donc il existe une énumération des éléments de E,
 $x_0, x_1, ...,X_k,...$. On peut représenter un nombre $x_k$ comme étant une
 suite de chiffre $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}...x_{kk}...$.
@@ -330,10 +354,10 @@ suite de chiffre $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}...x_{kk}...$.
 			& 1 digit & 2 digit & 3 digit & ... & k+1 digit & ... \\
 			\hline
 			$x_0$ & $x_{00}$ & $x_{01}$ & $x_{02}$ & ... & $x_{0k}$ & ... \\
-			$x_1$ & $x_{11}$ & $x_{11}$ & $x_{12}$ & ... & $x_{1k}$ & ... \\
-			$x_2$ & $x_{22}$ & $x_{21}$ & $x_{22}$ & ... & $x_{2k}$ & ... \\
+			$x_1$ & $x_{10}$ & $x_{11}$ & $x_{12}$ & ... & $x_{1k}$ & ... \\
+			$x_2$ & $x_{20}$ & $x_{21}$ & $x_{22}$ & ... & $x_{2k}$ & ... \\
 			: & : &:& : & : & : &:\\
-			$x_k$ & $x_{kk}$ & $x_{k1}$ & $x_{k2}$ & ... & $x_{kk}$ & ... \\
+			$x_k$ & $x_{k0}$ & $x_{k1}$ & $x_{k2}$ & ... & $x_{kk}$ & ... \\
 			: & : &:& : & : & : &:\\
 			\hline
 		\end{tabular}
@@ -345,11 +369,11 @@ suite de chiffre $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}...x_{kk}...$.
 		Où $x_{ii}'=5$ si $x_{ii}'\neq 5$ \\
 		$x_{ii}'=6$ si $x_{ii}'= 5$ \\
 		On a toujours que cet élément $d'$ est compris entre 0 et 1
-	\item Contradiction car $d'$ est dans l'énumération car E est
+	\item Contradiction, car $d'$ est dans l'énumération, car E est
 		énumérable (par supposition). Il existe donc $x_p=d'$, 
 		\[ d'=x_p=0.x_{p0}x_{p1}...x_{pp}... \]	
 		\[ d'=0.x_{00}'x_{11}'...x_{pp}'... \]	
-		La contradiction vient du fait qu'on a choisis $x_{pp}' \neq
+		La contradiction vient du fait qu'on a choisi $x_{pp}' \neq
 	       	x_{pp}$. Donc $d' \neq x_p$ ce qui implique que $d'$ n'est pas
 		dans l'énumération.
 	\item Conclusion : E n'est pas énumérable
@@ -417,7 +441,7 @@ Qu'est-ce qu'un algorithme?
 \begin{myrem}
 	Il faut faire attention entre ne pas être capable d'écrire un algorithme
 	et ne pas savoir l'écrire. (Voir exemple TP et cours : y a-t-il une rose 
-	vert sur Mars ou encore x occurrences de 5 dans $\pi$.
+	verte sur Mars ou encore x occurrences de 5 dans $\pi$.
 \end{myrem}
 
 \begin{myrem}
@@ -564,8 +588,8 @@ Dans le cours on utilise un langage de programmation, Java, comme modèle.
 \end{mydef}
 
 \begin{myprop}
-	P est un ensemble infini dénombrable car c'est chaîne de caractère d'un 
-	alphabet fini. P est récursif car il existe un programme, le compilateur, qui détermine 
+	P est un ensemble infini dénombrable, car c'est chaîne de caractère d'un 
+	alphabet fini. P est récursif, car il existe un programme, le compilateur, qui détermine 
 	si un programme est un programme Java ou non.
 \end{myprop}
 
@@ -617,14 +641,16 @@ fonction halt qui détermine si un programme se termine ou non).
 \subsection{Problème de l'arrêt}
 \label{sub:probl_me_de_l_arr_t}
 
-Soit la fonction halt: P x $\N$ $\rightarrow$ $\N$ telle que \\
-\begin{tabular}{rl}
-  halt(n, x) = 1 & si $P_n(x)$ se termine \\
-  halt(n, x) = 0 & sinon \\
-  ou &\\
-  halt(n, x) = 1 & si $\phi_n(x)\neq \perp$ \\
-  halt(n, x) = 0 & sinon \\
-\end{tabular}
+\begin{mydef}[halt]
+	halt est la fonction : P x $\N$ $\rightarrow$ $\N$ telle que \\
+	\begin{tabular}{rl}
+	  halt(n, x) = 1 & si $P_n(x)$ se termine \\
+	  halt(n, x) = 0 & sinon \\
+	  ou &\\
+	  halt(n, x) = 1 & si $\phi_n(x)\neq \perp$ \\
+	  halt(n, x) = 0 & sinon \\
+	\end{tabular}
+\end{mydef}
 
 \begin{myprop}
 	halt est une fonction bien définie, totale et sa table est infinie, mais décrite 
@@ -632,7 +658,75 @@ Soit la fonction halt: P x $\N$ $\rightarrow$ $\N$ telle que \\
 	diagonalisation (comme pour la démonstration de Cantor).\\
 \end{myprop}
 
-TODO \\
+\begin{myrem}
+	Attention, juste dire qu'on ne sait pas écrire un programme qui calcule
+	halt ne prouve pas qu'on ne sait pas calculer halt. En effet, comme vu
+	dans le chapitre 1, le programme existe est différent de savoir écrire
+	le programme.
+\end{myrem}
+
+\begin{mytheo}[halt]
+	halt n'est pas calculable
+\end{mytheo}
+
+\paragraph{Démonstration :}
+On suppose halt calculable. 
+\begin{enumerate}
+	\item On peut donc construire une table infinie définissant la fonction
+		halt : \\
+		\begin{tabular}{|c||c|c|c|c|c|c|}
+			\hline
+			& 0 & 1 & 2 & ... & k & ... \\
+			\hline
+			$p_0$ & $halt(0,0)$ & $halt(0,1)$ & $halt(0,2)$ & ... & $halt(0,k)$ & ... \\
+			$p_1$ & $halt(1,0)$ & $halt(1,1)$ & $halt(1,2)$ & ... & $halt(1,k)$ & ... \\
+			$p_2$ & $halt(2,0)$ & $halt(2,1)$ & $halt(2,2)$ & ... & $halt(2,k)$ & ... \\
+			: & : &:& : & : & : &:\\
+			$p_k$ & $halt(k,0)$ & $halt(k,1)$ & $halt(k,2)$ & ... & $halt(k,k)$ & ... \\
+			: & : &:& : & : & : &:\\
+			\hline
+		\end{tabular}
+	\item Sélection de la diagonale 
+		\[ diag :halt(0,0),halt(1,1),...,halt(k,k),... \]	
+		\[diag(n) = halt(n,n)\]
+	\item Modification de cet élément diag pour obtenir
+		$diag'(n) =$ 
+		\begin{tabular}{c}
+			1 si halt(n,n) = 0\\
+			$\perp$ si halt(n,n) = 1\\
+		\end{tabular}\\
+		$diag'$ est calculable, car halt est calculable (il y a moyen
+		d'écrire un programme qui calcul $diag'$ en utilisant $diag$)
+	\item Contradiction :\\
+	       	Donc il existe un programme $P_d$ qui calcule
+		$diag'$.
+		$diag'(d) =$ 
+		\begin{tabular}{c}
+			1 si halt(d,d) = 0\\
+			$\perp$ si halt(d,d) = 1\\
+		\end{tabular}
+		Mais, 
+		\begin{itemize}
+			\item Si $diag'(d)= 1$ $\\
+			\Rightarrow \  halt(d,d) = 0 \\
+			\Rightarrow \ P_d(d)$ ne se termine donc pas $ \\
+			\Rightarrow diag'(d)$ ne se termine pas $ \\
+			\Rightarrow diag'(d) = \perp$ or on a supposé que $diag'(d) = 1$ $ \\
+			\Rightarrow $
+			Contradiction.
+
+			\item Si $diag'(d)= \perp$ $\\
+			\Rightarrow \  halt(d,d) = 1 \\
+			\Rightarrow \ P_d(d)$ se termine $ \\
+			\Rightarrow diag'(d)$ termine $ \\
+			\Rightarrow diag'(d) = 1$ or on a supposé que $diag'(d) = \perp$ $ \\
+			\Rightarrow $
+			Contradiction.
+		\end{itemize}
+	\item Conclusion : $diag'$ n'est pas calculable $ \Rightarrow $ $diag$
+	n'est pas calculable $ \Rightarrow $ halt n'est pas calculable.
+
+\end{enumerate}
 
 \paragraph{Conclusion} Il n'existe pas d'algorithme qui détermine si n'importe 
 quel programme $P_n$ se termine ou non. Mais dans certains formalismes qui ne 
@@ -736,8 +830,48 @@ beaucoup sur ce qu'on peut calculer.
 \begin{mytheo}[Hoare-Allison]
 	\label{Hoare_Allison}
 	interpret(n,x) n'est pas calculable dans Q.\\
-	TODO démonstration par diagonalisation
 \end{mytheo}
+
+\paragraph{Démonstration :}
+On suppose interpret calculable. 
+\begin{enumerate}
+	\item On peut donc construire une table infinie définissant la fonction
+		interpret : \\
+		\begin{tabular}{|c||c|c|c|c|c|c|}
+			\hline
+			& 0 & 1 & 2 & ... & k & ... \\
+			\hline
+			$Q_0$ & $interpret(0,0)$ & $interpret(0,1)$ & $interpret(0,2)$ & ... & $interpret(0,k)$ & ... \\
+			$Q_1$ & $interpret(1,0)$ & $interpret(1,1)$ & $interpret(1,2)$ & ... & $interpret(1,k)$ & ... \\
+			$Q_2$ & $interpret(2,0)$ & $interpret(2,1)$ & $interpret(2,2)$ & ... & $interpret(2,k)$ & ... \\
+			: & : &:& : & : & : &:\\
+			$Q_k$ & $interpret(k,0)$ & $interpret(k,1)$ & $interpret(k,2)$ & ... & $interpret(k,k)$ & ... \\
+			: & : &:& : & : & : &:\\
+			\hline
+		\end{tabular}
+	\item Sélection de la diagonale 
+		\[diag(n) = interpret(n,n)\]
+	\item Modification de cet élément diag pour obtenir
+		$diag'(n) = interpret(n,n)+1$ 
+		$diag'$ est calculable, car interpret est calculable dans Q (il y a moyen
+		d'écrire un programme qui calcule $diag'$ en utilisant $diag$)
+	\item Contradiction :\\
+	       	Donc il existe un programme $Q_d$ qui calcule
+		$diag'(d) = interpret(d,d)+1$ (par construction).
+		Mais, par définition $diag'(d) = \phi_d(d) = interpret(d,d)$.
+		En effet, calculer $\phi_d(d)$ revient à interpréter le programme
+		d avec la donnée d.
+	\item Conclusion : $diag'$ n'est pas calculable $ \Rightarrow $ $diag$
+	n'est pas calculable $ \Rightarrow $ interpret n'est pas calculable
+dans Q.
+\end{enumerate}
+
+\begin{myrem}
+	Si on toutes les fonctions calculées par les programmes de Q n'étaient
+	pas totales, alors ça n'aurait pas posé de problème, car $interpret(d,d)$
+	ne se serait pas terminé or un programme qui ne se termine pas +
+	quelque chose, reste un programme qui ne se termine pas.
+\end{myrem}
 
 
 
@@ -773,7 +907,10 @@ beaucoup sur ce qu'on peut calculer.
 	saurait créer un langage qui ne calcule que des fonctions totales??)
 \end{myprop}
 
-TODO insérer la fonction universelle ???
+\begin{mytheo}[fonction universelle]
+	La fonction universelle (c'est-à-dire l'interpréteur) est $\theta(n,x)$ (programme $P_z$) tel que :
+	\[ \exists z \forall n,x : \theta(n,x) = \phi_n(x)\]	
+\end{mytheo}
 
 % subsection insuffisance_des_fonctions_totales (end)
 
@@ -798,18 +935,72 @@ TODO insérer la fonction universelle ???
 
 Soit A $\subseteq$ $\N$ \\
 
-\begin{mytheo}
-	Si A récursif et A$\neq \emptyset$ et A $\neq$ $\N$ \\
-	Alors $\exists$ i $\in$ A et j $\in \N$\ A tel que $\phi _i = \phi _j$
+\begin{mytheo}[Rice]
+	Si $\forall$ i $\in$ A et $\forall$j $\in \stcomp{A}$ tel que $\phi_i \neq 
+	\phi_j$ \\
+	Si A non récursif et A$=\emptyset$ et A $= \N$
 \end{mytheo}
 
 Par contre,
 
-\begin{mytheo}
-	Si $\forall$ i $\in$ A et $\forall$j $\in \N$\ A tel que $\phi_i \neq 
-	\phi_j$ \\
-	Si A non récursif et A$=\emptyset$ et A $= \N$
+\begin{mytheo}[Rice (contraposée)]
+	Si A récursif et A$\neq \emptyset$ et A $\neq$ $\N$ \\
+	Alors $\exists$ i $\in$ A et j $\in \N$\ A tel que $\phi _i = \phi _j$
 \end{mytheo}
+
+\paragraph{Démonstration : }
+On a $\forall$ i $\in$ A et $\forall$j $\in \stcomp{A}$ tel que $\phi_i \neq
+\phi_j$\\
+Supposons A récursif, $A=\emptyset$ et $A\neq \N$\\
+On va montrer que HALT est récursif, car on peut construire un programme qui 
+décide HALT. Alors qu'on sait que HALT n'est pas récursif.
+
+\begin{enumerate}
+	\item Construisons le programme $P_k$
+\begin{lstlisting}
+while true do;				
+\end{lstlisting}
+	$\forall x \ \phi_k(x) = \perp$
+	\item $\stcomp{A}\neq \emptyset$ car $A \neq \N$,
+	supposons $k\in \stcomp{A}$ (hypothèse sans importance, car montrer que
+	$A$ ou $\stcomp{A}$ est non récursif revient au même, car $A$ non
+	récursif $ \Leftrightarrow $ $\stcomp{A}$ non récursif) \\
+	\item $A\neq \emptyset$ par hypothèse, supposons $m\in A$
+	\item $\phi_i \neq \phi_j$ et ce $\forall i,j$ par hypothèse donc
+		$\phi_m \neq \phi_k$
+	\item Construisons un programme $P(z)$ qui calcule la fonction $g(z)$, 
+		$P(z) \equiv $
+\begin{lstlisting}
+P_n(x);
+P_m(2);
+\end{lstlisting}
+	\begin{myrem}
+		On sait qu’ un programme calcule une fonction $
+		f(x)=\perp \ \forall x$ alors ce programme doit être dans $\stcomp{A}$ car
+		$f(x) =\phi_k(x)$.
+
+		Or 
+		\begin{itemize}
+			\item soit notre programme $P(z)$ ne se termine pas $\forall
+			z$ ,car $P_n(x)$ ne se termine pas et donc $g(z) =
+			\phi_k(z)$.
+
+		\item soit notre programme $P(z)$ calcule $\phi_m(2)$ or on
+			sait que $m\in A$.
+		\end{itemize}
+		Donc en résumé si $P_n(x)$ ne se termine pas il sera dans
+		$\stcomp{A}$ sinon il sera dans $A$.
+	\end{myrem}	
+	un programme qui décide HALT $halt(n,x) \equiv $
+\begin{lstlisting}
+construire P(z);
+d <- numero de P(z);
+if d in A then print(1);
+else print(0);
+\end{lstlisting}
+	\item Contradiction, car HALT n'est pas récursif.
+	\item Conclusion A n'est pas récursif.
+\end{enumerate}
 
 \paragraph{} On est intéressé par l'analyse des propriétés d'un programme. La 
 question est est-ce que ces propriétés peuvent être déterminées par un 
@@ -868,6 +1059,14 @@ TODO preuve du théorème de RICE.
 	\phi^{(n)}_{S^n(k,x_{n+1}, ...,x_{n+m})} (x_1,...,x_n)$$
 \end{mytheo}
 
+Je n'ai pas la démonstration. Si quelqu'un la, ça serait sympa s’ il savait me
+la donner.
+
+\begin{mytheo}[S]
+	C'est la propriété S-m-n affaiblie.
+	\[ \forall z \exists S : \phi_k(x,y)=\phi_{S(k,x)}(y)\]
+\end{mytheo}
+
 \begin{myrem}
 	On peut voir le théorème \ref{S-m-n}, S-m-n, comme : \\
 	Étant donné $m,n \leq 0$\\
@@ -904,12 +1103,77 @@ de commencer la démonstration ne sont pas super intuitifs)
 	\end{itemize}
 \end{myrem}
 
-TODO demo de Rice à partir du point fixe
+\paragraph{Démonstration :}
+Pour commencer, on va poser 3 "lapins" :
+\begin{enumerate}
+	\item $h(u,v) =$
+		\begin{tabular}{c}
+			$\phi_{\phi_{u(u)}}(v)$ si $\phi(u)\neq \perp$\\
+			$\perp$ sinon
+		\end{tabular}\\
+		h est calculable 
+		\begin{myrem}
+			on peut créer un programme qui calcule h
+\begin{lstlisting}
+a= P_u(u)
+return P_a(v)
+\end{lstlisting}
+		\end{myrem}
+	\item $h(u,v)=\phi_{S(u)}(v)$ S est totale calculable ce qui implique
+		qu'on à la propriété S (propriété S-m-n affaiblie).
+	\item $g(u)=f(S(u))$ g est totale calculable de par S et f (f
+		est la fonction donnée dans le théorème).
+		\[ \exists k' \land \phi_{k'} =g(u)=f(S(u)) \]
+\end{enumerate}
+On a que $k'$ est une constante et par le lapin 2 :
+\[h(k',v) = \phi_{S(k')}(v)\]
+Par le lapin 1 et, car $g=\phi_k'$ est une fonction totale calculable, on a :
+\[h(k',v) = \phi_{\phi_k'(k')}(v)\]
+Par le lapin 3 on a que $\phi_k'(u) = g(u)=f(S(u)$ donc :
+\[h(k',v) = \phi_{f(S(k'))}(v)\]
+C'est à dire :
+\[ \phi_{f(S(k'))}(v) =\phi_{\phi_k'(k')}(v) \]
+Si on pose que $S(k')=k$ on a bien 
+\[ \phi_{k}(v) = \phi_{f(k)}(v) \]
+Ce qui conclut notre démonstration.
+
+\begin{myrem}[Démonstration de K grâce au point fixe]
+	On peut démontrer que K n'est pas récursif.\\
+	Posons 3 fonctions :
+	\begin{itemize}
+		\item $\phi_i(x) = \perp \ \forall x$
+		\item $\phi_j(x) = x \ \forall x$
+		\item $f(x) = $ 
+			\begin{tabular}{l}
+				i si $x\in K$\\
+				j si $x\notin K$\\
+			\end{tabular}
+	\end{itemize}
+	f décide K. Supposons que f est totale calculable \\
+	$ \Rightarrow \exists k$ tel que $\phi_k = \phi_f(k)$ (Par le théorème
+du point fixe)
+	On a alors 2 cas possibles :
+	\begin{itemize}
+		\item Soit $\phi_k(k)=\perp$
+			\[ \Rightarrow k \notin K\]
+			\[ \Rightarrow f(k)=j \notin K\]
+			\[ \Rightarrow \phi_k = \phi_j \]
+			\[ \Rightarrow \phi_k(k) \neq \perp\]
+			Ce qui implique une contradiction
+		\item Soit $\phi_k(k)\notin \perp$
+			\[ \Rightarrow k \in K\]
+			\[ \Rightarrow f(k)=j \in K\]
+			\[ \Rightarrow \phi_k = \phi_j \]
+			\[ \Rightarrow \phi_k(k) = \perp\]
+			Ce qui implique une contradiction
+	\end{itemize}
+	Donc il n'existe pas de fonction calculable qui décide K $ \Rightarrow$ K n'est pas récursif.
+\end{myrem}
 
 \subsection{Autres problèmes non calculables}
 \label{sub:autres_probl_mes_non_calculable}
 
-\begin{mydef}[Problème de correspondance de Post] Soient deux listes U et V 
+\begin{mydef}[Problème de correspondance de Post] Soit deux listes U et V 
 	de mots non vides sur un alphabet $\sum$ : 
 	\begin{itemize}
 		\item U = ${u_1,u_2,...,u_k}$
@@ -927,7 +1191,7 @@ TODO demo de Rice à partir du point fixe
 \end{mydef}
 
 Il n'existe pas d'algorithme résolvant ces problèmes. Il existe beaucoup
-d'autre problème calculable. Il y a d'autres exemples sur les grammaires dans le cours.
+d'autres problèmes calculables. Il y a d'autres exemples sur les grammaires dans le cours.
 % subsection autres_probl_mes_non_calculable (end)
 
 \subsection{Nombres calculables}
@@ -935,7 +1199,7 @@ d'autre problème calculable. Il y a d'autres exemples sur les grammaires dans l
 
 \begin{mydef}[Nombre réel]
 	Un nombre réel est défini comme la limite d'une suite (convergente) de 
-	nombres rationnels: $\lim_{n \rightarrow \inf} |x-s(n)| = 0 $ ou s est 
+	nombres rationnels: $\lim_{n \rightarrow \inf} |x-s(n)| = 0 $ ou s’est 
 	une fonction totale
 \end{mydef}
 
@@ -1047,7 +1311,17 @@ langage BLOOP (bounded loop).
 	dans le for, pas de goto, pas de fonctions récursives)
 \end{mydef}
 
-BLOOP a donc toutes les propriétés qui découlent du chapitre précédent.
+BLOOP a donc toutes les propriétés qui découlent du chapitre précédent:
+
+\begin{myprop}
+	Tous les programmes BLOOP se terminent\\
+	$ \Leftrightarrow$ BLOOP ne calcule que des fonctions totales\\
+	$ \Leftrightarrow$ BLOOP ne calcule pas toutes les fonctions totales\\
+	$ \Leftrightarrow$ il existe un compilateur des programmes BLOOP (JAVA)\\
+	$ \Leftrightarrow$ l'interpreteur est une fonction totale non calculable en
+BLOOP (Hoare Allison)\\
+	$ \Leftrightarrow$ BLOOP n'est pas un modèle de la calculabilité\\
+\end{myprop}
 
 % subsection langages_de_programmation (end)
 
@@ -1374,7 +1648,7 @@ grammaire.
 \begin{itemize}
 	\item  $\omega \in \sum^*$ c'est à dire $\omega$ est une chaîne de symbole non 
 	terminal. 
-	\item A et B sont des symboles non terminal
+	\item A et B sont des symboles non terminaux
 \end{itemize}
 
 \begin{myexem}
@@ -1655,7 +1929,7 @@ implique qu'il y a plusieurs exécutions possibles.
 	\begin{tabular}{l}
 		Si $x\in A$, alors il existe une exécution fournissant tôt ou 
 		tard comme résultat 1\\
-		Si $x\notin A$, les exécutions possibles soit retourne un 
+		Si $x\notin A$, les exécutions possibles soit retournent un 
 		nombre $\neq 1$ \\
 		soit ne se termine pas ou encore s'arrête avec 
 		un état $\neq$ stop\\
@@ -1668,7 +1942,7 @@ implique qu'il y a plusieurs exécutions possibles.
 	 les NDT 
 	\item Speedup exponentielle, car on "descend" directement au bon endroit 
 		dans l'arbre. Mais comme en pratique on doit simuler 
-		l'exécution non déterministe ça ne change rien.
+		l'exécution non déterministe, ça ne change rien.
 \end{itemize}
 
 \subsubsection{Machine de Turing avec Oracle}
@@ -1690,7 +1964,7 @@ puissant (on pourrait déterminer halt). Mais ce n’est pas possible d'exécute
 \begin{myrem}
 	Utilité : permets d'établir une hiérarchie parmi les problèmes 
 	indécidables. Ça permet de dire que si K est récursif quels problèmes 
-	seraient encore indécidable.
+	seraient encore indécidables.
 \end{myrem}
 
 \subsubsection{Machine de Turing Universelle}
@@ -1702,8 +1976,7 @@ interpréteur de machines de Turing
 	On définit un encodage de 0, 1 qui permet de représenter une MT
 \end{myrem}
 
-Une telle machine est possible à construire. Il y a plusieurs façons de faire
-différents. Une façon de faire est d'utiliser 3 rubans:
+Une telle machine est possible à construire. Il y a plusieurs façons différentes de faire. Une façon de faire est d'utiliser 3 rubans:
 \begin{itemize}
 	\item codage de la MT à interpréter
 	\item donnée
@@ -1778,7 +2051,7 @@ Il existe aussi 2 "règles" importantes :
 \begin{myrem}
 	Lors de l'utilisation de la récursion primitive, il faut faire 
 	attention. Le cas de base ne peut pas faire appel à $f$ et on passe 
-	toujours de n+1 à n. Car, il ne peut pas y avoir de récursion infinie.
+	toujours de n+1 à n., Car, il ne peut pas y avoir de récursion infinie.
 \end{myrem}
 
 \subsubsection{Fonctions primitives récursives}
@@ -1886,7 +2159,7 @@ forme réduite.
 \end{myrem}
 
 \begin{myrem}
-	Il est important de voir qu'il y a plusieurs façon de réduire, ça 
+	Il est important de voir qu'il y a plusieurs façons de réduire, ça 
 	dépend de l'ordre dans lequel on applique les réductions.
 \end{myrem}
 
@@ -1929,7 +2202,7 @@ La forme originale ne contient que 2 parties :
 La partie 1 est démontrée et la 2 est supposée vraie. 
 On la suppose vraie, car on a des évidences heuristiques (il y a eu beaucoup 
 d'essais pour trouver une fonction qui ne respectait pas la thèse) et qu'on a montré 
-l'équivalence entre tous les formalismes créé à ce jour (on a montré que toute 
+l'équivalence entre tous les formalismes créés à ce jour (on a montré que toute 
 machine constructible par la mécanique de Newton ne calcul que des fonctions 
 calculables). 
 % subsection fondement_de_la_th_se (end)
@@ -1954,12 +2227,20 @@ calculabilité D.
 	\item[S] : Propriété S-m-n affaiblie
 \end{description}
 
+
 \begin{myrem}
-	Les propriétés sur les descriptions (SD et CD) peuvent être vues comme
-	des il existe. On dit qu'il existe une description.
-	Alors que celles sur les algorithmes (SA, CA) sont plus concrètes en disant qu'on 
-	est capable d'écrire l'algorithme. On dit qu'il existe une description 
-	\textbf{exécutable sur des données}.
+	\textbf{D} correspond à description c'est-à-dire une description de fonction.
+	Alors que \textbf{A} correspond à algorithme c'est-à-dire à une description
+	exécutable.
+\end{myrem}
+
+\begin{myrem}
+	\textbf{Soudness} signifie que si on a une description dans notre modèle D alors
+	celle si n'est pas absurde, ça correspond bien à une fonction
+	calculable.\\
+	\textbf{Complétude} signifie que notre modèle est complet donc il
+	n'existe pas de fonction calculable qui ne le soit pas dans notre
+	modèle.
 \end{myrem}
 
 \paragraph{Caractérisiques plus en détails}
@@ -1985,7 +2266,7 @@ calculabilité D.
 		la même chose que D(x,y)
 \end{description}
 Un bon formalisme de la calculabilité possède toutes ces propriétés. Mais il 
-suffit d'en montrer certaines car certaines propriétés en entrainent d'autres.
+suffit d'en montrer certaines, car certaines propriétés en entrainent d'autres.
 
 \begin{myprop}
 	SA $\Rightarrow$ SD, car si on peut trouver une description exécutable,
@@ -2007,7 +2288,7 @@ qu'on a un interpréteur de D, D-calculable. Alors la description est exécutabl
 \end{myprop}
 
 Un bon formalisme doit donc posséder soit SA et CA ou soit SD, CD, U et S ou 
-soit SA, CD et S ou encore CA, SD et U. Car
+soit SA, CD et S ou encore CA, SD et U., Car
 \begin{itemize}
 	\item SA et CA $\iff$ SD, CD, U et S
 	\item SA ,CD et S $\iff$ SD, CA et U
@@ -2031,7 +2312,7 @@ Pour prouver qu'un problème est non calculable, on peut utiliser :
 \subsection{Aspects non couverts par la Calculabilité (Section pas très
 	importante pour l'examen)}
 \label{sub:aspects_non_couvert_par_la_calculabilit_}
-La calculabilité se limite au calcul de fonction or certains problèmes de la vie 
+La calculabilité se limite au calcul de fonction. Or certains problèmes de la vie 
 de tous les jours ne correspondent pas à une fonction.
 
 \begin{myexem}
@@ -2129,7 +2410,7 @@ d'exécution et de l'espace.
 On va se "limiter" au problème de décision.
 
 \begin{myrem}
-	on ne se limite pas vraiment car on 
+	on ne se limite pas vraiment, car on 
 	peut facilement transformer un problème en un problème de décision.
 \end{myrem}
 
@@ -2188,7 +2469,7 @@ que 3 :
 
 
 \subsubsection{Réduction algorithmique}
-Ce type de réduction n'apporte aucune information au niveau de la complexité car, on 
+Ce type de réduction n'apporte aucune information au niveau de la complexité, car, on 
 peut répéter autant de fois qu'on veut l'algorithme qui décide B. On peut aussi 
 faire un calcul avec une complexité très grande en plus d'utiliser B.
 
@@ -2228,7 +2509,7 @@ faire un calcul avec une complexité très grande en plus d'utiliser B.
 \end{myprop}
 
 \subsubsection{Réduction fonctionnelle}
-Ce type de réduction n'apporte aucune information au niveau de la complexité
+Ce type de réduction n'apporte aucune information au niveau de la complexité,
 car, ça dépend de la complexité de la fonction f.
 
 \begin{mydef}[Réduction fonctionnelle]
