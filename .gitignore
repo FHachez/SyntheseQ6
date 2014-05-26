@@ -1,0 +1,10 @@
+
+*.aux
+
+*.log
+
+SyntheseCalculabilite.pdf
+
+SyntheseCalculabilite.synctex.gz
+
+*.toc
