@@ -933,20 +933,21 @@ dans Q.
 \subsection{Théorème de Rice}
 \label{sub:th_or_me_de_rice}
 
-Soit A $\subseteq$ $\N$ \\
+Soit A $\subseteq$ $\N$
 
 \begin{mytheo}[Rice]
-	Si $\forall$ i $\in$ A et $\forall$j $\in \stcomp{A}$ tel que $\phi_i \neq 
-	\phi_j$ \\
-	Si A non récursif et A$=\emptyset$ et A $= \N$
+	Si A récursif et A$\neq \emptyset$ et A $\neq$ $\N$ \\
+	Alors $\exists$ i $\in$ A et j $\in \N$\ A tels que $\phi _i = \phi _j$
 \end{mytheo}
 
-Par contre,
+On utilise le plus souvent le théorème de Rice en ayant recourt à sa contraposée:
 
 \begin{mytheo}[Rice (contraposée)]
-	Si A récursif et A$\neq \emptyset$ et A $\neq$ $\N$ \\
-	Alors $\exists$ i $\in$ A et j $\in \N$\ A tel que $\phi _i = \phi _j$
+	Si $\forall$ i $\in$ A et $\forall$j $\in \stcomp{A}$ on a $\phi_i \neq \phi_j$ \\
+	Alors A non-récursif ou A$=\emptyset$ ou A $= \N$
 \end{mytheo}
+
+Dans de nombreux cas, on peut garantir A$\neq \emptyset$ et A$\neq N$, ce qui permet de se servir de la contraposée pour démontrer qu'un ensemble est non-récursif sans utiliser la preuve par diagonalisation.
 
 \paragraph{Démonstration : }
 On a $\forall$ i $\in$ A et $\forall$j $\in \stcomp{A}$ tel que $\phi_i \neq
@@ -1031,8 +1032,6 @@ $A_2$=\{i|$\phi_i = f$\},... (il y a plein d'exemples dans le cours).
 	\item Les propriétés intéressantes d'un programme concernant la 
 		fonction qu'il calcule, non pas la forme d'un programme.
 \end{itemize}
-
-TODO preuve du théorème de RICE.
 
 
 % subsection th_or_me_de_rice (end)
