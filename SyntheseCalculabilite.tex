@@ -1100,43 +1100,54 @@ TODO Démonstration avec les lapins (les 3 lapins qui permettent
 de commencer la démonstration ne sont pas super intuitifs)
 \begin{myrem}
 	Le théorème \ref{point-fixe} n'est pas très intuitif. Mais on peut le 
-	voir comme : quelque soit un transformateur programme T qui calcule f 
+	voir comme : quelque soit un transformateur de programme T qui calcule f 
 	(n'importe quelle fonction totale calculable peut être vu comme un transformateur 
 	de programme), \\
 	il existe deux programmes $P_k$ et $P_j$ tels que 
 	\begin{itemize}
-		\item $P_j$ est la transformation de $P_k$ via T.
-		\item $P_k$ et $P_j$ calcule la \textbf{même} fonction
+		\item $P_j$ est la transformation de $P_k$ via T,
+		\item $P_k$ et $P_j$ calcule la \textbf{même} fonction.
 	\end{itemize}
 \end{myrem}
 
 \paragraph{Démonstration :}
 Pour commencer, on va poser 3 "lapins" :
 \begin{enumerate}
-	\item $h(u,v) =$
-		\begin{tabular}{c}
-			$\phi_{\phi_{u(u)}}(v)$ si $\phi(u)\neq \perp$\\
-			$\perp$ sinon
-		\end{tabular}\\
-		h est calculable 
+	%\item $h(u,v) =$
+	%	\begin{tabular}{c}
+	%		$\phi_{\phi_{u(u)}}(v)$ si $\phi(u)\neq \perp$\\
+	%		$\perp$ sinon
+	%	\end{tabular}\\
+		
+	\item
+	$ h(u,v) = \left\{
+	\begin{array}{l l}
+		\phi_{\phi_{u(u)}}(v) & \quad \text{si $\phi_u(u)\neq \bot$}\\
+    	\bot & \quad \text{sinon}
+	\end{array} \right.$
+		
+		$h$ est calculable 
 		\begin{myrem}
-			on peut créer un programme qui calcule h
+			on peut créer un programme qui calcule $h$
 \begin{lstlisting}
-a= P_u(u)
+a = P_u(u)
 return P_a(v)
 \end{lstlisting}
 		\end{myrem}
-	\item $h(u,v)=\phi_{S(u)}(v)$ S est totale calculable ce qui implique
-		qu'on à la propriété S (propriété S-m-n affaiblie).
-	\item $g(u)=f(S(u))$ g est totale calculable de par S et f (f
+		
+	\item $h(u,v)=\phi_{S(u)}(v)$\\
+	 $S$ est totale calculable, on a donc la propriété S (propriété S-m-n affaiblie).
+	 
+	\item $g(u)=f(S(u))$\\
+	 $g$ est totale calculable car $S$ et $f$ le sont ($f$
 		est la fonction donnée dans le théorème).
-		\[ \exists k' \land \phi_{k'} =g(u)=f(S(u)) \]
+		\[ \exists k' \cdot \phi_{k'}(u) =g(u)=f(S(u)) \]
 \end{enumerate}
 On a que $k'$ est une constante et par le lapin 2 :
 \[h(k',v) = \phi_{S(k')}(v)\]
 Par le lapin 1 et, car $g=\phi_k'$ est une fonction totale calculable, on a :
 \[h(k',v) = \phi_{\phi_k'(k')}(v)\]
-Par le lapin 3 on a que $\phi_k'(u) = g(u)=f(S(u)$ donc :
+Par le lapin 3 on a que $\phi_k'(u) = g(u)=f(S(u))$ donc :
 \[h(k',v) = \phi_{f(S(k'))}(v)\]
 C'est à dire :
 \[ \phi_{f(S(k'))}(v) =\phi_{\phi_k'(k')}(v) \]
@@ -1148,31 +1159,36 @@ Ce qui conclut notre démonstration.
 	On peut démontrer que K n'est pas récursif.\\
 	Posons 3 fonctions :
 	\begin{itemize}
-		\item $\phi_i(x) = \perp \ \forall x$
-		\item $\phi_j(x) = x \ \forall x$
-		\item $f(x) = $ 
-			\begin{tabular}{l}
-				i si $x\in K$\\
-				j si $x\notin K$\\
-			\end{tabular}
+		\item $\phi_i(x) = \bot \quad \forall \ x$
+		\item $\phi_j(x) = x \quad \forall  \ x$
+		%\item $f(x) = $ 
+		%	\begin{tabular}{l}
+		%		i si $x\in K$\\
+		%		j si $x\notin K$\\
+		%	\end{tabular}
+		\item $ f(x) = \left\{
+		\begin{array}{l l}
+			i & \quad \text{si $x\in$ K}\\
+    		j & \quad \text{si $x\notin$ K}
+		\end{array} \right.$
 	\end{itemize}
-	f décide K. Supposons que f est totale calculable \\
-	$ \Rightarrow \exists k$ tel que $\phi_k = \phi_f(k)$ (Par le théorème
-du point fixe)
+	$f$ décide K. Supposons que $f$ est totale calculable. \\
+	$ \Rightarrow \exists \ k$ tel que $\phi_k = \phi_f(k)$ (par le théorème
+du point fixe)\\
 	On a alors 2 cas possibles :
 	\begin{itemize}
-		\item Soit $\phi_k(k)=\perp$
+		\item Soit $\phi_k(k)=\bot$
 			\[ \Rightarrow k \notin K\]
 			\[ \Rightarrow f(k)=j \notin K\]
 			\[ \Rightarrow \phi_k = \phi_j \]
-			\[ \Rightarrow \phi_k(k) \neq \perp\]
+			\[ \Rightarrow \phi_k(k) \neq \bot\]
 			Ce qui implique une contradiction
-		\item Soit $\phi_k(k)\notin \perp$
+		\item Soit $\phi_k(k) \neq \bot$
 			\[ \Rightarrow k \in K\]
-			\[ \Rightarrow f(k)=j \in K\]
-			\[ \Rightarrow \phi_k = \phi_j \]
-			\[ \Rightarrow \phi_k(k) = \perp\]
-			Ce qui implique une contradiction
+			\[ \Rightarrow f(k)=i \in K\]
+			\[ \Rightarrow \phi_k = \phi_i \]
+			\[ \Rightarrow \phi_k(k) = \bot\]
+			Ce qui implique une contradiction.
 	\end{itemize}
 	Donc il n'existe pas de fonction calculable qui décide K $ \Rightarrow$ K n'est pas récursif.
 \end{myrem}
