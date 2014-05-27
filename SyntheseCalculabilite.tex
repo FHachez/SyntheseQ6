@@ -1202,19 +1202,20 @@ du point fixe)\\
 		\item U = ${u_1,u_2,...,u_k}$
 		\item V = ${v_1,v_2,...,v_k}$
 	\end{itemize}
-	Le problème consiste à décider s’ il existe une suite d'entiers 
+	Le problème consiste à décider s’il existe une suite d'entiers 
 	$i_1,i_2,..,i_n$ telle que les mots $u_{i1},u_{i_2},...,u_{in}$ et 
-	$v_{i1},v_{i_2},...,v_{in}$ soient \textbf{identique} \\
+	$v_{i1},v_{i_2},...,v_{in}$ soient \textbf{identiques}. \\
 	Pour démontrer l'indécidabilité de ce problème, Post à introduit un 
 	nouveau modèle, la machine de Post qui ressemble à une machine de Turing.
 \end{mydef}
 
-\begin{mydef}[Problème des équations diophantines:] Décider si une équation 
+% en français, on écrit "diophantiennes", an anglais "diophantines"
+\begin{mydef}[Problème des équations diophantiennes] Décider si une équation 
 	polynomiale de degré supérieur ou égal à 4 possède une solution entière.
 \end{mydef}
 
 Il n'existe pas d'algorithme résolvant ces problèmes. Il existe beaucoup
-d'autres problèmes calculables. Il y a d'autres exemples sur les grammaires dans le cours.
+d'autres problèmes non calculables. Il y a d'autres exemples sur les grammaires dans le cours.
 % subsection autres_probl_mes_non_calculable (end)
 
 \subsection{Nombres calculables}
@@ -1222,13 +1223,13 @@ d'autres problèmes calculables. Il y a d'autres exemples sur les grammaires dan
 
 \begin{mydef}[Nombre réel]
 	Un nombre réel est défini comme la limite d'une suite (convergente) de 
-	nombres rationnels: $\lim_{n \rightarrow \inf} |x-s(n)| = 0 $ ou s’est 
+	nombres rationnels: $\lim_{n \rightarrow +\infty} |x-s(n)| = 0 $ ou s’est 
 	une fonction totale
 \end{mydef}
 
 \begin{mydef}[Nombre réel calculable]
-	Un nombre réel x est calculable s’ il existe une fonction totale 
-	calculable s tel que $\lim_{n \rightarrow \inf} |x-s(n)| =\leq 2^{-n}$
+	Un nombre réel x est calculable s’il existe une fonction totale 
+	calculable $s$ tel que $\lim_{n \rightarrow +\infty} |x-s(n)| \leq 2^{-n}$
 \end{mydef}
 
 \begin{myrem}
@@ -1238,12 +1239,12 @@ d'autres problèmes calculables. Il y a d'autres exemples sur les grammaires dan
 \end{myrem}
 
 \begin{myprop}
-	L'ensemble des nombres réels calculable est énumérable, car on peut énumérer les 
+	L'ensemble des nombres réels calculables est énumérable, car on peut énumérer les 
 	fonctions totales calculables.	
 \end{myprop}
 
 \begin{myprop}
-	Il existe des nombres réels non calculables
+	Il existe des nombres réels non calculables.
 \end{myprop}
 
 \begin{myprop}
@@ -1257,7 +1258,7 @@ d'autres problèmes calculables. Il y a d'autres exemples sur les grammaires dan
 
 Le théorème S-m-n permet de démontrer le théorème du point fixe.
 Le théorème du point fixe est un résultat central de la calculabilité. Il 
-implique le théorème de rice, la non-récursivité de K et la non-calculabilité 
+implique le théorème de Rice, la non-récursivité de K et la non-calculabilité 
 de la fonction halt.
 
 % subsection conclusion (end)
