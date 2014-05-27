@@ -1418,19 +1418,19 @@ On considère l'approche 2 en calculabilité.
 
 \paragraph{Objectif :} Décider si un mot donné appartient ou non à un langage.
 
-\paragraph{Utilisation :} Utiliser dans les interfaces avec les humains par 
-exemple, les distributeurs.
+\paragraph{Utilisation :} Utilisé dans les interfaces pour les humains (par 
+exemple, les distributeurs).
 
 \subsubsection{Modèles des automates finis}
 \label{ssub:mod_les_des_automates_finis}
 Un automate fini est composé de :
 
 \begin{itemize}
-	\item $\sum$ : ensemble fini de symboles
+	\item $\Sigma$ : ensemble fini de symboles
 	\item $S$ : ensemble fini d'états
 	\item $s_0 \in S$ : état initial
-	\item $A \subseteq S$ : ensemble des états acceptant
-	\item $\delta$: $S$x$\sum \rightarrow S$ : fonction de transition
+	\item $A \subseteq S$ : ensemble des états acceptants
+	\item $\delta: S \times \Sigma \rightarrow S$ : fonction de transition
 \end{itemize}
 
 \begin{myrem}
@@ -1455,20 +1455,20 @@ Un automate fini est composé de :
 \end{myrem}
 
 \begin{myprop}
-	Un automate fini défini un ensemble récursif de mots $=\{m|m$ est 
+	Un automate fini définit un ensemble récursif de mots $=\{m \ |\ m$ est 
 		accepté par FA$\}$
 \end{myprop}
 
 \begin{myprop}
 	Certains ensembles récursifs ne peuvent pas être reconnus par un 
-	automate fini. Par exemple $L = \{ a^n b^n | n\geq 0\}$ (il me semble que 
+	automate fini. Par exemple $L = \{ a^n b^n \ | \ n\geq 0\}$ (il me semble que 
 	c'est par ce que ça nécessiterait un nombre infini d'états)
 \end{myprop}
 
 \begin{myprop}
 	L'interpréteur des automates finis est calculable, mais ne peut pas être 
 	représenté par un automate fini, car ce n'est pas un \textbf{modèle 
-	complet} de la calculabilité (Hoare Allison)
+	complet} de la calculabilité (Hoare-Allison)
 \end{myprop}
 
 \begin{mydef}[Langage régulier] est un langage défini par une expression 
@@ -1476,15 +1476,19 @@ Un automate fini est composé de :
 \end{mydef}
 
 \begin{mydef}[Expression régulière] 
-       	Dans le cours la syntaxe d'une expression régulière est la suivante :
-	comme syntaxe, "+" pour signifié ou, "." pour signifier la concaténation, "*" pour la 
-	fermeture (???) et "()" pour la répétition.
+       	Dans le cours, la syntaxe d'une expression régulière est la suivante :
+	\begin{description}
+		\item[+] ou
+		\item[.] concaténation
+		\item[*] fermeture de Kleene\footnote{définit un groupe qui existe zéro, une ou plusieurs fois}
+		\item[( )] répétition
+	\end{description}
 \end{mydef}
 % subsubsection mod_les_des_automates_finis (end)
 
-\subsubsection{Automate fini ND}
+\subsubsection{Extension des automates finis}
 \label{ssub:automate_fini_nd}
-On étend le modèle en permettant d'avoir plusieurs transitions possibles pour 
+\paragraph{NDFA} On étend le modèle en permettant d'avoir plusieurs transitions possibles pour 
 une paire <état,symbole>. Ce qui implique que plusieurs exécutions sont 
 possibles. On a donc plus une fonction de transition mais on a maintenant une
 relation de transition.
@@ -1492,7 +1496,7 @@ relation de transition.
 \paragraph{} De même que pour un ND programme, un mot est accepté par un NDFA 
 s’il existe au moins une exécution ou l'état final est acceptant. Dans l'autre 
 sens, un 
-mot n'est pas accepté si toute exécution ne se termine pas avec l'état final 
+mot n'est pas accepté si aucune exécution ne se termine avec l'état final 
 acceptant.
 
 \begin{myprop}
@@ -1501,10 +1505,10 @@ acceptant.
 \end{myprop}
 
 \begin{myprop}
-	Un NDFA définit un ensemble récursif de mots
+	Un NDFA définit un ensemble récursif de mots.
 \end{myprop}
 
-\paragraph{Ajout de transitions vides $\epsilon$} on peut encore étendre le modèle NDFA en 
+\paragraph{Ajout de transitions vides $\epsilon$} On peut encore étendre le modèle NDFA en 
 rajoutant une possibilité de transition sans lire de symbole (transition 
 spontanée). Ça a la même puissance et les mêmes propriétés qu'un NDFA.
 
@@ -1524,24 +1528,24 @@ Les différences principales sont :
 
 \paragraph{Objectif :} Décider si le mot donné appartient ou non à un langage.
 
-\paragraph{Utilisation :} Utiliser dans les compilateurs
+\paragraph{Utilisation :} Utilisé dans les compilateurs.
 
 \paragraph{Composition :}
 On rajoute $\Gamma$ et on change la fonction de transition en une nouvelle 
 relation de transition.
 \begin{itemize}
-	\item $\sum$ : ensemble fini de symboles d'entrée
+	\item $\Sigma$ : ensemble fini de symboles d'entrée
 	\item $\Gamma$ : ensemble fini de symboles de pile
 	\item $S$ : ensemble fini d'états
 	\item $s_0 \in S$ : état initial
-	\item $A \subseteq S$ : ensemble des états acceptant
-	\item $\Delta \subset Sx\times \sum \times \Gamma \times S \times 
+	\item $A \subseteq S$ : ensemble des états acceptants
+	\item $\Delta \subset S \times \Sigma \times \Gamma \times S \times 
 		\Gamma^*$ : relation de transition (finie)
 \end{itemize}
 
 \begin{myprop}
-	Tout comme NDFA, un PDA définit un ensemble récursif de mots (langage 
-	récursif)
+	Tout comme un NDFA, un PDA définit un ensemble récursif de mots (langage 
+	récursif).
 \end{myprop}
 
 \paragraph{Convention :} 
@@ -1551,8 +1555,8 @@ relation de transition.
 		transition (symbole "vide")
 	\item A, B / C : A est le symbole lu, B est le symbole au 
 		sommet de la pile et C est ce qui va remplacer le 
-		sommet de la pile (peut-être un symbole x et B pour 
-		rajouter x sur la pile, $\epsilon$ pour retirer le sommet de la pile, 
+		sommet de la pile (peut-être un xB pour 
+		rajouter x sur la pile, $\epsilon$ pour retirer B du sommet de la pile, 
 		ou juste B pour ne pas changer le sommet)
 \end{itemize}
 
@@ -1567,8 +1571,9 @@ relation de transition.
 \end{myprop}
 
 \begin{myprop}
-	Ce n'est pas un modèle complet de la calculabilité donc par Hoare 
-	Allison, l'interpréteur n'est pas calculable dans le modèle
+	Ce n'est pas un modèle complet de la calculabilité donc par Hoare-
+	Allison, l'interpréteur n'est pas calculable dans le modèle.
+	% Lena : pas sûre du sens de l'implication
 \end{myprop}
 
 % subsection automate_pile (end)
