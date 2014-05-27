@@ -78,11 +78,11 @@ Les sources sont sur github : https://github.com/FHachez/SyntheseQ6
 \paragraph{}
 La calculabilité c'est l'étude des limites de l'informatique. Il faut bien 
 faire attention à faire la différence entre les limites théoriques et les limites
-pratiques. Pour calculabilité, on s'occupe des limites théoriques.
+pratiques. Pour la calculabilité, on s'occupe des limites théoriques.
 Alors que pour la complexité on s'occupe des limites pratiques. La complexité
-détermine la frontière entre faisable en pratique et infaisable en pratique.
-La question principale de la calculabilité est quels sont les problèmes qui peuvent
-être résolus par un programme et lesquels ne peuvent pas.
+détermine la frontière entre ce qui est faisable en pratique et infaisable en pratique.
+La question principale de la calculabilité est: "quels sont les problèmes qui peuvent
+être résolus par un programme?". La caractéristique de calculabilité ne donne aucune autre information sur le programme que son existence.
 
 \paragraph{} Le but est donc de tracer des frontières entre les programmes calculables,
 non calculables et non calculables en pratique.
@@ -114,7 +114,7 @@ la description d'un problème est équivalente à la description d'une fonction.
 \label{ssub:notion_de_programme}
 
 Un programme est une "procédure effective", c'est-à-dire exécutable par une machine.
-Il existe plein de formalisme permettant la description de "procédure effective".
+Il existe plein de formalismes permettant la description de "procédure effective".
 
 % subsection notion_de_programme (end)
 
@@ -122,19 +122,19 @@ Il existe plein de formalisme permettant la description de "procédure effective
 \label{sub:r_sultat_principaux}
 
 \begin{itemize}
-	\item Équivalence des langages de programmation (Complet).
-	\item Problème non calculable : Il existe des problèmes qui ne peuvent 
+	\item Équivalence des langages de programmation (complets).
+	\item Problème non calculable : il existe des problèmes qui ne peuvent 
 		être résolus par un programme. Ex: détection de virus, équivalence
 		de programme,...
 	\item Problème intrinsèquement complexe. (Voir complexité) Les problèmes
 		qui ont une complexité supérieure ou égale à l'exponentielle. Dans
-		ce cas même l'amélioration des ordinateurs n'influence presque pas
+		ce cas, même l'amélioration des ordinateurs n'influence presque pas
 		la taille de l'entrée possible.
 \end{itemize}
 
 % subsection r_sultat_principaux (end)
 
-\subsection{Détection de Virus}
+\subsection{Détection de virus}
 \label{sub:d_tection_de_virus}
 On veut déterminer si un programme P avec une entrée D est nuisible.
 
@@ -164,11 +164,11 @@ else infecter un autre programme en y inserant drole
 \begin{itemize}
 	\item Si drole(drole) est nuisible alors le programme s'arrête or il
 	       	n'est pas nuisible puisqu'il n'a infecté aucun programme.
-	\item Si par contre il n'est pas nuisible alors il va un infecter un 
+	\item Si par contre il n'est pas nuisible alors il va infecter un 
 		autre programme.
 \end{itemize}
 On a donc une contradiction ce qui implique que le programme drole ne peut 
-exister, ce qui implique que  le programme détecteur non plus.
+exister, ce qui implique que  le programme detecteur non plus.
 % paragraph  (end)
 % subsection d_tection_de_virus (end)
 
@@ -189,9 +189,10 @@ de l'ensemble.\\
 
 Notation : 
 \begin{itemize}
-	\item Ensemble fini : { 0, 1, 2}
-	\item Ensemble infini : { 0, 1, 2, ...}
-	\item Produit cartésien : A x B
+	\item Ensemble fini : \{ 0, 1, 2\}
+	\item Ensemble infini : \{ 0, 1, 2, ...\}
+	\item Produit cartésien : $A \times B$
+	\item Ensemble des ensembles : $2^A$ ou $\mathcal{P}(A)$
 	\item Complément : $\stcomp{A}$
 \end{itemize}
 
@@ -204,43 +205,43 @@ Notation :
 	\item une chaîne de caractère ou un mot : séquence FINIE de symboles. 
 		abceced, 010101101
 	\item chaîne de caractères vide : $\epsilon$
-	\item un alphabet $\sum$ est un ensemble de symboles. $\sum = {1, 2}$
+	\item un alphabet $\sum$ est un ensemble de symboles. $\sum = \{1, 2\}$
 	\item un langage est un ensemble de mots constitués de symboles d'un alphabet
 		donné.
-	\item ensemble de tous les mots possible avec $\sum$ : $\sum ^*$
+	\item ensemble de tous les mots possibles sur l'alphabet $\sum$ : $\sum ^*$
 \end{itemize}
 
 % subsubsection Langages (end)
 
 \subsubsection{Relations}
 \label{ssub:relations}
-Soient A, B des ensembles.
+Soient $A$, $B$ des ensembles.
 \begin{itemize}
-	\item Une relation R sur A, B est un sous-ensemble de A x B. C'est-à-dire
-		un ensemble de paires <a,b> avec $a\in A$ $b\in B$.
+	\item Une relation $R$ sur $A$, $B$ est un sous-ensemble de $A \times B$. C'est-à-dire
+		un ensemble de paires $<a,b>$ avec $a\in A$, $b\in B$.
 	\item On peut définir une relation par sa table
-	\item On peut écrire <a,b> $\in$ R ou aRb ou R(a,b) 
+	\item On peut écrire $<a,b> \in R$ ou $aRb$ ou $R(a,b)$. 
 \end{itemize}
 
 % subsubsection relations (end)
 
 \subsubsection{Fonctions}
 \label{ssub:fonctions}
-Soient A, B des ensembles.
+Soient $A$, $B$ des ensembles.
 \begin{itemize}
-	\item Une fonction f: A $\rightarrow$ B est une relation telle que a $\in$
-	A, il existe au plus un b $\in$ B tel que <a,b> $\in$ f
-	\item écrire f(a)=b est équivalent à <a,b> $\in$ f
-	\item Si il n'existe pas de b $\in$ B tel que f(a)=b alors f(a) est indéfini,
-		f(a) = $\perp$
+	\item Une fonction $f: A \rightarrow B$ est une relation telle que pour $a \in
+	A$, il existe au plus un $b \in B$ tel que $<a,b> \in f$
+	\item écrire $f(a)=b$ est équivalent à $<a,b> \in f$
+	\item Si il n'existe pas de $b \in B$ tel que $f(a)=b$ alors $f(a)$ est indéfini,
+		$f(a) = \perp$
 \end{itemize}
 
-Dans le cours on utilise les propriétés classiques: dom(f), image(f), fonction totale,
-fonction partielle, fonction surjective, injective et injective. Celles-ci ne 
+Dans le cours on utilise les propriétés classiques: dom($f$), image($f$), fonction totale,
+fonction partielle, fonction surjective, injective et bijective. Celles-ci ne 
 seront pas redéfinies ici.\\
 On utilise aussi l'\textbf{extension} : 
-f: A->B est une extension de g: A->B si $\forall x \in A$ : $g(x)\neq \perp \Rightarrow f(x) = g(x)$
-Autrement dit, f a la même valeur que g partout où g est définie.
+$f: A \rightarrow B$ est une extension de $g: A \rightarrow B$ si $\forall x \in A : g(x)\neq \perp \Rightarrow f(x) = g(x)$.
+Autrement dit, $f$ a la même valeur que $g$ partout où $g$ est définie.
 
 \paragraph{Définition d'une fonction}
 \label{par:d_finition_d_une_fonciton}
@@ -249,12 +250,12 @@ On peut définir la table de plusieurs façons :
 \begin{itemize}
 	\item Par un texte fini déterminant sans contradiction ni ambigüité le contenu
 		de la table.
-	\item Par un algorithme ex : f(x) = $2x^3+5$
+	\item Par un algorithme ex : $f(x) = 2x^3+5$
 	\item Écrire toutes les paires de la relation.
 \end{itemize}
 Attention, il n'est pas nécessaire de décrire ou de connaître un moyen de la calculer
-pour pouvoir la définir. Ex : f(x) = 1 s'il y a de la vie autre part que sur terre,
-0 sinon.
+pour pouvoir la définir. Ex : $f(x) = 1$ s'il y a de la vie autre part que sur terre,
+$0$ sinon.
 % paragraph d_finition_d_une_fonction (end)
 % subsubsection fonctions (end)
 % subsection ensembles_langages_relations_et_fonctions (end)
@@ -266,7 +267,7 @@ Avant de dire ce qu'est un ensemble énumérable, on doit savoir que deux ensemb
 ont le même cardinal s’il existe une bijection entre eux.
 
 \begin{mydef}[Ensemble énumérable]
-	Un ensemble est énumérable ou dénombrable si soit il est fini ou il a le même cardinal que $\mathbb{\N}$. \\
+	Un ensemble est énumérable ou dénombrable s'il est fini ou s'il a le même cardinal que $\mathbb{\N}$. \\
 	Quelques propriétés : 
 \end{mydef}
 	
@@ -279,8 +280,8 @@ L'union et l'intersection de deux ensembles énumérables sont énumérables.
 \end{myprop}
 
 \begin{myprop}
-L'union d'une infinité d'ensembles énumérables est énumérable. (Facile à
-		démontrer voir TP)
+L'union d'une infinité d'ensembles énumérables est énumérable.\\ (Facile à
+		démontrer, voir TP)
 \end{myprop}
 
 Quelques ensembles non énumérables : 
@@ -289,7 +290,7 @@ Quelques ensembles non énumérables :
 \end{myexem}
 
 \begin{myexem}
- L'ensemble des sous-ensembles de $\N$
+ L'ensemble des sous-ensembles de $\N$, $\mathcal{P}(\N)$
 \end{myexem}
 
 \begin{myexem}
@@ -320,32 +321,32 @@ On va montrer qu'il existe des ensembles non énumérables par diagonalisation. 
 			\end{tabular}
 		\item Sélectionner la diagonale : $diag = $DBOUPS
 		\item Modifier l'élément égal à la diagonale : $diag' =$ CANTOR
-		\item Montrer que l'élément n'est pas dans la liste => Contradiction
+		\item Montrer que l'élément n'est pas dans la liste $\Rightarrow$ Contradiction
 		\item Conclusion :
 			\begin{itemize}
 				\item Soit on sait que la liste est complète\\
 					$ \Rightarrow$ CANTOR n'est pas un grand
-				mathématicien (cas utiliser pour démontrer
+				mathématicien (cas utilisé pour démontrer
 				halt).
 				\item Soit on sait que CANTOR est un grand
 					mathématicien \\
 					$ \Rightarrow$ la liste est incomplète
-				(cas utiliser pour la diagonalisation de CANTOR)
+				(cas utilisé pour la diagonalisation de CANTOR)
 			\end{itemize}
 	\end{enumerate}
 \end{myexem}
 
 \begin{mytheo}[Diagonalisation de Cantor]
-	Soit $E = \{ x \text{ réel }|0<x\leq1\}$, E est non énumérable.
+	Soit $E = \{ x \text{ réel }| 0<x\leq1\}$, $E$ est non énumérable.
 \end{mytheo}
 
 \paragraph{Démonstration :}
 On va montrer qu'un nombre $d'$ n'est pas dans l'énumération alors qu'on sait
 que $d'$ est un nombre réel compris entre 0 et 1.
 
-On suppose E énumérable. Donc il existe une énumération des éléments de E,
-$x_0, x_1, ...,X_k,...$. On peut représenter un nombre $x_k$ comme étant une
-suite de chiffre $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}...x_{kk}...$.
+On suppose $E$ énumérable. Donc il existe une énumération des éléments de $E$,
+$x_0, x_1,\dots,X_k,\dots$. On peut représenter un nombre $x_k$ comme étant une
+suite de chiffre $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}\dots x_{kk}\dots$.
 
 \begin{enumerate}
 	\item On peut donc construire une table infinie : \\
@@ -361,22 +362,22 @@ suite de chiffre $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}...x_{kk}...$.
 			: & : &:& : & : & : &:\\
 			\hline
 		\end{tabular}
-	\item Sélection de la diagonale (celle si est un nombre réel compris
+	\item Sélection de la diagonale (celle-ci est un nombre réel compris
 		entre 0 et 1)
 		\[ d=0.x_{00}x_{11}...x_{kk}... \]	
-	\item Modification de cet élément d pour obtenir
+	\item Modification de cet élément $d$ pour obtenir
 		\[ d'=0.x_{00}'x_{11}'...x_{kk}'... \]	
 		Où $x_{ii}'=5$ si $x_{ii}'\neq 5$ \\
 		$x_{ii}'=6$ si $x_{ii}'= 5$ \\
 		On a toujours que cet élément $d'$ est compris entre 0 et 1
-	\item Contradiction, car $d'$ est dans l'énumération, car E est
+	\item Contradiction, car $d'$ est dans l'énumération, car $E$ est
 		énumérable (par supposition). Il existe donc $x_p=d'$, 
 		\[ d'=x_p=0.x_{p0}x_{p1}...x_{pp}... \]	
 		\[ d'=0.x_{00}'x_{11}'...x_{pp}'... \]	
 		La contradiction vient du fait qu'on a choisi $x_{pp}' \neq
 	       	x_{pp}$. Donc $d' \neq x_p$ ce qui implique que $d'$ n'est pas
 		dans l'énumération.
-	\item Conclusion : E n'est pas énumérable
+	\item Conclusion : $E$ n'est pas énumérable
 
 \end{enumerate}
 % subsection cantor (end)
@@ -406,17 +407,17 @@ Qu'est-ce qu'un algorithme?
 
 \begin{mydef}[Algorithme]
 	C'est une procédure qui peut être appliquée à n'importe
-	quelles données et qui a pour effet de produire un résultat. C'est un ensemble fini
+	quelle donnée et qui a pour effet de produire un résultat. C'est un ensemble fini
 	d'instructions qui peuvent être exécutées. Dans ce cours, on ne tracasse pas 
 	de la taille des données, des instructions ni de la mémoire disponible, mais 
-	les considères comme finies. 
+	les considère comme finies. 
 \end{mydef}
 
 \begin{myrem}
 	Un algorithme n'est pas une fonction, mais un algorithme calcule une 
 	fonction.
 	De plus dans le cours on se limite aux fonctions de $\N^n$ dans $\N$. Car on peut,
-	montrer que ça revient au même que de considéré de $\N^n$ dans $\N^n$ (
+	montrer que ça revient au même que de considérer de $\N^n$ dans $\N^n$ (
 	$\N^n$ est énumérable et donc au plus de même cardinal que $\N$). On va aussi
 	utiliser Java comme modèle étant donné que c'est plus facile et qu'on va montrer 
 	que les modèles complets sont équivalents.
@@ -431,9 +432,9 @@ Qu'est-ce qu'un algorithme?
 \label{ssub:fonction_calculable}
 
 \begin{mydef}[Fonction calculable]
-	Une fonction est calculable s’il existe un algorithme qui, recevant comme donnée
-	n'importe quels nombres naturels $X_1$,...$X_n$ fourni \textbf{tôt ou tard} comme 
-	résultat f(x) s’il existe.
+	Une fonction $f$ est calculable s’il existe un algorithme qui, recevant comme donnée
+	n'importe quels nombres naturels $x_1$,...$x_n$ fournit \textbf{tôt ou tard} comme 
+	résultat $f(x)$ s’il existe.
 \end{mydef}
 	
 \paragraph{} S’il ne se termine pas c'est que $f(x)=\perp$. \\
@@ -441,7 +442,7 @@ Qu'est-ce qu'un algorithme?
 \begin{myrem}
 	Il faut faire attention entre ne pas être capable d'écrire un algorithme
 	et ne pas savoir l'écrire. (Voir exemple TP et cours : y a-t-il une rose 
-	verte sur Mars ou encore x occurrences de 5 dans $\pi$.
+	verte sur Mars ou encore x occurrences de 5 dans $\pi$).
 \end{myrem}
 
 \begin{myrem}
@@ -455,18 +456,18 @@ Qu'est-ce qu'un algorithme?
 Soit $A\subseteq \N$
 
 \begin{mydef}[Ensemble récursif]
-	A est récursif s’ il existe un algorithme qui recevant un $X\in \N$
-	, fourni \textbf{tôt ou tard} comme résultat 
+	$A$ est récursif s’ il existe un algorithme qui recevant un $x\in \N$,
+	fournit \textbf{tôt ou tard} comme résultat 
 	\begin{tabular}{l}
 		1 si $x\in A$\\
 		0 si $x\notin A$\\
 	\end{tabular}
-	. L'algorithme décide si x est dans A ou non.
+	. L'algorithme décide si $x$ est dans $A$ ou non.
 \end{mydef}
 
 \begin{mydef}[Ensemble récursivement énumérable]
-	A est récursivement énumérable s’ il existe un algorithme qui recevant
-	un $X\in \N$, fourni \textbf{tôt ou tard} \\
+	$A$ est récursivement énumérable s’ il existe un algorithme qui recevant
+	un $x\in \N$, fourni \textbf{tôt ou tard} \\
 	comme résultat
 	\begin{tabular}{l}
 		1 si $x\in A$\\
@@ -936,25 +937,25 @@ dans Q.
 Soit A $\subseteq$ $\N$
 
 \begin{mytheo}[Rice]
-	Si A récursif et A$\neq \emptyset$ et A $\neq$ $\N$ \\
-	Alors $\exists$ i $\in$ A et j $\in \N$\ A tels que $\phi _i = \phi _j$
+	Si $A$ récursif et $A\neq \emptyset$ et $A \neq \N$ \\
+	Alors $\exists i \in A$ et $\exists j \in \N \setminus A$ tels que $\phi _i = \phi _j$
 \end{mytheo}
 
 On utilise le plus souvent le théorème de Rice en ayant recourt à sa contraposée:
 
 \begin{mytheo}[Rice (contraposée)]
-	Si $\forall$ i $\in$ A et $\forall$j $\in \stcomp{A}$ on a $\phi_i \neq \phi_j$ \\
-	Alors A non-récursif ou A$=\emptyset$ ou A $= \N$
+	Si $\forall  i \in A$ et $\forall j \in \stcomp{A}$ on a $\phi_i \neq \phi_j$ \\
+	Alors $A$ non-récursif ou $A = \emptyset$ ou $A = \N$
 \end{mytheo}
 
-Dans de nombreux cas, on peut garantir A$\neq \emptyset$ et A$\neq N$, ce qui permet de se servir de la contraposée pour démontrer qu'un ensemble est non-récursif sans utiliser la preuve par diagonalisation.
+Dans de nombreux cas, on peut garantir $A \neq \emptyset$ et $A \neq \N$, ce qui permet de se servir de la contraposée pour démontrer qu'un ensemble est non-récursif sans utiliser la preuve par diagonalisation.
 
 \paragraph{Démonstration : }
-On a $\forall$ i $\in$ A et $\forall$j $\in \stcomp{A}$ tel que $\phi_i \neq
+On a $\forall i \in A$ et $\forall j \in \stcomp{A}$ tel que $\phi_i \neq
 \phi_j$\\
-Supposons A récursif, $A=\emptyset$ et $A\neq \N$\\
+Supposons $A$ récursif, $A=\emptyset$ et $A\neq \N$\\
 On va montrer que HALT est récursif, car on peut construire un programme qui 
-décide HALT. Alors qu'on sait que HALT n'est pas récursif.
+décide HALT, alors qu'on sait que HALT n'est pas récursif.
 
 \begin{enumerate}
 	\item Construisons le programme $P_k$
@@ -967,32 +968,32 @@ while true do;
 	$A$ ou $\stcomp{A}$ est non récursif revient au même, car $A$ non
 	récursif $ \Leftrightarrow $ $\stcomp{A}$ non récursif) \\
 	\item $A\neq \emptyset$ par hypothèse, supposons $m\in A$
-	\item $\phi_i \neq \phi_j$ et ce $\forall i,j$ par hypothèse donc
+	\item $\phi_i \neq \phi_j$ et ce $\forall i \in A, \forall j \in \stcomp{A}$ par hypothèse donc
 		$\phi_m \neq \phi_k$
 	\item Construisons un programme $P(z)$ qui calcule la fonction $g(z)$, 
 		$P(z) \equiv $
 \begin{lstlisting}
 P_n(x);
-P_m(2);
+P_m(z);
 \end{lstlisting}
 	\begin{myrem}
-		On sait qu’ un programme calcule une fonction $
+		On sait que si un programme calcule une fonction $
 		f(x)=\perp \ \forall x$ alors ce programme doit être dans $\stcomp{A}$ car
 		$f(x) =\phi_k(x)$.
 
 		Or 
 		\begin{itemize}
 			\item soit notre programme $P(z)$ ne se termine pas $\forall
-			z$ ,car $P_n(x)$ ne se termine pas et donc $g(z) =
+			z$, car $P_n(x)$ ne se termine pas et donc $g(z) =
 			\phi_k(z)$.
 
-		\item soit notre programme $P(z)$ calcule $\phi_m(2)$ or on
+		\item soit notre programme $P(z)$ calcule $\phi_m(z)$ or on
 			sait que $m\in A$.
 		\end{itemize}
 		Donc en résumé si $P_n(x)$ ne se termine pas il sera dans
 		$\stcomp{A}$ sinon il sera dans $A$.
 	\end{myrem}	
-	un programme qui décide HALT $halt(n,x) \equiv $
+	Un programme qui décide HALT $halt(n,x) \equiv $
 \begin{lstlisting}
 construire P(z);
 d <- numero de P(z);
@@ -1000,37 +1001,39 @@ if d in A then print(1);
 else print(0);
 \end{lstlisting}
 	\item Contradiction, car HALT n'est pas récursif.
-	\item Conclusion A n'est pas récursif.
+	\item Conclusion: $A$ n'est pas récursif.
 \end{enumerate}
 
-\paragraph{} On est intéressé par l'analyse des propriétés d'un programme. La 
-question est est-ce que ces propriétés peuvent être déterminées par un 
-algorithme. On va utiliser le théorème de Rice pour caractériser les propriétés 
-qu'il est possible de déterminer par un algorithme de celle pour lesquelles ce 
+\paragraph{} On est intéressé par l'analyse des propriétés d'un programme. Est-ce que ces propriétés peuvent être déterminées par un 
+algorithme? On va utiliser le théorème de Rice pour différencier les propriétés 
+qu'il est possible de déterminer par un algorithme de celles pour lesquelles ce 
 n'est pas possible.
 
-\paragraph{}Pour ça, considérons A comme étant l'ensemble des programmes qui 
-respecte une propriété. Par exemple $A_1$ = \{i| $\phi_i$ est total\} ou 
-$A_2$=\{i|$\phi_i = f$\},... (il y a plein d'exemples dans le cours).
+\paragraph{}Pour ça, considérons $A$ comme étant l'ensemble des programmes qui 
+respectent une propriété. Par exemple $A_1 = \{i| \phi_i \text{ est total}\}$ ou 
+$A_2=\{i|\phi_i = f\}$,... (il y a plein d'exemples dans le cours).
 
 \paragraph{Analyse} 
 \begin{itemize}
-	\item Si la propriété est vérifiée par certain programme, mais pas tous 
+	\item Si la propriété est vérifiée par certains programmes, mais pas tous, 
 		et qu'elle est décidable, alors il existe deux programmes calculant la 
-		même fonction, mais l'un vérifie la propriété, mais pas l'autre.
+		même fonction, mais l'un vérifie la propriété, et l'autre pas.
 
-	\item Si la propriété est vérifiée par un programme, mais pas tous 
+	\item Si la propriété est vérifiée par un programme, mais pas tous, 
 		alors cette propriété ne peut-être décidée pas un algorithme.
 
 	\item S'il existe un algorithme permettant de déterminer si un 
-		programme quelconque calcule une fonction ayant cette propriété. 
-		Alors toutes les fonctions calculables ont cette propriété ou 
+		programme quelconque calcule une fonction ayant cette propriété, 
+		alors toutes les fonctions calculables ont cette propriété ou 
 		aucune fonction calculable n'a cette propriété.
-	\item Aucune question relative au programme, vu sous l'angle de la 
+		
+	\item Aucune question relative aux programmes, vu sous l'angle de la 
 		fonction qu'ils calculent, ne peut être décidée par 
 		l'application d'un algorithme.
+		
 	\item Les propriétés intéressantes d'un programme concernant la 
-		fonction qu'il calcule, non pas la forme d'un programme.
+		fonction qu'il calcule, non pas sa forme,
+		sont non calculables.
 \end{itemize}
 
 
