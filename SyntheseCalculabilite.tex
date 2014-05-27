@@ -1300,7 +1300,7 @@ On va voir les modèles de calcul suivant :
 	\item Lambda calcul
 	\item Fonction récursive
 \end{itemize}
-Mais, il en existe beaucoup d'autres.
+Mais il en existe beaucoup d'autres.
 % subsubsection mod_le_de_calcul (end)
 
 \subsubsection{Modèle de langage}
@@ -1322,9 +1322,9 @@ programmation comme modèle de la calculabilité, il faut définir :
 	\item Convention de représentation d'une fonction par un programme
 \end{itemize}
 
-On se pose de la question est-ce qu'il y a des langages plus puissants que 
-d'autre. On va montrer que tous les langages complets sont équivalents. (Et la 
-plus par des langages sont complet).
+On se pose la question de savoir s'il y a des langages plus puissants que 
+d'autres. On va montrer que tous les langages complets sont équivalents. (Et la 
+plupart des langages sont complets.)
 
 \paragraph{} Mais, il existe aussi des langages qui ne sont pas complets comme le 
 langage BLOOP (bounded loop).
@@ -1332,7 +1332,7 @@ langage BLOOP (bounded loop).
 \begin{mydef}
 	BLOOP : Sous ensemble de Java qui ne calcule que des fonctions totales. 
 	(pas de boucle while, boucle for mais sans modification du compteur 
-	dans le for, pas de goto, pas de fonctions récursives)
+	dans le for, pas de goto en arrière, pas de fonctions récursives)
 \end{mydef}
 
 BLOOP a donc toutes les propriétés qui découlent du chapitre précédent:
@@ -1341,9 +1341,9 @@ BLOOP a donc toutes les propriétés qui découlent du chapitre précédent:
 	Tous les programmes BLOOP se terminent\\
 	$ \Leftrightarrow$ BLOOP ne calcule que des fonctions totales\\
 	$ \Leftrightarrow$ BLOOP ne calcule pas toutes les fonctions totales\\
-	$ \Leftrightarrow$ il existe un compilateur des programmes BLOOP (JAVA)\\
+	$ \Leftrightarrow$ il existe un compilateur des programmes BLOOP (Java)\\
 	$ \Leftrightarrow$ l'interpreteur est une fonction totale non calculable en
-BLOOP (Hoare Allison)\\
+BLOOP (Hoare-Allison)\\
 	$ \Leftrightarrow$ BLOOP n'est pas un modèle de la calculabilité\\
 \end{myprop}
 
@@ -1353,22 +1353,24 @@ BLOOP (Hoare Allison)\\
 \label{ssub:langague_de_programmation_non_d_terministe}
 
 \begin{myrem}
-	Il est difficile d'avoir de l'intuition sur cette partie. Mais on peut 
+	Il est difficile d'avoir de l'intuition sur cette partie. On peut 
 	voir un programme ND comme un programme qui produit des résultats 
-	différents d'une exécution à l'autre, mais concernant la complexité on 
-	considère qu'il trouve directement la solution. C'est pourquoi on ne 
-	considère que la profondeur de l'arbre pour la complexité.
+	différents d'une exécution à l'autre. On peut représenter toutes 
+	les exécutions possibles du programmes sous forme de branches d'un
+	arbre. Pour analyser la complexité, on ne 
+	considère que la profondeur de l'arbre (longueur de la branche
+	la plus longue).
 \end{myrem}
 
-On va un introduire un nouveau langage ND-Pascal qui est le langage java 
-auquel on ajoute le non-déterminisme. C'est à dire on ajout la fonction 
-prédéfinie $choose(n)$. Celle-ci retourne un entier compris entre 0 et n et elle 
+On va un introduire un nouveau langage ND-Pascal qui est le langage Java 
+auquel on ajoute le non-déterminisme sous la forme d'une fonction 
+prédéfinie $choose(n)$. Celle-ci retourne un entier compris entre $0$ et $n$ et elle 
 est non déterministe.
 
 On peut voir un programme ND de 2 manières différentes :
 \begin{enumerate}
 	\item Il calcule une relation plutôt qu'une fonction
-	\item Le voir comme un moyen de décider si un élément appartient à un 
+	\item C'est un moyen de décider si un élément appartient à un 
 		ensemble
 \end{enumerate}
 On considère l'approche 2 en calculabilité.
@@ -1376,8 +1378,8 @@ On considère l'approche 2 en calculabilité.
 \begin{mydef}[ND-récursif]
 	Un ensemble $A \subseteq \N$ est ND-récursif s’il existe un 
 	ND-programme tel que lorsqu'il reçoit comme donnée n'importe quel nombre 
-	naturel x \\
-	\begin{tabular}{c}
+	naturel $x$ \\
+	\begin{tabular}{l}
 	si $x \in A$ alors il existe une exécution fournissant tôt ou tard 
 	comme résultat 1 \\
 	si $x \notin A$ alors toutes les exécutions fournissent tôt ou tard 
@@ -1388,7 +1390,7 @@ On considère l'approche 2 en calculabilité.
 \begin{mydef}[ND-récursivement énumérable]
 	Un ensemble $A \subseteq \N$ est ND-récursivement énumérable s’il existe un 
 	ND-programme tel que lorsqu'il reçoit comme donnée n'importe quel nombre 
-	naturel x
+	naturel $x$ \\
 	\begin{tabular}{l}
 	si $x \in A$ alors il existe une exécution fournissant tôt ou tard 
 	comme résultat 1 \\
