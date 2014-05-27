@@ -1585,54 +1585,54 @@ relation de transition.
 Définition d'un langage (ensemble de mots) et à partir de la grammaire on peut 
 générer/dériver les mots du langage.
 
-\paragraph{Utilisation :} Utilisé pour la définition de langage de 
+\paragraph{Utilisation :} Utilisé pour la définition de langages de 
 programmation, pour l'analyse du langage naturel...
 
 \paragraph{Composition du modèle :}
 
 \begin{itemize}
-	\item $\sum$ : alphabet
-	\item éléments de $\sum$ sont des symboles terminaux
+	\item $\Sigma$ : alphabet
+	\item les éléments de $\Sigma$ sont des symboles terminaux
 	\item autres symboles utilisés durant la dérivation : symboles non 
 		terminaux (A,B, ..., <dig>,..)
 	\item S : point de départ de la dérivation (symbole non terminal)
 \end{itemize}
 
 \begin{mydef}[Règle de production]
-	On appelle un ensemble de règles de dérivation des règles de production
+	On appelle un ensemble de règles de dérivation des règles de production.
 \end{mydef}
 
 \begin{myexem}
 	\begin{itemize}
-		\item $\sum ={0,1,2}$ 
+		\item $\Sigma ={0,1,2}$ 
 		\item $S \rightarrow <Dig>$
 		\item $<Dig> \rightarrow D$
-		\item $D \rightarrow 0 | 1 |2 | \epsilon $ ($\epsilon$ ne signifie rien)
+		\item $D \rightarrow 0 | 1 |2 | \epsilon $ ($\epsilon$ signifie rien)
 	\end{itemize}
 \end{myexem}
 TODO Exemple littéraux real en Java
 
-\begin{mydef}[Dériver] c'est appliquer des règles de la grammaire pour vérifier 
-	si une chaîne de symbole appartient au langage (on part d'une chaîne de symbole 
+\begin{mydef}[Dériver] Appliquer des règles de la grammaire pour vérifier 
+	si une chaîne de symbole appartient au langage (on part d'une chaîne de symboles 
 	et on vérifie les règles sur celle-ci).
 \end{mydef}
 
-\begin{mydef}[Inférer] c'est une dérivation dans "le sens contraire", 
+\begin{mydef}[Inférer] Dérivation dans "le sens contraire", 
 	c'est-à-dire, on part des règles de grammaire et on génère une chaîne 
 	de symboles.
 \end{mydef}
 
 \begin{mydef}[Arbre syntaxique]
 	Un arbre syntaxique permet de représenter la dérivation, chaque noeud 
-	correspond à un symbole terminal ou non. Et les arêtes correspondent à 
-	l'application d'une règle. Il y a plusieurs noeuds enfants si la règle 
+	correspond à un symbole terminal ou non. Les arêtes correspondent à 
+	l'application d'une règle. Il y a plusieurs nœuds enfants si la règle 
 	"génère" plusieurs symboles.
 \end{mydef}
 
 \begin{myprop}
-	On peut dériver de plusieurs façons équivalente, leftmost (on dérive 
+	On peut dériver de plusieurs façons équivalentes, leftmost (on dérive 
 	toujours le plus à gauche d'abord), rightmost (contraire de leftmost) 
-	ou  aucun des deux
+	ou  aucun des deux.
 \end{myprop}
 
 \subsubsection{Hiérarchie de Chomsky}
@@ -1643,7 +1643,7 @@ leur "puissance".
 
 \begin{mydef}[Puissance d'une grammaire]
 	Une grammaire A est plus puissante qu'une B si on peut définir plus 
-	de langage avec A qu'avec B
+	de langages avec A qu'avec B.
 \end{mydef}
 
 On peut aussi faire correspondre chaque type de grammaire avec un type de 
@@ -1663,8 +1663,8 @@ calcul permettant de reconnaitre un langage de cette grammaire.
 	\hline
 \end{tabular}
 
-Chaque type de grammaire est définie par une règle de production $A\rightarrow 
-B$. Mais, il y a des conditions différentes sur A et B selon le type de 
+Chaque type de grammaire est défini par une règle de production A $\rightarrow 
+$ B. Il y a des conditions différentes sur A et B selon le type de 
 grammaire.
 % subsubsection hi_rarchie_de_chomsky (end)
 
@@ -1677,22 +1677,22 @@ grammaire.
 
 \paragraph{Conditions :}
 \begin{itemize}
-	\item  $\omega \in \sum^*$ c'est à dire $\omega$ est une chaîne de symbole non 
-	terminal. 
-	\item A et B sont des symboles non terminaux
+	\item  $\omega \in \Sigma^*$, c'est-à-dire $\omega$ est une chaîne de symboles 
+	terminaux. 
+	\item A et B sont des symboles non terminaux.
 \end{itemize}
 
 \begin{myexem}
 	$S \rightarrow abS$ \\
 	$S \rightarrow \epsilon$ \\
 	Cette grammaire définit différents langages, par exemple $L1 = 
-	\{(ab)^n|n \geq 0\}$. Ce langage peut-être aussi défini par une expression 
-	régulière.
+	\{(ab)^n \ | \ n \geq 0\}$. Ce langage peut-être aussi défini par une expression 
+	régulière : $L1 = (ab)^*$.
 \end{myexem}
 
 \subsubsection{Grammaires hors contexte}
 Cette grammaire est importante, car il suffit de lui rajouter la portée des 
-variables pour définir la syntaxe d'un langage.
+variables pour définir la syntaxe d'un langage de programmation.
 
 \paragraph{Règle de production :} 
 \begin{itemize}
@@ -1702,7 +1702,7 @@ variables pour définir la syntaxe d'un langage.
 \paragraph{Conditions :}
 
 \begin{itemize}
-	\item  $\beta$ est une chaîne de symbole composé de symboles terminaux
+	\item  $\beta$ est une chaîne de symboles composée de symboles terminaux
 	       	ou non
 	\item A est un symbole non terminal
 \end{itemize}
@@ -1723,7 +1723,8 @@ variables pour définir la syntaxe d'un langage.
 \paragraph{Conditions :}
 \begin{itemize}
 	\item $\alpha$ et $\beta$ sont des chaînes de symboles composées de 
-		symboles terminaux ou non. De plus, $\beta$ contient au moins 
+		symboles terminaux ou non.
+	\item $\beta$ contient au moins 
 		autant de symboles que $\alpha$.
 \end{itemize}
 
@@ -1766,7 +1767,7 @@ d'algorithme ou encore de calcul.
 
 \paragraph{Composition "abstraite" :}
 \begin{description}
-	\item[Ruban] Suite de case potentiellement infinie (des 2 côtés), mais à 
+	\item[Ruban] Suite de cases potentiellement infinie (des 2 côtés), mais à 
 		chaque moment, le ruban nécessaire est fini
 	\item[Tête] Une seule tête, sur une case qui peut écrire et lire la 
 		case sur laquelle elle est
