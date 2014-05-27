@@ -1046,18 +1046,18 @@ $A_2=\{i|\phi_i = f\}$,... (il y a plein d'exemples dans le cours).
 \label{ssub:transformation_de_programmes}
 \begin{mydef}[Transformateur de programme]
 	On peut voir une fonction f: $\N \rightarrow \N$ comme une fonction qui prend 
-	le numéro d'un programme et que retourne le numéro d'un autre programme f: $P 
+	le numéro d'un programme et qui retourne le numéro d'un autre programme f: $P 
 	\rightarrow P$. Donc on peut voir $P_k$, le programme qui calcule f comme un 
 	transformateur de programme. En effet, $P_k$ prend un programme en entrée et 
 	retourne un programme qui peut être différent.
 \end{mydef}
 
 \begin{mytheo}[S-m-n] 
-	\label{S-m-n}Pour tout $m,n \leq 0$, \\
+	\label{S-m-n}Pour tout $m,n \geq 0$, \\
 	il existe une fonction totale calculable $S^m_n : \N^{m+1} \rightarrow 
 	\N$ \\
-	telle que pour tout k,
-	$$ \phi^{(n+m)}_k(x_A,...,x_n,x_{n+1},...,x_{n+m}) = 
+	telle que pour tout $k$,
+	$$ \phi^{(n+m)}_k(x_1,...,x_n,x_{n+1},...,x_{n+m}) = 
 	\phi^{(n)}_{S^n(k,x_{n+1}, ...,x_{n+m})} (x_1,...,x_n)$$
 \end{mytheo}
 
@@ -1071,7 +1071,7 @@ la donner.
 
 \begin{myrem}
 	On peut voir le théorème \ref{S-m-n}, S-m-n, comme : \\
-	Étant donné $m,n \leq 0$\\
+	Étant donné $m,n \geq 0$\\
 	il existe un transformateur de programme, $S^m_n$, qui recevant comme 
 	données : un programme $P_k$ à n+m arguments et m valeurs $v_1,...,v_m$
 	fournit comme résultat: un programme P à n arguments tel que 
@@ -1086,6 +1086,8 @@ la donner.
 \end{myrem}
 TODO Preuve.
 
+\subsection{Théorème du point fixe}
+\label{sub:th_or_me_du_point_fixe}
 \begin{mytheo}[Point fixe] 
 	\label{point-fixe}Soient $n \geq 0$ et f : fonction totale 
 	calculable, il existe k tel que $\phi^{(n)}_k = \phi^{(n)}_{f(k)}$  
