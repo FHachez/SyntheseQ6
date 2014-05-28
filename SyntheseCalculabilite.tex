@@ -1100,43 +1100,54 @@ TODO Démonstration avec les lapins (les 3 lapins qui permettent
 de commencer la démonstration ne sont pas super intuitifs)
 \begin{myrem}
 	Le théorème \ref{point-fixe} n'est pas très intuitif. Mais on peut le 
-	voir comme : quelque soit un transformateur programme T qui calcule f 
+	voir comme : quelque soit un transformateur de programme T qui calcule f 
 	(n'importe quelle fonction totale calculable peut être vu comme un transformateur 
 	de programme), \\
 	il existe deux programmes $P_k$ et $P_j$ tels que 
 	\begin{itemize}
-		\item $P_j$ est la transformation de $P_k$ via T.
-		\item $P_k$ et $P_j$ calcule la \textbf{même} fonction
+		\item $P_j$ est la transformation de $P_k$ via T,
+		\item $P_k$ et $P_j$ calcule la \textbf{même} fonction.
 	\end{itemize}
 \end{myrem}
 
 \paragraph{Démonstration :}
 Pour commencer, on va poser 3 "lapins" :
 \begin{enumerate}
-	\item $h(u,v) =$
-		\begin{tabular}{c}
-			$\phi_{\phi_{u(u)}}(v)$ si $\phi(u)\neq \perp$\\
-			$\perp$ sinon
-		\end{tabular}\\
-		h est calculable 
+	%\item $h(u,v) =$
+	%	\begin{tabular}{c}
+	%		$\phi_{\phi_{u(u)}}(v)$ si $\phi(u)\neq \perp$\\
+	%		$\perp$ sinon
+	%	\end{tabular}\\
+		
+	\item
+	$ h(u,v) = \left\{
+	\begin{array}{l l}
+		\phi_{\phi_{u(u)}}(v) & \quad \text{si $\phi_u(u)\neq \bot$}\\
+    	\bot & \quad \text{sinon}
+	\end{array} \right.$
+		
+		$h$ est calculable 
 		\begin{myrem}
-			on peut créer un programme qui calcule h
+			on peut créer un programme qui calcule $h$
 \begin{lstlisting}
-a= P_u(u)
+a = P_u(u)
 return P_a(v)
 \end{lstlisting}
 		\end{myrem}
-	\item $h(u,v)=\phi_{S(u)}(v)$ S est totale calculable ce qui implique
-		qu'on à la propriété S (propriété S-m-n affaiblie).
-	\item $g(u)=f(S(u))$ g est totale calculable de par S et f (f
+		
+	\item $h(u,v)=\phi_{S(u)}(v)$\\
+	 $S$ est totale calculable, on a donc la propriété S (propriété S-m-n affaiblie).
+	 
+	\item $g(u)=f(S(u))$\\
+	 $g$ est totale calculable car $S$ et $f$ le sont ($f$
 		est la fonction donnée dans le théorème).
-		\[ \exists k' \land \phi_{k'} =g(u)=f(S(u)) \]
+		\[ \exists k' \cdot \phi_{k'}(u) =g(u)=f(S(u)) \]
 \end{enumerate}
 On a que $k'$ est une constante et par le lapin 2 :
 \[h(k',v) = \phi_{S(k')}(v)\]
 Par le lapin 1 et, car $g=\phi_k'$ est une fonction totale calculable, on a :
 \[h(k',v) = \phi_{\phi_k'(k')}(v)\]
-Par le lapin 3 on a que $\phi_k'(u) = g(u)=f(S(u)$ donc :
+Par le lapin 3 on a que $\phi_k'(u) = g(u)=f(S(u))$ donc :
 \[h(k',v) = \phi_{f(S(k'))}(v)\]
 C'est à dire :
 \[ \phi_{f(S(k'))}(v) =\phi_{\phi_k'(k')}(v) \]
@@ -1148,31 +1159,36 @@ Ce qui conclut notre démonstration.
 	On peut démontrer que K n'est pas récursif.\\
 	Posons 3 fonctions :
 	\begin{itemize}
-		\item $\phi_i(x) = \perp \ \forall x$
-		\item $\phi_j(x) = x \ \forall x$
-		\item $f(x) = $ 
-			\begin{tabular}{l}
-				i si $x\in K$\\
-				j si $x\notin K$\\
-			\end{tabular}
+		\item $\phi_i(x) = \bot \quad \forall \ x$
+		\item $\phi_j(x) = x \quad \forall  \ x$
+		%\item $f(x) = $ 
+		%	\begin{tabular}{l}
+		%		i si $x\in K$\\
+		%		j si $x\notin K$\\
+		%	\end{tabular}
+		\item $ f(x) = \left\{
+		\begin{array}{l l}
+			i & \quad \text{si $x\in$ K}\\
+    		j & \quad \text{si $x\notin$ K}
+		\end{array} \right.$
 	\end{itemize}
-	f décide K. Supposons que f est totale calculable \\
-	$ \Rightarrow \exists k$ tel que $\phi_k = \phi_f(k)$ (Par le théorème
-du point fixe)
+	$f$ décide K. Supposons que $f$ est totale calculable. \\
+	$ \Rightarrow \exists \ k$ tel que $\phi_k = \phi_f(k)$ (par le théorème
+du point fixe)\\
 	On a alors 2 cas possibles :
 	\begin{itemize}
-		\item Soit $\phi_k(k)=\perp$
+		\item Soit $\phi_k(k)=\bot$
 			\[ \Rightarrow k \notin K\]
 			\[ \Rightarrow f(k)=j \notin K\]
 			\[ \Rightarrow \phi_k = \phi_j \]
-			\[ \Rightarrow \phi_k(k) \neq \perp\]
+			\[ \Rightarrow \phi_k(k) \neq \bot\]
 			Ce qui implique une contradiction
-		\item Soit $\phi_k(k)\notin \perp$
+		\item Soit $\phi_k(k) \neq \bot$
 			\[ \Rightarrow k \in K\]
-			\[ \Rightarrow f(k)=j \in K\]
-			\[ \Rightarrow \phi_k = \phi_j \]
-			\[ \Rightarrow \phi_k(k) = \perp\]
-			Ce qui implique une contradiction
+			\[ \Rightarrow f(k)=i \in K\]
+			\[ \Rightarrow \phi_k = \phi_i \]
+			\[ \Rightarrow \phi_k(k) = \bot\]
+			Ce qui implique une contradiction.
 	\end{itemize}
 	Donc il n'existe pas de fonction calculable qui décide K $ \Rightarrow$ K n'est pas récursif.
 \end{myrem}
@@ -1186,19 +1202,20 @@ du point fixe)
 		\item U = ${u_1,u_2,...,u_k}$
 		\item V = ${v_1,v_2,...,v_k}$
 	\end{itemize}
-	Le problème consiste à décider s’ il existe une suite d'entiers 
+	Le problème consiste à décider s’il existe une suite d'entiers 
 	$i_1,i_2,..,i_n$ telle que les mots $u_{i1},u_{i_2},...,u_{in}$ et 
-	$v_{i1},v_{i_2},...,v_{in}$ soient \textbf{identique} \\
+	$v_{i1},v_{i_2},...,v_{in}$ soient \textbf{identiques}. \\
 	Pour démontrer l'indécidabilité de ce problème, Post à introduit un 
 	nouveau modèle, la machine de Post qui ressemble à une machine de Turing.
 \end{mydef}
 
-\begin{mydef}[Problème des équations diophantines:] Décider si une équation 
+% en français, on écrit "diophantiennes", an anglais "diophantines"
+\begin{mydef}[Problème des équations diophantiennes] Décider si une équation 
 	polynomiale de degré supérieur ou égal à 4 possède une solution entière.
 \end{mydef}
 
 Il n'existe pas d'algorithme résolvant ces problèmes. Il existe beaucoup
-d'autres problèmes calculables. Il y a d'autres exemples sur les grammaires dans le cours.
+d'autres problèmes non calculables. Il y a d'autres exemples sur les grammaires dans le cours.
 % subsection autres_probl_mes_non_calculable (end)
 
 \subsection{Nombres calculables}
@@ -1206,13 +1223,13 @@ d'autres problèmes calculables. Il y a d'autres exemples sur les grammaires dan
 
 \begin{mydef}[Nombre réel]
 	Un nombre réel est défini comme la limite d'une suite (convergente) de 
-	nombres rationnels: $\lim_{n \rightarrow \inf} |x-s(n)| = 0 $ ou s’est 
+	nombres rationnels: $\lim_{n \rightarrow +\infty} |x-s(n)| = 0 $ ou s’est 
 	une fonction totale
 \end{mydef}
 
 \begin{mydef}[Nombre réel calculable]
-	Un nombre réel x est calculable s’ il existe une fonction totale 
-	calculable s tel que $\lim_{n \rightarrow \inf} |x-s(n)| =\leq 2^{-n}$
+	Un nombre réel x est calculable s’il existe une fonction totale 
+	calculable $s$ tel que $\lim_{n \rightarrow +\infty} |x-s(n)| \leq 2^{-n}$
 \end{mydef}
 
 \begin{myrem}
@@ -1222,12 +1239,12 @@ d'autres problèmes calculables. Il y a d'autres exemples sur les grammaires dan
 \end{myrem}
 
 \begin{myprop}
-	L'ensemble des nombres réels calculable est énumérable, car on peut énumérer les 
+	L'ensemble des nombres réels calculables est énumérable, car on peut énumérer les 
 	fonctions totales calculables.	
 \end{myprop}
 
 \begin{myprop}
-	Il existe des nombres réels non calculables
+	Il existe des nombres réels non calculables.
 \end{myprop}
 
 \begin{myprop}
@@ -1241,7 +1258,7 @@ d'autres problèmes calculables. Il y a d'autres exemples sur les grammaires dan
 
 Le théorème S-m-n permet de démontrer le théorème du point fixe.
 Le théorème du point fixe est un résultat central de la calculabilité. Il 
-implique le théorème de rice, la non-récursivité de K et la non-calculabilité 
+implique le théorème de Rice, la non-récursivité de K et la non-calculabilité 
 de la fonction halt.
 
 % subsection conclusion (end)
@@ -1283,7 +1300,7 @@ On va voir les modèles de calcul suivant :
 	\item Lambda calcul
 	\item Fonction récursive
 \end{itemize}
-Mais, il en existe beaucoup d'autres.
+Mais il en existe beaucoup d'autres.
 % subsubsection mod_le_de_calcul (end)
 
 \subsubsection{Modèle de langage}
@@ -1305,9 +1322,9 @@ programmation comme modèle de la calculabilité, il faut définir :
 	\item Convention de représentation d'une fonction par un programme
 \end{itemize}
 
-On se pose de la question est-ce qu'il y a des langages plus puissants que 
-d'autre. On va montrer que tous les langages complets sont équivalents. (Et la 
-plus par des langages sont complet).
+On se pose la question de savoir s'il y a des langages plus puissants que 
+d'autres. On va montrer que tous les langages complets sont équivalents. (Et la 
+plupart des langages sont complets.)
 
 \paragraph{} Mais, il existe aussi des langages qui ne sont pas complets comme le 
 langage BLOOP (bounded loop).
@@ -1315,7 +1332,7 @@ langage BLOOP (bounded loop).
 \begin{mydef}
 	BLOOP : Sous ensemble de Java qui ne calcule que des fonctions totales. 
 	(pas de boucle while, boucle for mais sans modification du compteur 
-	dans le for, pas de goto, pas de fonctions récursives)
+	dans le for, pas de goto en arrière, pas de fonctions récursives)
 \end{mydef}
 
 BLOOP a donc toutes les propriétés qui découlent du chapitre précédent:
@@ -1324,9 +1341,9 @@ BLOOP a donc toutes les propriétés qui découlent du chapitre précédent:
 	Tous les programmes BLOOP se terminent\\
 	$ \Leftrightarrow$ BLOOP ne calcule que des fonctions totales\\
 	$ \Leftrightarrow$ BLOOP ne calcule pas toutes les fonctions totales\\
-	$ \Leftrightarrow$ il existe un compilateur des programmes BLOOP (JAVA)\\
+	$ \Leftrightarrow$ il existe un compilateur des programmes BLOOP (Java)\\
 	$ \Leftrightarrow$ l'interpreteur est une fonction totale non calculable en
-BLOOP (Hoare Allison)\\
+BLOOP (Hoare-Allison)\\
 	$ \Leftrightarrow$ BLOOP n'est pas un modèle de la calculabilité\\
 \end{myprop}
 
@@ -1336,22 +1353,24 @@ BLOOP (Hoare Allison)\\
 \label{ssub:langague_de_programmation_non_d_terministe}
 
 \begin{myrem}
-	Il est difficile d'avoir de l'intuition sur cette partie. Mais on peut 
+	Il est difficile d'avoir de l'intuition sur cette partie. On peut 
 	voir un programme ND comme un programme qui produit des résultats 
-	différents d'une exécution à l'autre, mais concernant la complexité on 
-	considère qu'il trouve directement la solution. C'est pourquoi on ne 
-	considère que la profondeur de l'arbre pour la complexité.
+	différents d'une exécution à l'autre. On peut représenter toutes 
+	les exécutions possibles du programmes sous forme de branches d'un
+	arbre. Pour analyser la complexité, on ne 
+	considère que la profondeur de l'arbre (longueur de la branche
+	la plus longue).
 \end{myrem}
 
-On va un introduire un nouveau langage ND-Pascal qui est le langage java 
-auquel on ajoute le non-déterminisme. C'est à dire on ajout la fonction 
-prédéfinie $choose(n)$. Celle-ci retourne un entier compris entre 0 et n et elle 
+On va un introduire un nouveau langage ND-Pascal qui est le langage Java 
+auquel on ajoute le non-déterminisme sous la forme d'une fonction 
+prédéfinie $choose(n)$. Celle-ci retourne un entier compris entre $0$ et $n$ et elle 
 est non déterministe.
 
 On peut voir un programme ND de 2 manières différentes :
 \begin{enumerate}
 	\item Il calcule une relation plutôt qu'une fonction
-	\item Le voir comme un moyen de décider si un élément appartient à un 
+	\item C'est un moyen de décider si un élément appartient à un 
 		ensemble
 \end{enumerate}
 On considère l'approche 2 en calculabilité.
@@ -1359,8 +1378,8 @@ On considère l'approche 2 en calculabilité.
 \begin{mydef}[ND-récursif]
 	Un ensemble $A \subseteq \N$ est ND-récursif s’il existe un 
 	ND-programme tel que lorsqu'il reçoit comme donnée n'importe quel nombre 
-	naturel x \\
-	\begin{tabular}{c}
+	naturel $x$ \\
+	\begin{tabular}{l}
 	si $x \in A$ alors il existe une exécution fournissant tôt ou tard 
 	comme résultat 1 \\
 	si $x \notin A$ alors toutes les exécutions fournissent tôt ou tard 
@@ -1371,7 +1390,7 @@ On considère l'approche 2 en calculabilité.
 \begin{mydef}[ND-récursivement énumérable]
 	Un ensemble $A \subseteq \N$ est ND-récursivement énumérable s’il existe un 
 	ND-programme tel que lorsqu'il reçoit comme donnée n'importe quel nombre 
-	naturel x
+	naturel $x$ \\
 	\begin{tabular}{l}
 	si $x \in A$ alors il existe une exécution fournissant tôt ou tard 
 	comme résultat 1 \\
@@ -1399,19 +1418,19 @@ On considère l'approche 2 en calculabilité.
 
 \paragraph{Objectif :} Décider si un mot donné appartient ou non à un langage.
 
-\paragraph{Utilisation :} Utiliser dans les interfaces avec les humains par 
-exemple, les distributeurs.
+\paragraph{Utilisation :} Utilisé dans les interfaces pour les humains (par 
+exemple, les distributeurs).
 
 \subsubsection{Modèles des automates finis}
 \label{ssub:mod_les_des_automates_finis}
 Un automate fini est composé de :
 
 \begin{itemize}
-	\item $\sum$ : ensemble fini de symboles
+	\item $\Sigma$ : ensemble fini de symboles
 	\item $S$ : ensemble fini d'états
 	\item $s_0 \in S$ : état initial
-	\item $A \subseteq S$ : ensemble des états acceptant
-	\item $\delta$: $S$x$\sum \rightarrow S$ : fonction de transition
+	\item $A \subseteq S$ : ensemble des états acceptants
+	\item $\delta: S \times \Sigma \rightarrow S$ : fonction de transition
 \end{itemize}
 
 \begin{myrem}
@@ -1436,20 +1455,20 @@ Un automate fini est composé de :
 \end{myrem}
 
 \begin{myprop}
-	Un automate fini défini un ensemble récursif de mots $=\{m|m$ est 
+	Un automate fini définit un ensemble récursif de mots $=\{m \ |\ m$ est 
 		accepté par FA$\}$
 \end{myprop}
 
 \begin{myprop}
 	Certains ensembles récursifs ne peuvent pas être reconnus par un 
-	automate fini. Par exemple $L = \{ a^n b^n | n\geq 0\}$ (il me semble que 
+	automate fini. Par exemple $L = \{ a^n b^n \ | \ n\geq 0\}$ (il me semble que 
 	c'est par ce que ça nécessiterait un nombre infini d'états)
 \end{myprop}
 
 \begin{myprop}
 	L'interpréteur des automates finis est calculable, mais ne peut pas être 
 	représenté par un automate fini, car ce n'est pas un \textbf{modèle 
-	complet} de la calculabilité (Hoare Allison)
+	complet} de la calculabilité (Hoare-Allison)
 \end{myprop}
 
 \begin{mydef}[Langage régulier] est un langage défini par une expression 
@@ -1457,15 +1476,19 @@ Un automate fini est composé de :
 \end{mydef}
 
 \begin{mydef}[Expression régulière] 
-       	Dans le cours la syntaxe d'une expression régulière est la suivante :
-	comme syntaxe, "+" pour signifié ou, "." pour signifier la concaténation, "*" pour la 
-	fermeture (???) et "()" pour la répétition.
+       	Dans le cours, la syntaxe d'une expression régulière est la suivante :
+	\begin{description}
+		\item[+] ou
+		\item[.] concaténation
+		\item[*] fermeture de Kleene\footnote{définit un groupe qui existe zéro, une ou plusieurs fois}
+		\item[( )] répétition
+	\end{description}
 \end{mydef}
 % subsubsection mod_les_des_automates_finis (end)
 
-\subsubsection{Automate fini ND}
+\subsubsection{Extension des automates finis}
 \label{ssub:automate_fini_nd}
-On étend le modèle en permettant d'avoir plusieurs transitions possibles pour 
+\paragraph{NDFA} On étend le modèle en permettant d'avoir plusieurs transitions possibles pour 
 une paire <état,symbole>. Ce qui implique que plusieurs exécutions sont 
 possibles. On a donc plus une fonction de transition mais on a maintenant une
 relation de transition.
@@ -1473,7 +1496,7 @@ relation de transition.
 \paragraph{} De même que pour un ND programme, un mot est accepté par un NDFA 
 s’il existe au moins une exécution ou l'état final est acceptant. Dans l'autre 
 sens, un 
-mot n'est pas accepté si toute exécution ne se termine pas avec l'état final 
+mot n'est pas accepté si aucune exécution ne se termine avec l'état final 
 acceptant.
 
 \begin{myprop}
@@ -1482,10 +1505,10 @@ acceptant.
 \end{myprop}
 
 \begin{myprop}
-	Un NDFA définit un ensemble récursif de mots
+	Un NDFA définit un ensemble récursif de mots.
 \end{myprop}
 
-\paragraph{Ajout de transitions vides $\epsilon$} on peut encore étendre le modèle NDFA en 
+\paragraph{Ajout de transitions vides $\epsilon$} On peut encore étendre le modèle NDFA en 
 rajoutant une possibilité de transition sans lire de symbole (transition 
 spontanée). Ça a la même puissance et les mêmes propriétés qu'un NDFA.
 
@@ -1505,24 +1528,24 @@ Les différences principales sont :
 
 \paragraph{Objectif :} Décider si le mot donné appartient ou non à un langage.
 
-\paragraph{Utilisation :} Utiliser dans les compilateurs
+\paragraph{Utilisation :} Utilisé dans les compilateurs.
 
 \paragraph{Composition :}
 On rajoute $\Gamma$ et on change la fonction de transition en une nouvelle 
 relation de transition.
 \begin{itemize}
-	\item $\sum$ : ensemble fini de symboles d'entrée
+	\item $\Sigma$ : ensemble fini de symboles d'entrée
 	\item $\Gamma$ : ensemble fini de symboles de pile
 	\item $S$ : ensemble fini d'états
 	\item $s_0 \in S$ : état initial
-	\item $A \subseteq S$ : ensemble des états acceptant
-	\item $\Delta \subset Sx\times \sum \times \Gamma \times S \times 
+	\item $A \subseteq S$ : ensemble des états acceptants
+	\item $\Delta \subset S \times \Sigma \times \Gamma \times S \times 
 		\Gamma^*$ : relation de transition (finie)
 \end{itemize}
 
 \begin{myprop}
-	Tout comme NDFA, un PDA définit un ensemble récursif de mots (langage 
-	récursif)
+	Tout comme un NDFA, un PDA définit un ensemble récursif de mots (langage 
+	récursif).
 \end{myprop}
 
 \paragraph{Convention :} 
@@ -1532,8 +1555,8 @@ relation de transition.
 		transition (symbole "vide")
 	\item A, B / C : A est le symbole lu, B est le symbole au 
 		sommet de la pile et C est ce qui va remplacer le 
-		sommet de la pile (peut-être un symbole x et B pour 
-		rajouter x sur la pile, $\epsilon$ pour retirer le sommet de la pile, 
+		sommet de la pile (peut-être un xB pour 
+		rajouter x sur la pile, $\epsilon$ pour retirer B du sommet de la pile, 
 		ou juste B pour ne pas changer le sommet)
 \end{itemize}
 
@@ -1548,8 +1571,9 @@ relation de transition.
 \end{myprop}
 
 \begin{myprop}
-	Ce n'est pas un modèle complet de la calculabilité donc par Hoare 
-	Allison, l'interpréteur n'est pas calculable dans le modèle
+	Ce n'est pas un modèle complet de la calculabilité donc par Hoare-
+	Allison, l'interpréteur n'est pas calculable dans le modèle.
+	% Lena : pas sûre du sens de l'implication
 \end{myprop}
 
 % subsection automate_pile (end)
@@ -1561,54 +1585,54 @@ relation de transition.
 Définition d'un langage (ensemble de mots) et à partir de la grammaire on peut 
 générer/dériver les mots du langage.
 
-\paragraph{Utilisation :} Utilisé pour la définition de langage de 
+\paragraph{Utilisation :} Utilisé pour la définition de langages de 
 programmation, pour l'analyse du langage naturel...
 
 \paragraph{Composition du modèle :}
 
 \begin{itemize}
-	\item $\sum$ : alphabet
-	\item éléments de $\sum$ sont des symboles terminaux
+	\item $\Sigma$ : alphabet
+	\item les éléments de $\Sigma$ sont des symboles terminaux
 	\item autres symboles utilisés durant la dérivation : symboles non 
 		terminaux (A,B, ..., <dig>,..)
 	\item S : point de départ de la dérivation (symbole non terminal)
 \end{itemize}
 
 \begin{mydef}[Règle de production]
-	On appelle un ensemble de règles de dérivation des règles de production
+	On appelle un ensemble de règles de dérivation des règles de production.
 \end{mydef}
 
 \begin{myexem}
 	\begin{itemize}
-		\item $\sum ={0,1,2}$ 
+		\item $\Sigma ={0,1,2}$ 
 		\item $S \rightarrow <Dig>$
 		\item $<Dig> \rightarrow D$
-		\item $D \rightarrow 0 | 1 |2 | \epsilon $ ($\epsilon$ ne signifie rien)
+		\item $D \rightarrow 0 | 1 |2 | \epsilon $ ($\epsilon$ signifie rien)
 	\end{itemize}
 \end{myexem}
 TODO Exemple littéraux real en Java
 
-\begin{mydef}[Dériver] c'est appliquer des règles de la grammaire pour vérifier 
-	si une chaîne de symbole appartient au langage (on part d'une chaîne de symbole 
+\begin{mydef}[Dériver] Appliquer des règles de la grammaire pour vérifier 
+	si une chaîne de symbole appartient au langage (on part d'une chaîne de symboles 
 	et on vérifie les règles sur celle-ci).
 \end{mydef}
 
-\begin{mydef}[Inférer] c'est une dérivation dans "le sens contraire", 
+\begin{mydef}[Inférer] Dérivation dans "le sens contraire", 
 	c'est-à-dire, on part des règles de grammaire et on génère une chaîne 
 	de symboles.
 \end{mydef}
 
 \begin{mydef}[Arbre syntaxique]
 	Un arbre syntaxique permet de représenter la dérivation, chaque noeud 
-	correspond à un symbole terminal ou non. Et les arêtes correspondent à 
-	l'application d'une règle. Il y a plusieurs noeuds enfants si la règle 
+	correspond à un symbole terminal ou non. Les arêtes correspondent à 
+	l'application d'une règle. Il y a plusieurs nœuds enfants si la règle 
 	"génère" plusieurs symboles.
 \end{mydef}
 
 \begin{myprop}
-	On peut dériver de plusieurs façons équivalente, leftmost (on dérive 
+	On peut dériver de plusieurs façons équivalentes, leftmost (on dérive 
 	toujours le plus à gauche d'abord), rightmost (contraire de leftmost) 
-	ou  aucun des deux
+	ou  aucun des deux.
 \end{myprop}
 
 \subsubsection{Hiérarchie de Chomsky}
@@ -1619,7 +1643,7 @@ leur "puissance".
 
 \begin{mydef}[Puissance d'une grammaire]
 	Une grammaire A est plus puissante qu'une B si on peut définir plus 
-	de langage avec A qu'avec B
+	de langages avec A qu'avec B.
 \end{mydef}
 
 On peut aussi faire correspondre chaque type de grammaire avec un type de 
@@ -1639,8 +1663,8 @@ calcul permettant de reconnaitre un langage de cette grammaire.
 	\hline
 \end{tabular}
 
-Chaque type de grammaire est définie par une règle de production $A\rightarrow 
-B$. Mais, il y a des conditions différentes sur A et B selon le type de 
+Chaque type de grammaire est défini par une règle de production A $\rightarrow 
+$ B. Il y a des conditions différentes sur A et B selon le type de 
 grammaire.
 % subsubsection hi_rarchie_de_chomsky (end)
 
@@ -1653,22 +1677,22 @@ grammaire.
 
 \paragraph{Conditions :}
 \begin{itemize}
-	\item  $\omega \in \sum^*$ c'est à dire $\omega$ est une chaîne de symbole non 
-	terminal. 
-	\item A et B sont des symboles non terminaux
+	\item  $\omega \in \Sigma^*$, c'est-à-dire $\omega$ est une chaîne de symboles 
+	terminaux. 
+	\item A et B sont des symboles non terminaux.
 \end{itemize}
 
 \begin{myexem}
 	$S \rightarrow abS$ \\
 	$S \rightarrow \epsilon$ \\
 	Cette grammaire définit différents langages, par exemple $L1 = 
-	\{(ab)^n|n \geq 0\}$. Ce langage peut-être aussi défini par une expression 
-	régulière.
+	\{(ab)^n \ | \ n \geq 0\}$. Ce langage peut-être aussi défini par une expression 
+	régulière : $L1 = (ab)^*$.
 \end{myexem}
 
 \subsubsection{Grammaires hors contexte}
 Cette grammaire est importante, car il suffit de lui rajouter la portée des 
-variables pour définir la syntaxe d'un langage.
+variables pour définir la syntaxe d'un langage de programmation.
 
 \paragraph{Règle de production :} 
 \begin{itemize}
@@ -1678,7 +1702,7 @@ variables pour définir la syntaxe d'un langage.
 \paragraph{Conditions :}
 
 \begin{itemize}
-	\item  $\beta$ est une chaîne de symbole composé de symboles terminaux
+	\item  $\beta$ est une chaîne de symboles composée de symboles terminaux
 	       	ou non
 	\item A est un symbole non terminal
 \end{itemize}
@@ -1699,7 +1723,8 @@ variables pour définir la syntaxe d'un langage.
 \paragraph{Conditions :}
 \begin{itemize}
 	\item $\alpha$ et $\beta$ sont des chaînes de symboles composées de 
-		symboles terminaux ou non. De plus, $\beta$ contient au moins 
+		symboles terminaux ou non.
+	\item $\beta$ contient au moins 
 		autant de symboles que $\alpha$.
 \end{itemize}
 
@@ -1742,7 +1767,7 @@ d'algorithme ou encore de calcul.
 
 \paragraph{Composition "abstraite" :}
 \begin{description}
-	\item[Ruban] Suite de case potentiellement infinie (des 2 côtés), mais à 
+	\item[Ruban] Suite de cases potentiellement infinie (des 2 côtés), mais à 
 		chaque moment, le ruban nécessaire est fini
 	\item[Tête] Une seule tête, sur une case qui peut écrire et lire la 
 		case sur laquelle elle est
