@@ -218,10 +218,10 @@ Notation :
 	\item une chaîne de caractère ou un mot : séquence FINIE de symboles. 
 		abceced, 010101101
 	\item chaîne de caractères vide : $\epsilon$
-	\item un alphabet $\sum$ est un ensemble de symboles. $\sum = \{1, 2\}$
+	\item un alphabet $\Sigma$ est un ensemble de symboles. $\Sigma = \{1, 2\}$
 	\item un langage est un ensemble de mots constitués de symboles d'un alphabet
 		donné.
-	\item ensemble de tous les mots possibles sur l'alphabet $\sum$ : $\sum ^*$
+	\item ensemble de tous les mots possibles sur l'alphabet $\Sigma$ : $\Sigma ^*$
 \end{itemize}
 
 % subsubsection Langages (end)
@@ -1071,38 +1071,41 @@ $A_2=\{i|\phi_i = f\}$,... (il y a plein d'exemples dans le cours).
 	\N$ \\
 	telle que pour tout $k$ ($\phi_k$ est calculable),
 	$$ \phi^{(n+m)}_k(x_1,...,x_n,x_{n+1},...,x_{n+m}) = 
-	\phi^{(n)}_{S^n(k,x_{n+1}, ...,x_{n+m})} (x_1,...,x_n)$$
+	\phi^{(n)}_{S^m_n(k,x_{n+1}, ...,x_{n+m})} (x_1,...,x_n)$$
 \end{mytheo}
 
-\begin{mytheo}[S-m-n]
-	On va montrer comment construire un programme qui calcule 
-	$S^n(k,x_{n+1}, ...,x_{n+m})$.\\
-	Tout d'abord, comme $\phi_k$ est calculable, il existe : $P_k(x_1,x_2,...,x_{n+m})$.\\
+\paragraph{Démonstration}
+	Pour prouver que $S^m_n$ existe, on va montrer comment construire un programme qui 
+	calcule  $S^m_n(k,x_{n+1}, ...,x_{n+m})$.\\
+	Tout d'abord, comme $\phi_k$ est calculable, il existe un programme  
+	$P_k(x_1,x_2,...,x_{n+m})$.\\
 	On peut donc construire un programme $Q(x_1,...,x_n)$ qui calcule 
 	$P_k(x_1,x_2,...,x_{n+m})$.\\
-	Notre programme qui calcule $S^n(k,x_{n+1}, ...,x_{n+m})$ n'a plus 
-	qu'a retourner le numéro du programme Q.\\
-       	En résumé, $S^n(k,x_{n+1},
-	...,x_{n+m})$ = 
+	$x_1,...,x_n$ restent des arguments du programme,
+	tandis que $x_{n+1},...,x_{n+m}$ deviennent des paramètres.\\
+	Notre programme qui calcule $S^m_n(k,x_{n+1}, ...,x_{n+m})$ n'a plus 
+	qu'à retourner le numéro du programme $Q$.\\
+       	En résumé, $S^m_n(k,x_{n+1},
+	...,x_{n+m}) \equiv$
 	\begin{lstlisting}
-construire Q(x1,x2,...,xn) = P(x1,x2,...xn,...,xn+m)
-print le numero de Q
+construire Q(x1,x2,...,xn) = P_k(x1,x2,...xn,...,xn+m);
+d <- numero du programme Q;
+print(d);
 	\end{lstlisting}
-\end{mytheo}
 
 \begin{mytheo}[S]
 	C'est la propriété S-m-n affaiblie.
-	\[ \forall k \exists S \text{(totale calculable)} : \phi_k(x,y)=\phi_{S(x)}(y)\]
+	\[ \forall \ k \ \exists \ S \ \text{(totale calculable)} : \phi_k(x,y)=\phi_{S(x)}(y)\]
 	% Lena : j'ai plutôt ceci (c'est équivalent)
 	% $$ \forall \text{ programme } P, \exists S \text{ totale calculable }:
 	% P(x,y) \equiv \left[S(y) \right](x) $$
 \end{mytheo}
 
-\begin{mytheo}[S]
+\paragraph{Démonstration}
 	Par le théorème \ref{S-m-n} (S-m-n),
-	\[ \exists S \text{ (totale calculable) } \forall k : \phi_k(x,y)=\phi_{S(k,x)}(y)\]
-	\[ \forall k \exists S \text{ (totale calculable) } : \phi_k(x,y)=\phi_{S(k,x)}(y)\]
-	\[ \Rightarrow \forall k \exists S : \phi_k(x,y) =\phi_{S(k,x)}(y) \]
+	\[ \exists \ S \text{ (totale calculable) } \forall \ k : \phi_k(x,y)=\phi_{S(k,x)}(y)\]
+	\[ \forall \ k \ \exists \ S \ \text{ (totale calculable) } : \phi_k(x,y)=\phi_{S(k,x)}(y)\]
+	\[ \Rightarrow \forall \ k \ \exists \ S : \phi_k(x,y) =\phi_{S(k,x)}(y) \]
 	\begin{align}
 		\Rightarrow S(k,x) &= \phi_{S}(k,x) \text{ (S est totale calculable)}\\
 		&= \phi_{S'(S,k)}(x) \text{ (théorème du point fixe et S-m-n)}\\
@@ -1110,17 +1113,15 @@ print le numero de Q
 		&= \phi_{S'(S,k)}(x) \text{ (théorème du point fixe et S-m-n)}\\
 		&= S"(x)\text{ (théorème du point fixe et S-m-n)}
 	\end{align}
-	\[ \Rightarrow \forall k \exists S" \text{(totale calculable)} :
+	\[ \Rightarrow \forall \ k \ \exists \ S" \ \text{(totale calculable)} :
        	\phi_k(x,y)=\phi_{S"(x)}(y)\]
-	
-\end{mytheo}
 
 \begin{myrem}
 	On peut voir le théorème \ref{S-m-n}, S-m-n, comme : \\
 	Étant donné $m,n \geq 0$\\
 	il existe un transformateur de programme, $S^m_n$, qui recevant comme 
 	données : un programme $P_k$ à n+m arguments et m valeurs $v_1,...,v_m$
-	fournit comme résultat: un programme P à n arguments tel que 
+	fournit comme résultat: un programme $P$ à n arguments tel que 
 	$P(x_1,...,x_n)$ calcule la même fonction que 
 	$P_k(x_1,...,x_n,,v_1,...,v_m)$ (Ce programme effectue une projection)
 \end{myrem}
@@ -1139,8 +1140,8 @@ TODO Preuve.
 	calculable, il existe k tel que $\phi^{(n)}_k = \phi^{(n)}_{f(k)}$  
 \end{mytheo}
 
-TODO Démonstration avec les lapins (les 3 lapins qui permettent
-de commencer la démonstration ne sont pas super intuitifs)
+%TODO Démonstration avec les lapins (les 3 lapins qui permettent
+%de commencer la démonstration ne sont pas super intuitifs)
 \begin{myrem}
 	Le théorème \ref{point-fixe} n'est pas très intuitif. Mais on peut le 
 	voir comme : quelque soit un transformateur de programme T qui calcule f 
@@ -1240,7 +1241,7 @@ du point fixe)\\
 \label{sub:autres_probl_mes_non_calculable}
 
 \begin{mydef}[Problème de correspondance de Post] Soit deux listes U et V 
-	de mots non vides sur un alphabet $\sum$ : 
+	de mots non vides sur un alphabet $\Sigma$ : 
 	\begin{itemize}
 		\item U = ${u_1,u_2,...,u_k}$
 		\item V = ${v_1,v_2,...,v_k}$
@@ -1820,15 +1821,15 @@ d'algorithme ou encore de calcul.
 \subsubsection{Contrôle}
 \label{ssub:contr_le}
 Le contrôleur est composé d'un nombre d'états fini dont un état initial et un 
-final. Il contient un programme (des instructions)
+final. Il contient un programme (des instructions).
 
 \begin{mydef}[Une instruction] est sous la forme 
-	$$<q,c> \rightarrow <new_q, Mouv, new_c>$$
+	$$<q,c> \quad \rightarrow \quad <new_q, Mouv, new_c>$$
 	\begin{itemize}
-		\item q : état courant
-		\item c : symbole sous la tête de lecture
+		\item $q$ : état courant
+		\item $c$ : symbole sous la tête de lecture
 		\item $new_c$ : symbole à écrire sous la tête de lecture
-		\item Mouv : G ou D, mouvement que la tête de lecture doit faire
+		\item $Mouv$ : G ou D, mouvement que la tête de lecture doit faire
 		\item $new_q$ : le nouvel état
 	\end{itemize}
 \end{mydef}
@@ -1838,54 +1839,52 @@ final. Il contient un programme (des instructions)
 \subsubsection{Modélisation}
 Pour définir une machine de Turing, il faut :
 \begin{itemize}
-	\item $\sum$ : ensemble fini de symboles d'entrée
-	\item $\Gamma$ : ensemble fini de symboles de ruban.
+	\item $\Sigma$ : ensemble fini de symboles d'entrée
+	\item $\Gamma$ : ensemble fini de symboles de ruban
 	\item $S$ : ensemble fini d'états
 	\item $s_0 \in S$ : état initial
-	\item $stop \in S$ : état arrêt
-	\item $A \subseteq S$ : ensemble des états acceptant
-	\item $\delta : Sx\times \times \Gamma \rightarrow S \times \{G,D\} 
+	\item $stop \in S$ : état d'arrêt
+	\item $\delta : S \times \Gamma \rightarrow S \times \{G,D\} 
 	\times \Gamma$ : fonction de transition (finie)
 \end{itemize}
-Il faut aussi que $\sum \subset \Gamma$ et que B $\in \Gamma$ mais que B 
-$\notin \sum$
+Il faut aussi que $\Sigma \subset \Gamma$ et que B $\in \Gamma$ mais que B 
+$\notin \Sigma$
 
 \begin{mydef}
-		B correspond au symbole blanc
+		B correspond au symbole blanc.
 \end{mydef}
 
 \subsubsection{Exécution}
-Au départ il y a juste les données sur le ruban. Sur les autres cases, il y a le 
-symbole B. La tête de lecture se trouve sur la première case. Tant que c'est 
-possible, on applique des instructions. Il y a 2 cas possibles pour l'arrêt soit 
-l'état devient stop. Soit il n'y a plus d'instruction applicable.
+Au départ il y a juste les données d'entrée sur le ruban. Sur les autres cases, il y a 
+le symbole B. La tête de lecture se trouve sur la première case des données. Tant que 
+c'est possible, on applique des instructions. Il y a 2 cas possibles pour l'arrêt: soit 
+l'état devient stop, soit il n'y a plus d'instruction applicable.
 
-\paragraph{} Le résultat est le contenu du ruban à l'état-stop. Si la machine 
-ne s'arrête pas sur l'état-stop alors il n'y a pas de résultat.
+ Le résultat est le contenu du ruban à l'état stop. Si la machine 
+ne s'arrête pas sur l'état stop alors il n'y a pas de résultat.
 
-\begin{mydef}[T-calculable] Une fonction f est T-calculable s’ il existe une machine de Turing qui, 
-	recevant comme donnée n'importe quel nombre entier x fourni tôt ou tard 
-	comme résultat f(x) si celui-ci existe.
+\begin{mydef}[T-calculable] Une fonction $f$ est T-calculable s’ il existe une machine 
+de Turing qui, 
+	recevant comme donnée n'importe quel nombre entier $x$ fourni tôt ou tard 
+	comme résultat $f(x)$ si celui-ci existe.
 \end{mydef}
 
-\begin{mydef}[T-récursif] Soit $A\subseteq \N$, A est T-récursif s’ il existe 
+\begin{mydef}[T-récursif] Soit $A\subseteq \N$, $A$ est T-récursif s’il existe 
 	une machine de Turing qui, recevant comme donnée n'importe quel nombre 
-	naturel x, fourni tôt ou tard comme résultat : 
-	\begin{tabular}{l}
-		1 si $x\in A$ \\
-		0 si $x\notin A$ \\
-	\end{tabular}
+	naturel $x$, fournit tôt ou tard comme résultat : 
+	$ \left\{
+		\begin{array}{l l}
+			1 & \quad \text{si $x\in A$}\\
+    		0 & \quad \text{si $x\notin A$}
+		\end{array} \right.$
 \end{mydef}
 
 \begin{mydef}[T-récursivement énumérable] Soit $A\subseteq \N$, A est 
 	T-récursivement énumérable s’ il existe 
 	une machine de Turing qui, recevant comme donnée n'importe quel nombre 
-	naturel x, fourni tôt ou tard comme résultat : \\
-	\begin{tabular}{l}
-		1 si $x\in A$ \\
-		si $x\notin A$ la machine s'arrête avec un état$\neq$ stop ou 
-		alors, celle-ci boucle\\
-	\end{tabular}
+	naturel $x$, fourni tôt ou tard comme résultat : $ 1 \text{ si } x \in A$.\\
+	Si $x \notin A$, la machine renvoie un résultat $\neq 1$, s'arrête avec un
+	état $\neq stop$ ou boucle.
 \end{mydef}
 
 \subsubsection{Thèse de Church-Turing}
@@ -1904,6 +1903,11 @@ Les points 1, 3 et 5 sont des théorèmes. Les autres sont des thèses.
 \subsubsection{Extension du modèle}
 On peut modifier le modèle pour changer sa puissance et son efficacité.
 
+\begin{mydef}[Puissance d'une MT] La puissance d'une MT se mesure en 
+	fonction du nombre de fonctions qu'elle peut calculer.
+\end{mydef}
+
+
 \begin{mydef}[Efficacité d'une MT] L'efficacité d'une MT se calcule en 
 	fonction du nombre d'instructions à exécuter (on ne tient pas compte de 
 	la taille d'un mot mémoire).
@@ -1911,7 +1915,7 @@ On peut modifier le modèle pour changer sa puissance et son efficacité.
 
 \paragraph{Changer les conventions}
 On peut par exemple permettre de se déplacer de plusieurs cases à la fois ou 
-encore de permettre plusieurs états stop.
+encore de permettre plusieurs états $stop$.
 
 \paragraph{Influence :} 
 \begin{itemize}
@@ -1920,18 +1924,18 @@ encore de permettre plusieurs états stop.
 		exécuter 20 instructions se déplacer à gauche)
 \end{itemize}
 
-\paragraph{Réduire les symboles} par exemple de plus avoir que 0 et 1 comme
-symboles.
+\paragraph{Réduire les symboles} Par exemple, ne plus avoir que 0 et 1 comme
+symboles dans $\Sigma$.
 
 \paragraph{Influence :} 
 \begin{itemize}
 	\item Même puissance
-	\item Même efficacité, car même s’ il y a un facteur logarithmique en 
+	\item Même efficacité, car même s’ il y a un facteur logarithmique, en 
 		calculabilité on le néglige
 \end{itemize}
 
-Limiter le nombre d'états, ça implique qu'il y a seulement un nombre fini de 
-machines de Turing différentes.
+\paragraph{Limiter le nombre d'états} Cela implique qu'il y a seulement un nombre fini 
+de machines de Turing différentes.
 
 \paragraph{Influence :} 
 \begin{itemize}
@@ -1946,13 +1950,14 @@ Ruban unidirectionnel, c'est-à-dire limité d'un coté (à priori à gauche).
 \begin{itemize}
 	\item Même puissance
 	\item Slowdown linéaire : il faut faire plus de déplacement, en 
-		effet, avant les cases étaient numéroté 
-		$-\inf,...-2,-1,0,1,2,...,\inf$, alors que maintenant
-	       	$0,-1,1,-2,2,...,-\inf,\inf$ 
+		effet, avant les cases étaient numérotés 
+		$$-\infty,...,-2,-1,0,1,2,...,+\infty$$
+		alors que maintenant ce sera
+	    $$0,-1,1,-2,2,...,-\infty,+\infty$$
 \end{itemize}
 
-\paragraph{Ruban multicases}C'est-à-dire la tête lis plusieurs cases en parallèle. Ce qui 
-implique que la taille de l'alphabet augmente.
+\paragraph{Ruban multicases} La tête lis plusieurs cases en parallèle, ce qui 
+implique que la taille de l'alphabet augmente ($\Sigma \times \Sigma \times ...$).
 
 \paragraph{Influence :} 
 \begin{itemize}
@@ -1960,12 +1965,16 @@ implique que la taille de l'alphabet augmente.
 	\item Même efficacité
 \end{itemize}
 
-\paragraph{Plusieurs rubans}C'est-à-dire la tête peut se déplacer dans des directions 
-différentes d'un ruban à l'autre. On doit pour ça changer la relation de 
-transition. Elle doit maintenant prendre plusieurs symboles et un état et 
-retourner un état, plusieurs symboles à écrire et plusieurs directions différentes.
-$$<s_1,s_2,...s_n>, E \  \rightarrow \ E', M_1, M_2,..., M_n, D_1, D_2,..., 
-D_n$$
+\paragraph{Plusieurs rubans} Chaque ruban à sa propre tête.
+On doit changer la relation de transition, car un état est défini par les positions
+de toutes les têtes. Le relation doit maintenant prendre l'état ($E$) et plusieurs 
+symboles ($s_1,...,s_n$) et retourner un état ($E'$), plusieurs symboles 
+($s_1',...,s_n'$) à écrire et plusieurs directions différentes, une pour chaque tête 
+($d_1,...,d_n$).
+%$$<s_1,s_2,...s_n>, E \  \rightarrow \ E', M_1, M_2,..., M_n, D_1, D_2,..., D_n$$
+$$ <s_1,...,s_n>, E \ \rightarrow \ E', <s_1',...,s_n'>, <d_1,...,d_n> $$
+% autre proposition (alors il faut changer le texte!) : 
+% $$ \delta : S \times \Gamma^n \ \rightarrow \ S \times \Gamma^n \times \{G,D\}^n $$
 \paragraph{Influence :} 
 \begin{itemize}
 	\item Même puissance
@@ -1974,72 +1983,73 @@ D_n$$
 
 \subsubsection{Machine de Turing non déterministe NDT}
 Tout comme pour les automates non déterministes, on permet plusieurs 
-transitions possibles pour une paire <état, symbole>. Donc maintenant, on a
-plus une fonction de transition mais une relation de transition. Ce qui
-implique qu'il y a plusieurs exécutions possibles.
+transitions possibles pour une paire <état, symbole>. La fonction de transition
+devient une relation de transition, ce qui implique qu'il y a plusieurs
+ exécutions possibles.
 
 \begin{myrem}
-	On utilise les NDT uniquement pour décider un ensemble
+	On utilise les NDT uniquement pour décider un ensemble.
 \end{myrem}
 
 \begin{myrem}
-	Cette partie importante pour la partie concernant la complexité
+	Cette partie est importante pour la partie concernant la complexité.
 \end{myrem}
 
-\begin{mydef}[NDT-récursif] Soit $A\subseteq \N$, A est NDT-récursif s’ il 
+\begin{mydef}[NDT-récursif] Soit $A\subseteq \N$, $A$ est NDT-récursif s'il 
 	existe une ND-machine de Turing telle que lorsqu'elle reçoit comme 
-	donnée n'importe quel nombre naturel x\\
+	donnée n'importe quel nombre naturel $x$:\\
 	\begin{tabular}{l}
 		Si $x\in A$, alors il existe une exécution fournissant tôt ou 
-		tard comme résultat 1\\
+		tard comme résultat 1.\\
 		Si $x\notin A$, alors il existe une exécution fournissant tôt ou 
-		tard comme résultat 0\\
+		tard comme résultat 0.\\
 	\end{tabular}
 \end{mydef}
 
-\begin{mydef}[NDT-récursivement énumérable] Soit $A\subseteq \N$, A est 
-	NDT-récursivement énumérable s’ il 
+\begin{mydef}[NDT-récursivement énumérable] Soit $A\subseteq \N$, $A$ est 
+	NDT-récursivement énumérable s'il 
 	existe une ND-machine de Turing telle que lorsqu'elle reçoit comme 
-	donnée n'importe quel nombre naturel x\\
+	donnée n'importe quel nombre naturel $x$:\\
 	\begin{tabular}{l}
 		Si $x\in A$, alors il existe une exécution fournissant tôt ou 
-		tard comme résultat 1\\
-		Si $x\notin A$, les exécutions possibles soit retournent un 
-		nombre $\neq 1$ \\
-		soit ne se termine pas ou encore s'arrête avec 
-		un état $\neq$ stop\\
+		tard comme résultat 1.\\
+		Si $x\notin A$, toutes les exécutions possibles retournent soit un 
+		nombre $\neq 1$, \\
+		soit ne se terminent pas, ou encore s'arrêtent avec 
+		un état $\neq stop$.\\
 	\end{tabular}
 \end{mydef}
 
 \paragraph{Influence :} 
 \begin{itemize}
 	\item Même puissance, car il existe une machine de Turing qui interprète
-	 les NDT 
-	\item Speedup exponentielle, car on "descend" directement au bon endroit 
+	 les NDT.
+	\item Speedup exponentiel, car on "descend" directement au bon endroit 
 		dans l'arbre. Mais comme en pratique on doit simuler 
-		l'exécution non déterministe, ça ne change rien.
+		l'exécution non déterministe par un parcours en largeur de l'arbre d'exécution,
+		 ça ne change rien.
 \end{itemize}
 
 \subsubsection{Machine de Turing avec Oracle}
 On ajoute 3 états spéciaux : soit $A \subseteq \N$
 \begin{itemize}
 	\item $oracle_{ask}$ : demander si l'entier représenté à droite de la 
-		tête de lecture appartient à l'ensemble A
-	\item $oracle_{yes}$ : l'entier appartient à A
-	\item $oracle_{no}$ :  l'entier n'appartient pas à A
+		tête de lecture appartient à l'ensemble $A$
+	\item $oracle_{yes}$ : l'entier appartient à $A$
+	\item $oracle_{no}$ :  l'entier n'appartient pas à $A$
 \end{itemize}
 
-\paragraph{Puissance :} Ça dépend de A car si A est récursif, ça n'apporte pas 
-grand-chose, car on peut remplacer l'oracle par un programme qui décide A. Donc 
-même puissance. 
-
-Par contre si A n'est pas récursif, alors c'est un modèle plus 
-puissant (on pourrait déterminer halt). Mais ce n’est pas possible d'exécuter un tel programme. 
+\paragraph{Puissance :} Elle dépend de $A$. Si $A$ est récursif, ça n'apporte rien et
+  on garde la même puissance, car on peut remplacer l'oracle par un programme qui décide   
+  $A$.
+  
+Par contre, si $A$ n'est pas récursif, alors c'est un modèle plus 
+puissant (on pourrait déterminer halt). Mais il n’est pas possible d'exécuter un tel programme. 
 
 \begin{myrem}
-	Utilité : permets d'établir une hiérarchie parmi les problèmes 
-	indécidables. Ça permet de dire que si K est récursif quels problèmes 
-	seraient encore indécidables.
+	Utilité : permet d'établir une hiérarchie parmi les problèmes 
+	indécidables. Quels problèmes seraient encore
+	indécidables si K était récursif?
 \end{myrem}
 
 \subsubsection{Machine de Turing Universelle}
@@ -2079,15 +2089,15 @@ pour construire nos fonctions.
 	\item[Fonctions constantes] 
 		\begin{tabular}{|l|}
 			\hline
-			a:$\N^0 \rightarrow \N$\\
-			a() = a\\
+			$a: \N^0 \rightarrow \N$\\
+			$a() = a$\\
 			\hline
 		\end{tabular}
 	\item[Fonctions successeur] 
 		\begin{tabular}{|l|}
 			\hline
-			s:$\N \rightarrow \N$\\
-			s(n) = n + 1\\
+			$s: \N \rightarrow \N$\\
+			$s(n) = n + 1$\\
 			\hline
 		\end{tabular}
 	\item[Fonctions de projection] 
@@ -2116,17 +2126,17 @@ Il existe aussi 2 "règles" importantes :
 	\hline
 	$h: \N^{k+2} \rightarrow \N$\\
 	$g: \N^k \rightarrow \N$\\
-	$\stcomp{x} =x_1,...x_k$ \\
-	$f(\overline{x}, 0) = g(\overline{x})$ (Cas de base)\\
+	$\stcomp{x} =x_1,...,x_k$ \\
+	$f(\overline{x}, 0) = g(\overline{x}) \quad$ (Cas de base)\\
 	$f(\overline{x}, n+1) = 
-	h(\overline{x},n, f(\overline{x}, n))$\\
+	h(\overline{x},n, f(\overline{x}, n))\quad$ (Cas récursif)\\
 	\hline
 \end{tabular}
 
 \begin{myrem}
 	Lors de l'utilisation de la récursion primitive, il faut faire 
 	attention. Le cas de base ne peut pas faire appel à $f$ et on passe 
-	toujours de n+1 à n., Car, il ne peut pas y avoir de récursion infinie.
+	toujours de $n+1$ à $n$, car il ne peut pas y avoir de récursion infinie.
 \end{myrem}
 
 \subsubsection{Fonctions primitives récursives}
@@ -2137,8 +2147,8 @@ obtenues suite à l'application de composition ou de récursion primitive.
 	Les fonctions primitives récursives ne sont pas un modèle de complet de 
 	la calculabilité. En effet, il ne peut pas y avoir de récursion 
 	infinie. Donc on ne peut calculer avec ce modèle que des fonctions 
-	totales calculables. De plus, on sait par Hoare Allison que comme ce 
-	n'est pas un modèle complet, sont interpréteur n'est pas calculable 
+	totales calculables. De plus, on sait par le théorème de Hoare-Allison que, comme ce 
+	n'est pas un modèle complet, son interpréteur n'est pas calculable 
 	dans le modèle.
 \end{myprop}
 
@@ -2151,7 +2161,7 @@ obtenues suite à l'application de composition ou de récursion primitive.
 		ack(n+1,m+1) &= ack(n, ack(n+1,m))
 	\end{align}
 	Cette fonction à une croissance plus rapide que n'importe quelle fonction 
-	primitive récursive
+	primitive récursive.
 \end{myexem}
 
 
@@ -2164,9 +2174,9 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 	\hline
 	$h: \N^{k+1} \rightarrow \N$\\
 	$f: \N^{k} \rightarrow \N$\\
-	$\stcomp{x} =x_1,...x_k$ \\
-	$f(\overline{x}) = \mu_n (h(\overline(x), n) =0)$\\
-	$\mu_n$ est le plus petit n tel que $h(\overline(x), n) =0$ \\
+	$\stcomp{x} =x_1,...,x_k$ \\
+	$f(\overline{x}) = \mu_n (h(\overline{x}, n) = 0)$\\
+	$\mu_n$ est le plus petit $n$ tel que $h(\overline{x}, n) = 0$ \\
 	\hline
 \end{tabular}
 
@@ -2179,33 +2189,33 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 \subsection{Lambda calcul}
 \label{sub:lambda_calcul}
 \begin{myrem}
-	C'est encore un modèle pas très intuitif. Je pense que c'est important 
+	C'est encore un modèle peu intuitif. Je pense que c'est important 
 	de refaire l'exercice sur le vrai ou faux en lambda calcul ou encore la 
 	représentation des entiers dans le cours. Mais c'est un modèle complet 
 	et qui contient la base de la programmation fonctionnelle.
 \end{myrem}
 
-\begin{mydef}[Symboles de base] Soit une variable : a,b,c,...y,z,... ou un 
-	symbole spécial : $\lambda$, (,)
+\begin{mydef}[Symboles de base] Soit une variable : $a,b,c,...y,z,...$ ou un 
+	symbole spécial : $\lambda, (, )$
 \end{mydef}
 
 \begin{mydef}[Expression lambda] est l'une des 3 choses suivantes :
 	\begin{itemize}
 		\item une variable
-		\item $\lambda xB$ si B est une expression lambda et que x est 
+		\item $\lambda xB$ si $B$ est une expression lambda et que $x$ est 
 			une variable. \\
 			$\lambda x$ correspond à la définition 
 			d'une variable \textbf{liée} \\
 			$\lambda xB$ correspond à la définition d'une fonction 
-			à un paramètre, x.
-		\item (FA) si F et A sont des expressions lambda. On dit que F 
-			est l'opérateur et A est l'opérande. Ça représente 
-			l'application de F à A.
+			à un paramètre, $x$.
+		\item $(FA)$ si $F$ et $A$ sont des expressions lambda. On dit que $F$ 
+			est l'opérateur et $A$ est l'opérande. Ça représente 
+			l'application de $F$ à $A$.
 	\end{itemize}
 \end{mydef}
 
 \begin{mydef}[Variable liée] est une variable qui suit un $\lambda$ ou qui 
-	apparait dans M et qu'on a $\lambda xM$. 
+	apparait dans $M$ et qu'on a $\lambda xM$. 
 \end{mydef}
 
 \begin{mydef}[Variable libre] est une variable qui n'est pas liée.
@@ -2217,18 +2227,18 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 jusqu'à ce qu'il n'y ait plus de fonction à appliquer. On obtient alors une 
 forme réduite.
 
-\begin{mydef}[Application de fonction] Si on a une expression lambda (FA) où 
-	F est une fonction $\lambda xB$. On remplace toutes les occurrences liées 
-	de x dans B par A.
+\begin{mydef}[Application de fonction] Si on a une expression lambda $(FA)$ où 
+	$F$ est une fonction $\lambda xB$, on remplace toutes les occurrences liées 
+	de $x$ dans $B$ par $A$.
 \end{mydef}
 
 \begin{myrem}
 	Il faut faire attention, car lorsqu'on réduit une expression on ne peut 
-	pas introduire de conflit de nom donc il faut renommer les variables.
+	pas introduire de conflit de nom, donc il faut renommer les variables.
 \end{myrem}
 
 \begin{myrem}
-	Il est possible d'avoir des réductions infinies par exemple : 
+	Il est possible d'avoir des réductions infinies, par exemple :\\ 
 	$(\lambda x\ (xx)\ \lambda x \ (xx)) \ \rightarrow \ (\lambda x\ (xx) \  
 \lambda x \ (xx))$
 \end{myrem}
@@ -2239,23 +2249,23 @@ forme réduite.
 \end{myrem}
 
 \begin{myprop}
-	Une expression lambda est non définie si peut importe le choix de 
+	Une expression lambda est non définie si, peu importe le choix de 
 	réduction, on n’arrive pas à une forme réduite.
 \end{myprop}
 
 \begin{mytheo}[Church-Rosser] Si 2 séquences de réductions d'une expression 
-	lambda conduisent ) une forme réduite, alors les expressions obtenues 
+	lambda conduisent à une forme réduite, alors les expressions obtenues 
 	sont équivalentes.
 \end{mytheo}
 
 \begin{myprop}
 	Si une forme réduite existe, le choix de réduire l'expression la plus à 
 	gauche amène toujours à une forme réduite. (Donc, privilégier la 
-	réduction la plus à gauche)
+	réduction la plus à gauche.)
 \end{myprop}
 
 \begin{myrem}
-	Il existe 2 types de réduction la plus à gauche, la moins imbriquée 
+	Il existe 2 types de réduction la plus à gauche: la moins imbriquée 
 	(semblable au passage par nom en programmation) et la plus imbriquée 
 	(semblable au passage par valeur).
 \end{myrem}
