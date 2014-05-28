@@ -1069,13 +1069,26 @@ $A_2=\{i|\phi_i = f\}$,... (il y a plein d'exemples dans le cours).
 	\label{S-m-n}Pour tout $m,n \geq 0$, \\
 	il existe une fonction totale calculable $S^m_n : \N^{m+1} \rightarrow 
 	\N$ \\
-	telle que pour tout $k$,
+	telle que pour tout $k$ ($\phi_k$ est calculable),
 	$$ \phi^{(n+m)}_k(x_1,...,x_n,x_{n+1},...,x_{n+m}) = 
 	\phi^{(n)}_{S^n(k,x_{n+1}, ...,x_{n+m})} (x_1,...,x_n)$$
 \end{mytheo}
 
-Je n'ai pas la démonstration. Si quelqu'un la, ça serait sympa s’ il savait me
-la donner.
+\begin{mytheo}[S-m-n]
+	On va montrer comment construire un programme qui calcule 
+	$S^n(k,x_{n+1}, ...,x_{n+m})$.\\
+	Tout d'abord, comme $\phi_k$ est calculable, il existe : $P_k(x_1,x_2,...,x_{n+m})$.\\
+	On peut donc construire un programme $Q(x_1,...,x_n)$ qui calcule 
+	$P_k(x_1,x_2,...,x_{n+m})$.\\
+	Notre programme qui calcule $S^n(k,x_{n+1}, ...,x_{n+m})$ n'a plus 
+	qu'a retourner le numéro du programme Q.\\
+       	En résumé, $S^n(k,x_{n+1},
+	...,x_{n+m})$ = 
+	\begin{lstlisting}
+construire Q(x1,x2,...,xn) = P(x1,x2,...xn,...,xn+m)
+print le numero de Q
+	\end{lstlisting}
+\end{mytheo}
 
 \begin{mytheo}[S]
 	C'est la propriété S-m-n affaiblie.
