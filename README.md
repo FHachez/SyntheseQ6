@@ -8,3 +8,11 @@ Attention, il manque encore quelques démonstrations.
 Vous êtes bien sûr, les biens venus à contribuer.
 
 Floran Hachez
+
+Contributeurs :
+===============
+
+François Robinet
+Lena Peschke
+Lionel Nobel
+
