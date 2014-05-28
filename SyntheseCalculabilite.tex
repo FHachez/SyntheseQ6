@@ -1066,10 +1066,27 @@ la donner.
 
 \begin{mytheo}[S]
 	C'est la propriété S-m-n affaiblie.
-	\[ \forall z \exists S : \phi_k(x,y)=\phi_{S(k,x)}(y)\]
-	% Lena : j'ai plutôt ceci
-	% $$ \forall \text{ programme } P, \exists S \text{ total calculable }:
+	\[ \forall k \exists S \text{(totale calculable)} : \phi_k(x,y)=\phi_{S(x)}(y)\]
+	% Lena : j'ai plutôt ceci (c'est équivalent)
+	% $$ \forall \text{ programme } P, \exists S \text{ totale calculable }:
 	% P(x,y) \equiv \left[S(y) \right](x) $$
+\end{mytheo}
+
+\begin{mytheo}[S]
+	Par le théorème \ref{S-m-n} (S-m-n),
+	\[ \exists S \text{ (totale calculable) } \forall k : \phi_k(x,y)=\phi_{S(k,x)}(y)\]
+	\[ \forall k \exists S \text{ (totale calculable) } : \phi_k(x,y)=\phi_{S(k,x)}(y)\]
+	\[ \Rightarrow \forall k \exists S : \phi_k(x,y) =\phi_{S(k,x)}(y) \]
+	\begin{align}
+		\Rightarrow S(k,x) &= \phi_{S}(k,x) \text{ (S est totale calculable)}\\
+		&= \phi_{S'(S,k)}(x) \text{ (théorème du point fixe et S-m-n)}\\
+		&= \phi_{k'}(x) \text{ (renomage de } S'(S,k) \text{ en } k' \text{ )}\\
+		&= \phi_{S'(S,k)}(x) \text{ (théorème du point fixe et S-m-n)}\\
+		&= S"(x)\text{ (théorème du point fixe et S-m-n)}
+	\end{align}
+	\[ \Rightarrow \forall k \exists S" \text{(totale calculable)} :
+       	\phi_k(x,y)=\phi_{S"(x)}(y)\]
+	
 \end{mytheo}
 
 \begin{myrem}
