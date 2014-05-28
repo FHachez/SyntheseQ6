@@ -2288,15 +2288,15 @@ La partie 1 est démontrée et la 2 est supposée vraie.
 On la suppose vraie, car on a des évidences heuristiques (il y a eu beaucoup 
 d'essais pour trouver une fonction qui ne respectait pas la thèse) et qu'on a montré 
 l'équivalence entre tous les formalismes créés à ce jour (on a montré que toute 
-machine constructible par la mécanique de Newton ne calcul que des fonctions 
+machine constructible par la mécanique de Newton ne calcule que des fonctions 
 calculables). 
 % subsection fondement_de_la_th_se (end)
 
 \subsection{Formalismes de la calculabilité}
 \label{sub:formalismes_de_la_calculabilit_}
-On va se posé la question de qu'est-ce qui fait un bon formalisme de la 
-calculabilité. La réponse est un formalisme qui vérifie les fondements de la 
-thèse ... Plus précisément on va étudier des caractéristiques (des propriétés) 
+On va se poser la question de ce qui fait un bon formalisme de la 
+calculabilité. Il faut un formalisme qui vérifie les fondements de la 
+thèse... Plus précisément, on va étudier des caractéristiques (des propriétés) 
 nécessaires et suffisantes pour avoir un bon modèle de la calculabilité.
 
 \paragraph{} Dans ce chapitre, on va considérer un formalisme de la 
@@ -2304,54 +2304,55 @@ calculabilité D.
 
 \paragraph{Caractéristiques} 
 \begin{description}
-	\item[SD] : Soundness des descriptions
-	\item[CD] : Complétude des descriptions
-	\item[SA] : Soundness algorithmique
-	\item[CA] : Complétude algorithmique
-	\item[U] : Description universelle
-	\item[S] : Propriété S-m-n affaiblie
+	\item[SD] Soundness\footnote{Cohérence} des descriptions
+	\item[CD] Complétude des descriptions
+	\item[SA] Soundness algorithmique
+	\item[CA] Complétude algorithmique
+	\item[U] Description universelle
+	\item[S] Propriété S-m-n affaiblie
 \end{description}
 
 
 \begin{myrem}
-	\textbf{D} correspond à description c'est-à-dire une description de fonction.
-	Alors que \textbf{A} correspond à algorithme c'est-à-dire à une description
+	\textbf{D} correspond à description, c'est-à-dire une description de fonction.\\
+	\textbf{A} correspond à algorithme, c'est-à-dire à une description
 	exécutable.
 \end{myrem}
 
 \begin{myrem}
-	\textbf{Soudness} signifie que si on a une description dans notre modèle D alors
-	celle si n'est pas absurde, ça correspond bien à une fonction
+	\textbf{Soundness} signifie que, si on a une description dans notre modèle D alors
+	celle-ci est cohérente, correspond bien à une fonction
 	calculable.\\
-	\textbf{Complétude} signifie que notre modèle est complet donc il
+	\textbf{Complétude} signifie que notre modèle est complet, qu'il
 	n'existe pas de fonction calculable qui ne le soit pas dans notre
 	modèle.
 \end{myrem}
 
 \paragraph{Caractérisiques plus en détails}
 \begin{description}
-	\item[SD] : Toute fonction D-calculable est calculable (première partie 
+	\item[SD]  Toute fonction D-calculable est calculable (première partie 
 		de la thèse de Turing)
-	\item[CD] : Toute fonction Calculable est D-calculable (deuxième partie 
+	\item[CD]  Toute fonction calculable est D-calculable (deuxième partie 
 		de la thèse de Turing)
-	\item[SA] : L'interpréteur de D est calculable (on peut exécuté une 
+	\item[SA]  L'interpréteur de D est calculable (on peut exécuter une 
 		description de programme de D)
-	\item[CA] : L'interpréteur d'un autre formalisme qui respecte la 
+	\item[CA]  L'interpréteur d'un autre formalisme qui respecte la 
 		propriété SA est 
 		D-calculable (on peut par exemple exécuter un programme Java 
 		dans le formalisme D). On peut aussi dire qu'il existe une 
 		compilateur qui étant donné un programme $p$ dans un formalisme 
-		respectant SA produit une description de programme $d \in D$. 
-		Et que $p$ et $d$ calcule la même fonction.
-	\item[U] : L'interpréteur de D est D-calculable (sinon on sait par 
+		respectant SA produit une description de programme $d \in D$ tel que 
+		$p$ et $d$ calculent la même fonction.
+	\item[U]  L'interpréteur de D est D-calculable (sinon on sait par 
 		Hoare Allison que ce n'est pas un formalisme complet).
-	\item[S] : il existe un transformateur de programme calculable, qui 
-		recevant comme entrée un programme D à 2 arguments et une valeur 
-		x fournit comme résultat un programme D' tel que D'(y) calcul 
-		la même chose que D(x,y)
+	\item[S] Il existe un transformateur de programme calculable, qui 
+		recevant comme entrée un programme $d \in$ D à 2 arguments et une valeur 
+		$x$ fournit comme résultat un programme $d'$ tel que $d'(y)$ calcule 
+		la même fonction que $d(x,y)$.
+		% checker si d' dans D!!!
 \end{description}
-Un bon formalisme de la calculabilité possède toutes ces propriétés. Mais il 
-suffit d'en montrer certaines, car certaines propriétés en entrainent d'autres.
+Un bon formalisme de la calculabilité possède toutes ces propriétés. En pratique, il 
+suffit d'en montrer certaines, car certaines propriétés en entraînent d'autres.
 
 \begin{myprop}
 	SA $\Rightarrow$ SD, car si on peut trouver une description exécutable,
@@ -2360,23 +2361,25 @@ suffit d'en montrer certaines, car certaines propriétés en entrainent d'autres
 
 \begin{myprop}
 	CA $\Rightarrow$ CD, car si on a un compilateur qui compile un programme 
-	de P en une description dans D. Alors un programme de P est calculable dans D.
+	de P en une description dans D, alors un programme de P est calculable dans D.
 \end{myprop}
 
 \begin{myprop}
-	SD et U $\Rightarrow$ SA car si on sait qu'il existe une description et 
-qu'on a un interpréteur de D, D-calculable. Alors la description est exécutable.
+	SD et U $\Rightarrow$ SA car si on sait qu'il existe une description D calculant
+	une fonction et 
+qu'on a un interpréteur de D D-calculable, alors la description est exécutable.
 \end{myprop}
 
 \begin{myprop}
-	CD et S $\Rightarrow$ CA, car par CD on sait que ... (A compléter)
+	CD et S $\Rightarrow$ CA, car par CD on sait que
+	 ... (A compléter)
 \end{myprop}
 
 Un bon formalisme doit donc posséder soit SA et CA ou soit SD, CD, U et S ou 
-soit SA, CD et S ou encore CA, SD et U., Car
+soit SA, CD et S ou encore CA, SD et U, car
 \begin{itemize}
 	\item SA et CA $\iff$ SD, CD, U et S
-	\item SA ,CD et S $\iff$ SD, CA et U
+	\item SA, CD et S $\iff$ SD, CA et U
 \end{itemize}
 % su section formalismes_de_la_calculabilité_ (end)
 
@@ -2394,10 +2397,10 @@ Pour prouver qu'un problème est non calculable, on peut utiliser :
 \end{itemize}
 % subsection techniques_de_preuve (end)
 
-\subsection{Aspects non couverts par la Calculabilité (Section pas très
+\subsection{Aspects non couverts par la calculabilité\\ (Section pas très
 	importante pour l'examen)}
 \label{sub:aspects_non_couvert_par_la_calculabilit_}
-La calculabilité se limite au calcul de fonction. Or certains problèmes de la vie 
+La calculabilité se limite au calcul de fonctions. Or certains problèmes de la vie 
 de tous les jours ne correspondent pas à une fonction.
 
 \begin{myexem}
@@ -2416,20 +2419,20 @@ de tous les jours ne correspondent pas à une fonction.
 
 \subsection{Au-delà de la calculabilité}
 \label{sub:au_del_de_la_calculabilit_}
-Est-ce possible d'imaginer un modèle plus puissant que les modèles qu'on a 
+Est-il possible d'imaginer un modèle plus puissant que les modèles qu'on a 
 aujourd'hui? Est-ce que les humains sont "plus puissants" que les machines dans 
-le sens ou il pourrait calculer des fonctions non calculables?
+le sens où ils pourraient calculer des fonctions non calculables?
 
-\paragraph{} Ce sont des questions qui font débat. Certain ne veulent même pas 
-poser la deuxième question c'est-à-dire est-ce que H-calculable = calculable.
+Ce sont des questions qui font débat. Certain ne veulent même pas 
+poser la deuxième question c'est-à-dire est-ce que H-calculable = T-calculable.
 
 \begin{mydef}[H-calculable]
-	Une fonction est H-calculable si un être humain calculant cette 
-	fonction peut décrire à un autre humain sa méthode de calcul et que 
-	l'autre humain est capable de calculer cette fonction.
+	Une fonction est H-calculable si un être humain
+	est capable de calculer cette fonction.
+	% tu confonds avec la thèse CT "procédés publics" sinon
 \end{mydef}
 
-\paragraph{} A la question les machines pensent-elles? Turing a proposé un 
+\paragraph{} À la question "les machines pensent-elles?", Turing a proposé un 
 raisonnement : 
 \begin{itemize}
 	\item \textbf{Hypothèse :} les machines pensent.
