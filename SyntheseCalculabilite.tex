@@ -2869,41 +2869,42 @@ formule $x$ est-elle satisfaisable?
 \end{mydef}
 
 \subsection{Théorème de Cook : $SAT$ est $NP$-complet}
-Pour pouvoir trouver des problèmes NP-complet en les réduisant par rapport à
-un problème NP-complet, il faut trouver un premier problème NP-complet. 
-\paragraph{} On va montrer que SAT est NP-complet en 2 parties :
+Pour pouvoir trouver des problèmes $NP$-complet en les réduisant par rapport à
+un problème $NP$-complet, il faut trouver un premier problème $NP$-complet. 
+\paragraph{} On va montrer que $SAT$ est $NP$-complet en 2 parties :
 \begin{enumerate}
 	\item $SAT \in NP$
 	\item $\forall B \in NP \ : \  B\leq_p SAT $
 \end{enumerate}
 
 \subsubsection{Le problème SAT}
-Le problème SAT(x) est de décider si la formule propositionnelle x est 
-satisfaisable ou non. C'est à dire est-ce que $x\in SAT$.
+Le problème $SAT(x)$ est de décider si la formule propositionnelle $x$ est 
+satisfaisable ou non. C'est-à-dire: est-ce que $x\in SAT$?
 
-\paragraph{} La longueur d'une formule x est $O(n\log n)$. Où n est le nombre
+\paragraph{} La longueur d'une formule $x$ est $O(n\log n)$, où $n$ est le nombre
 d'occurrences des variables. Ça se justifie par le fait qu'en utilisant un codage
 d'Huffman, le code pour une variable prendra $\log n$ (c'est important pour
 définir la complexité du problème).
 
 \subsubsection{$SAT \in NP$}
 Il existe un programme ND polynomiale capable de décider si $x\in SAT$. On pose
-que m est le nombre de variables de x et n est le nombre d'occurrences de
-variable ($m\leq x$). Étape de l'algorithme avec leur complexité :
+que $m$ est le nombre de variables de $x$ et $n$ est le nombre d'occurrences de
+variables ($m\leq x$). Étapes de l'algorithme avec leur complexité :
 \begin{itemize}
-	\item  Générer une séquence de m valeurs logiques de façon
-		non déterministique : $O(m)$
-	\item  Substituer les occurrences des variables par leur valeur : $O(n
+	\item  Générer une séquence de $m$ valeurs logiques de façon
+		non déterministe : $\mathcal{O}(m)$
+	\item  Substituer les occurrences des variables par leur valeur :
+	$\mathcal{O}(n
 		\log n)$ 
 	\item Évaluer l'expression : Complexité polynomiale par une technique
 		de réduction.
 \end{itemize}
 
 \subsubsection{$\forall B \in NP \ : \  B\leq_p SAT $}
-Comme $B \in NP$, on a une NDMT qui décide B en un temps polynomial p(n). On va
-montrer qu'on sait transformer en un temps polynomial la NDMT par rapport à n
+Comme $B \in NP$, on a une NDMT qui décide $B$ en un temps polynomial $p(n)$. On va
+montrer qu'on sait transformer en un temps polynomial la NDMT par rapport à $n$
 en une formule propositionnelle et que cette formule à une longueur qui dépend 
-de p(n) ($O(p(n))$ symboles). Ce qui prouve que $B \leq_p SAT$.
+de $p(n)$ ($\mathcal{O}(p(n))$ symboles). Ce qui prouve que $B \leq_p SAT$.
 
 \paragraph{Idée de la transformation} Il me semble qu'on ne doit pas la connaitre
 pour l'examen. Mais l'idée est de représenter le ruban comme un tableau de
@@ -2911,15 +2912,15 @@ variables booléennes (chaque ligne représente le ruban à un instant),
 même chose pour les états, le curseur, l'alphabet,...
 
 
-\subsection{Quelques problèmes NP-complets}
+\subsection{Quelques problèmes $NP$-complets}
 \begin{itemize}
 	\item Problème du circuit hamiltonien HC (trouver un chemin qui passe
 		une seule fois par tous les sommets)
 	\item Problème du voyageur de commerce TS (trouver un chemin qui relie
-		tous les sommets et de longueur $\leq$ B)
+		tous les sommets et de longueur $\leq B$)
 	\item Chemin le plus long entre 2 sommets dans un graphe
-	\item 3SAT (forme conjonctive avec 3 variables par clause)
-	\item Programmai on entière (simplex)
+	\item $3SAT$ (forme conjonctive avec 3 variables par clause)
+	\item Programmation entière (simplexe)
 	\item ...
 \end{itemize}
 
