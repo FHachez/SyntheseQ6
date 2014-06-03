@@ -744,7 +744,8 @@ On suppose halt calculable.
 
 \paragraph{Conclusion} Il n'existe pas d'algorithme qui détermine si n'importe 
 quel programme $P_n$ se termine ou non. Mais dans certains formalismes qui ne 
-sont pas des modèles complets. Par exemple un langage qui ne permet de calculer 
+sont pas des modèles complets la fonction halt de ce formalisme est calculable.
+Par exemple un langage qui ne permet de calculer 
 que des fonctions totales (exemple java sans aucune boucle)
 , halt est calculable (halt retourne toujours 1). \\
 
@@ -1108,10 +1109,9 @@ print(d);
 	\[ \Rightarrow \forall \ k \ \exists \ S : \phi_k(x,y) =\phi_{S(k,x)}(y) \]
 	\begin{align}
 		\Rightarrow S(k,x) &= \phi_{S}(k,x) \text{ (S est totale calculable)}\\
-		&= \phi_{S'(S,k)}(x) \text{ (théorème du point fixe et S-m-n)}\\
+		&= \phi_{S'(S,k)}(x) \text{ (S-m-n)}\\
 		&= \phi_{k'}(x) \text{ (renomage de } S'(S,k) \text{ en } k' \text{ )}\\
-		&= \phi_{S'(S,k)}(x) \text{ (théorème du point fixe et S-m-n)}\\
-		&= S"(x)\text{ (théorème du point fixe et S-m-n)}
+		&= S"(x)\text{ (théorème du point fixe)}
 	\end{align}
 	\[ \Rightarrow \forall \ k \ \exists \ S" \ \text{(totale calculable)} :
        	\phi_k(x,y)=\phi_{S"(x)}(y)\]
