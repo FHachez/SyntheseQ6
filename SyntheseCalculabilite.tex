@@ -2335,10 +2335,7 @@ calculabilité D.
 		de la thèse de Turing)
 	\item[SA]  L'interpréteur de D est calculable (on peut exécuter une 
 		description de programme de D)
-	\item[CA]  L'interpréteur d'un autre formalisme qui respecte la 
-		propriété SA est 
-		D-calculable (on peut par exemple exécuter un programme Java 
-		dans le formalisme D). On peut aussi dire qu'il existe une 
+	\item[CA]  On peut aussi dire qu'il existe une 
 		compilateur qui étant donné un programme $p$ dans un formalisme 
 		respectant SA produit une description de programme $d \in D$ tel que 
 		$p$ et $d$ calculent la même fonction.
@@ -2370,8 +2367,14 @@ qu'on a un interpréteur de D D-calculable, alors la description est exécutable
 \end{myprop}
 
 \begin{myprop}
-	CD et S $\Rightarrow$ CA, car par CD on sait que
-	 ... (A compléter)
+	CD et S $\Rightarrow$ CA, considérons n'importe quel autre formalisme
+Q qui a la propriété SA (ce qui signifie que sont interpréteur, $interp_Q(n,x)$ est calculable). 
+Donc par la propriété CD, il existe un programme $p\in P$ tel que
+$\phi_p=\phi_{interp_Q}(n,x)$. Ensuite par la propriété S, il existe T, un
+transformateur de programme tel que : $\phi_{interp_Q}(n,x)=\phi_{T(n)}(x)$.
+On peut donc voir T comme un programme qui compile/transforme une description $q\in Q$ en une
+description $p\in P$. Ce qui implique qu'on a bien la propriété CA.
+
 \end{myprop}
 
 Un bon formalisme doit donc posséder soit SA et CA ou soit SD, CD, U et S ou 
